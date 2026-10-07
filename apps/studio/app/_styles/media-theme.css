@@ -1,5 +1,35 @@
-/* Color aliases only. Original component layout and typography stay in the vendored UI. */
-.snowfall-media[data-theme="light"] {
+/* Keep editor geometry intact while matching Studio's monochrome surfaces.
+   An explicitly chosen light theme remains available in editor preferences. */
+html .snowfall-media[data-theme="light"] {
+  color-scheme: light;
+  --color-background: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-surface-soft: #efefec;
+  --color-text: #171717;
+  --color-text-secondary: #353532;
+  --color-text-muted: #62625e;
+  --color-border: #dadad5;
+  --color-border-strong: #90908a;
+  --color-accent: #171717;
+  --color-accent-hover: #353532;
+  --color-accent-soft: #e7e7e2;
+  --color-accent-border: #8a8a83;
+  --color-on-accent: #ffffff;
+  --color-focus: #171717;
+  --color-success: #356347;
+  --color-warning: #806018;
+  --color-info: #3d617e;
+  --color-danger: #a13b32;
+}
+html .snowfall-media,
+html .snowfall-media[data-theme="light"] {
+  --r-xs: 2px;
+  --r-sm: 3px;
+  --r-md: 3px;
+  --r-lg: 4px;
+  --r-xl: 4px;
+  --r-2xl: 4px;
+  --r-3xl: 4px;
   --bg: var(--color-background);
   --surface: var(--color-surface);
   --surface-2: var(--color-surface-soft);
@@ -57,11 +87,15 @@
   --tint-72: color-mix(in srgb, var(--color-text) 72%, transparent);
   --tint-78: color-mix(in srgb, var(--color-text) 78%, transparent);
   --chrome: var(--color-surface);
-  --prism: linear-gradient(120deg,var(--color-accent),var(--color-warning),var(--color-info));
+  --prism: linear-gradient(120deg, var(--color-text), var(--color-text-muted));
+  --hairline: var(--color-border);
+  --accent-fill-soft: var(--color-accent-soft);
 }
-.snowfall-media:not([data-theme="light"]) { --accent: var(--palette-maple-200); --accent-bright: var(--palette-snow-100); --accent-soft: color-mix(in srgb,var(--color-accent) 25%,transparent); --accent-ink: var(--color-text); }
+html .snowfall-media :is(button, textarea, select, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"])) { border-radius: 3px; }
+html .snowfall-media :is(.right-panel, .prompt-box, .gallery-item) { border-radius: 4px; }
+html .snowfall-media::before, html .snowfall-media::after { background: none; }
 
-.snowfall-media[data-theme="dark"] { color-scheme: dark; }
+.snowfall-media:not([data-theme="light"]) { color-scheme: dark; }
 
 .media-workspace-panel { height: 100dvh; overflow: hidden; }
 .snowfall-media { position: relative; --studio-media-height: calc(100dvh - 54px); min-height: 0 !important; height: 100%; background: var(--color-background); color: var(--color-text); font-family: var(--font-sans); }
@@ -83,4 +117,25 @@
 .snowfall-media .logo-title--gen { font-size: 13px; letter-spacing: .05em; }
 @media(max-width:760px) { .snowfall-media .sidebar-top { left:0; top:165px; } .snowfall-media .panel-top { top:165px; } }
 
-.snowfall-media .logo-title { background: none; color: var(--color-text); -webkit-text-fill-color: var(--color-text); }
+.snowfall-media .logo-title { background: none; color: var(--text); -webkit-text-fill-color: var(--text); }
+
+/* In the embedded tablet layout the mobile node canvas has only absolute
+   children. Give its grid a height so that the drawing area cannot collapse. */
+html .snowfall-media .app[data-mobile="1"][data-ui-mode="node"] {
+  height: var(--studio-media-height);
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+html .snowfall-media .app[data-mobile="1"] > .node-canvas { min-height: 0; height: 100%; }
+.snowfall-media .studio-media-bridge :is(label, button, a) { white-space: nowrap; }
+@media (min-width: 761px) and (max-width: 1000px) {
+  .snowfall-media { --studio-media-height: calc(100dvh - 100px); }
+  .snowfall-media .studio-media-bridge { height: 100px; flex-wrap: wrap; gap: 6px; }
+  .snowfall-media .studio-media-bridge strong { display: none; }
+  .snowfall-media .studio-media-bridge label { margin-left: 0; }
+  .snowfall-media .sidebar-top, .snowfall-media .panel-top { top: 100px; }
+}
+@media (min-width: 761px) and (max-width: 800px) {
+  .snowfall-media .nav-rail--mobile { left: var(--layout-sidebar); width: calc(100% - var(--layout-sidebar)); }
+}

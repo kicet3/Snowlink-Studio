@@ -1,0 +1,97 @@
+/* Studio's own theme: shared visual language, independent of the company app. */
+:root {
+  color-scheme: dark;
+  --color-background: #080808;
+  --color-surface: #101010;
+  --color-surface-soft: #191919;
+  --color-text: #f3f3ef;
+  --color-text-secondary: #d3d3cf;
+  --color-text-muted: #a0a09b;
+  --color-border: #2c2c2c;
+  --color-border-strong: #5a5a56;
+  --color-accent: #f3f3ef;
+  --color-accent-hover: #d9d9d2;
+  --color-accent-soft: #252525;
+  --color-accent-border: #777772;
+  --color-on-accent: #080808;
+  --color-focus: #ffffff;
+  --color-success: #a8c8b0;
+  --color-success-soft: #19251d;
+  --color-warning: #ddc38e;
+  --color-warning-soft: #2c2519;
+  --color-info: #afc6d9;
+  --color-info-soft: #1b252d;
+  --color-danger: #e8a8a1;
+  --color-danger-soft: #301d1c;
+  --color-overlay: #000000b3;
+  --color-pattern: #ffffff0a;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --shadow-card: none;
+  --shadow-raised: 0 8px 24px #00000033;
+  --shadow-dialog: 0 24px 90px #00000099;
+}
+
+::selection { background: #e8e8e5; color: #080808; }
+.eyebrow, .nav-label, .sidebar-caption { font-family: var(--font-mono); }
+.brand { letter-spacing: -.055em; font-weight: 700; }
+#sidebar { background: #0c0c0c; }
+.side-nav { gap: 5px; }
+.side-nav a { border: 1px solid transparent; }
+.side-nav a[aria-current="page"] { border-color: #41413e; background: #202020; }
+.side-nav a[aria-current="page"] .icon { color: #fff; }
+.sidebar-note { background-image: none; border: 0; border-top: 1px solid var(--color-border); border-radius: 0; padding: 24px 8px 12px; }
+.sidebar-note p { font-size: 20px; line-height: 1.5; font-weight: 500; }
+.sidebar-note .icon { width: 20px; height: 20px; color: var(--color-text-muted); }
+.sidebar-footer { gap: 12px; border-top: 1px solid var(--color-border); margin-top: 16px; }
+.page-heading { padding-bottom: 28px; border-bottom: 1px solid var(--color-border); }
+.page-heading h1 { font-weight: 500; letter-spacing: -.055em; }
+.page-heading .eyebrow { font-size: 10px; letter-spacing: .12em; }
+.vector-mark { width: 130px; height: 76px; color: #999994; flex-shrink: 0; }
+.workflow-strip { background: var(--color-surface); }
+.workflow-strip button + button { border-left: 1px solid var(--color-border); }
+.action-card { --tone-color: var(--color-text); --tone-surface: var(--color-surface-soft); }
+.action-card-icon { border: 1px solid var(--color-border); }
+.action-card:hover { transform: none; border-color: var(--color-border-strong); }
+.board-column { background: #0e0e0e; }
+.seasonal-surface { background-image: none; }
+.empty-symbol { border: 1px solid var(--color-border); background: transparent; }
+.character-image, .preview-visual { background: var(--color-surface-soft); }
+.character-placeholder { color: var(--color-text-muted); }
+.upload-preview, .preview-placeholder, .form-tip { background: var(--color-surface-soft); color: var(--color-text-secondary); }
+.avatar, .cast-line img, .preview-index { background: var(--color-surface-soft); color: var(--color-text-secondary); }
+.character-card .badge { --tone-color: var(--color-text-secondary); --tone-surface: var(--color-surface-soft); }
+.story-flow span, .story-list-item, .story-job, .story-node { border-radius: 3px; }
+.settings-card .provider-heading { align-items: flex-start; }
+.icon-button, .subnav button, .account-tags button { border-radius: 3px; }
+.auth-screen { max-width: 1260px; gap: clamp(40px, 6vw, 96px); }
+.auth-intro .brand { margin-bottom: 48px; }
+.auth-intro h1 { font-weight: 500; font-size: clamp(32px, 3.5vw, 48px); }
+.auth-intro .eyebrow { font-size: 10px; letter-spacing: .14em; }
+.auth-features { gap: 8px; margin-top: 16px; }
+.auth-features span { background: none; padding: 7px 9px; border: 1px solid var(--color-border); border-radius: 2px; font-size: 11px; color: var(--color-text-muted); }
+.auth-card { border-top-color: #777772; }
+.auth-card .eyebrow { font-size: 10px; letter-spacing: .13em; }
+.auth-card h2 { font-weight: 500; letter-spacing: -.04em; }
+.auth-card input { background: #0c0c0c; }
+
+/* The embedded trends UI owns its layout; retain the same neutral surfaces. */
+html .snowfall-trends :is(button, input, select, .pill, .countries, .periods, .trendcard, .card, .home-section, .home-row, .home-row-thumb, .saved-card, .modelcard, .newsitem, .an-card, .date-card, .postcard, .empty-state) { border-radius: 3px; }
+html .snowfall-trends .header { border-bottom-color: var(--color-border); }
+
+@media (max-width: 1100px) { .vector-mark { display: none; } }
+@media (max-width: 1000px) {
+  .page-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .heading-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 12px; }
+}
+@media (max-width: 850px) {
+  .auth-screen { max-width: 540px; gap: 28px; }
+  .auth-intro .brand { margin-bottom: 28px; }
+  .auth-intro h1 { margin: 18px 0; font-size: 30px; }
+}
+@media (max-width: 760px) {
+  .page-heading { padding-bottom: 22px; }
+  .sidebar-note { margin-top: 32px; }
+}

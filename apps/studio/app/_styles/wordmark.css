@@ -1,0 +1,18 @@
+.wordmark-block { margin-top: 10px; }
+.vector-wordmark { position: relative; isolation: isolate; overflow: hidden; width: 100%; height: clamp(130px, 13vw, 185px); container-type: inline-size; }
+.vector-wordmark canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; }
+.wordmark-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 21cqw; letter-spacing: -.055em; line-height: 1; color: #e8e8e5; }
+.vector-wordmark[data-ready=true] canvas { opacity: 1; }
+.vector-wordmark[data-ready=true] .wordmark-fallback { visibility: hidden; }
+.wordmark-coordinate { position: absolute; top: 0; left: 0; visibility: hidden; font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; color: #999; pointer-events: none; }
+.vector-wordmark[data-ready=true] .wordmark-coordinate { visibility: visible; }
+.wordmark-caption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 0 14px; border-bottom: 1px solid var(--color-border); font-family: var(--font-mono); font-size: 9px; color: var(--color-text-muted); letter-spacing: .06em; }
+.wordmark-caption>span { display: flex; align-items: center; gap: 9px; }
+.wordmark-caption i { display: inline-block; width: 5px; height: 5px; border: 1px solid #8c8c89; }
+.wordmark-caption button { display: flex; align-items: center; gap: 12px; padding: 7px 0 7px 12px; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
+.wordmark-caption button:hover { color: #fff; }
+@media (max-width: 850px) { .vector-wordmark { height: 115px; } }
+@media (prefers-reduced-motion: reduce) {
+  .vector-wordmark canvas, .wordmark-coordinate { display: none; }
+  .vector-wordmark[data-ready=true] .wordmark-fallback { visibility: visible; }
+}

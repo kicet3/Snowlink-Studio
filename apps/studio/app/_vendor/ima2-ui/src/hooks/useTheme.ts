@@ -13,7 +13,7 @@ function readStoredMode(): ThemeMode {
   } catch {
     /* storage unavailable */
   }
-  return "light";
+  return "dark";
 }
 
 let currentMode: ThemeMode = readStoredMode();

@@ -9,14 +9,15 @@ import './_styles/studio.css';
 import './_styles/character-studio.css';
 import './_styles/scenarios.css';
 import './_styles/account.css';
-import tokens from './_styles/tokens.resolved.json';
+import './_styles/monochrome.css';
+import './_styles/wordmark.css';
 
 export const metadata = {
   title: 'snowlink-studio · 콘텐츠 작업실',
   robots: { index: false, follow: false, noimageindex: true, nosnippet: true },
   icons: { icon: '/logo.svg' },
 };
-export const viewport = { themeColor: tokens['color-background'], width: 'device-width', initialScale: 1 };
+export const viewport = { themeColor: '#080808', width: 'device-width', initialScale: 1 };
 export const dynamic = 'force-dynamic';
 
 export default function RootLayout({ children }) {
