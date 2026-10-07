@@ -1,0 +1,43 @@
+.story-flow {display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;color:var(--color-text-muted);font-size:13px}
+.story-flow span {padding:10px 16px;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface)}
+.story-layout {display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+.story-library {padding:20px;position:sticky;top:24px}
+.story-section-heading {display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.story-section-heading h2 {margin:0;font-size:21px}
+.story-library h2 {font-size:16px}
+.story-library .button {padding:6px 10px;font-size:12px}
+.story-list-item {width:100%;display:grid;text-align:left;gap:8px;padding:16px 10px;border:0;border-bottom:1px solid var(--color-border);background:transparent;border-radius:8px}
+.story-list-item small {color:var(--color-text-muted);line-height:1.6}
+.story-list-item.selected,.story-list-item:hover {background:var(--color-surface-soft)}
+.story-summary,.story-overall,.story-episode,#story-memory,#story-nodes {padding:24px;margin-bottom:20px;min-width:0;overflow-wrap:anywhere}
+.story-summary>p {white-space:pre-wrap;line-height:1.8}
+.story-stats,.story-actions {display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.story-episode summary,.story-overall summary {display:flex;align-items:center;gap:12px;cursor:pointer;flex-wrap:wrap;list-style:none}
+.story-episode summary:after,.story-overall summary:after {content:'⌄';margin-left:auto;color:var(--color-text-muted)}
+.story-episode-number {font-size:24px;color:var(--color-accent);font-weight:500}
+.story-episode-body {margin-top:24px}
+.story-length-fields {display:flex;gap:16px;align-items:end;margin:20px 0;flex-wrap:wrap}
+.story-length-fields>.field {flex:1;min-width:130px;margin:0}
+.story-length {font-size:13px;color:var(--color-accent)}
+.story-length.valid {color:var(--color-success)}
+.story-job {display:flex;gap:16px;align-items:center;justify-content:space-between;border:1px solid var(--color-border);border-radius:12px;background:var(--color-surface);padding:16px 20px;margin-bottom:12px}
+.story-job p {margin:6px 0;font-size:13px}
+.story-job .story-actions {margin:0}
+#story-jobs:empty {display:none}
+.story-node-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:24px}
+.story-node {padding:20px;border:1px solid var(--color-border);border-radius:12px}
+.story-node p {font-size:13px;line-height:1.8;white-space:pre-wrap}
+.story-node img,.story-node video {width:100%;max-height:300px;object-fit:contain;margin-bottom:16px;border-radius:8px}
+#story-dialog {width:min(760px,calc(100vw - 32px));max-height:90dvh;padding:28px}
+#story-dialog .dialog-heading {margin-bottom:20px}
+.story-check {display:flex;align-items:center;gap:10px;margin:16px 0;font-size:14px}
+.story-check input {width:18px;height:18px}
+.story-template-reply {padding:16px;margin:16px 0;border-radius:12px;background:var(--color-surface-soft);white-space:pre-wrap;line-height:1.8}
+#video-style-save {margin-top:24px;padding-top:24px;border-top:1px solid var(--color-border)}
+.scenario-page blockquote {margin:14px 0;padding:12px 16px;border-left:3px solid var(--color-accent-border);background:var(--color-surface-soft);border-radius:0 8px 8px 0;font-size:14px;line-height:1.7}
+.scenario-page blockquote p {margin:6px 0}
+.scenario-page blockquote small {color:var(--color-text-muted)}
+.scenario-page .field {margin:16px 0}
+.scenario-page textarea {resize:vertical;line-height:1.8;min-width:0;width:100%}
+@media(max-width:1050px){.story-layout{grid-template-columns:minmax(0,1fr)}.story-library{position:static}#story-list{display:flex;overflow-x:auto;gap:10px}.story-list-item{min-width:220px}.story-job{align-items:start;flex-direction:column}}
+@media(max-width:600px){.story-node-grid{grid-template-columns:minmax(0,1fr)}.story-summary,.story-overall,.story-episode,#story-memory,#story-nodes{padding:18px}.story-length-fields{gap:10px}#story-dialog{padding:20px}.story-flow{gap:8px}.story-flow span{font-size:11px;padding:8px 10px}}

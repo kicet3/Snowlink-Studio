@@ -1,0 +1,6 @@
+{
+  "project": "/Users/snowfall/orca/projects/ima2-gen",
+  "revision": "057de2c0639cd451c65bff6f484ae397e86d7447",
+  "copiedFrom": "/Users/snowfall/orca/projects/ima2-gen/ui",
+  "purpose": "Owned React source mounted directly in Snowfall Studio; scoped Snow & Autumn tokens, namespaced routing/API access, shared model preferences, character sheets and production briefs."
+}

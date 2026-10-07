@@ -1,0 +1,35 @@
+dialog { background: var(--color-surface); color: var(--color-text); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8); width: 640px; max-width: min(640px,calc(100vw - 24px)); max-height: 90dvh; box-shadow: var(--shadow-dialog); }
+dialog::backdrop { background: var(--color-overlay); backdrop-filter: blur(5px); }
+.wide-dialog { width: 900px; max-width: min(900px,calc(100vw - 24px)); }
+.dialog-heading { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6); }
+.dialog-heading .eyebrow { font-size: var(--text-xs); margin-bottom: var(--space-2); }
+.dialog-heading h2 { font-size: var(--text-xl); }
+.editor-form { display: grid; gap: var(--space-5); }
+.editor-form label { display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-secondary); }
+.editor-form input, .editor-form textarea, .editor-form select, .brief-text { width: 100%; }
+.form-grid { display: grid; grid-template-columns: minmax(0,1fr) 230px; gap: var(--space-6); }
+.form-main { display: grid; gap: var(--space-5); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.form-side { border-left: var(--border-width) solid var(--color-border); padding-left: var(--space-6); }
+.form-side h3 { margin-bottom: var(--space-2); }
+.cast-picker { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-5); }
+.cast-option { flex-direction: row !important; align-items: center; background: var(--color-surface-soft); padding: var(--space-3); border: var(--border-width) solid transparent; border-radius: var(--radius-md); cursor: pointer; }
+.cast-option:has(input:checked) { background: var(--color-accent-soft); border-color: var(--color-accent-border); }
+.cast-option input { width: 16px !important; margin: 0; }
+.cast-option img { width: var(--space-8); height: var(--space-8); object-fit: cover; border-radius: var(--radius-sm); }
+.cast-option small { display: block; font-size: var(--text-xs); color: var(--color-text-muted); max-width: 125px; overflow: hidden; text-overflow: ellipsis; }
+.small-empty { padding: var(--space-5) var(--space-1); color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.85; }
+.small-empty .icon { display: block; margin-bottom: var(--space-3); }
+.form-tip { margin-top: var(--space-6); padding: var(--space-4); background: var(--color-warning-soft); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--color-warning); line-height: 1.85; }
+.form-tip .icon { width: 15px; margin-right: var(--space-1); }
+.form-footer { display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-5); margin-top: var(--space-2); border-top: var(--border-width) solid var(--color-border); gap: var(--space-3); }
+.upload-preview { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--space-3); height: 170px; border: var(--border-width) dashed var(--color-border-strong); background: var(--color-info-soft); border-radius: var(--radius-lg); color: var(--color-info); font-size: var(--text-sm); text-align: center; }
+.upload-preview img { width: 100%; height: 100%; object-fit: contain; }
+.upload-preview .icon { width: var(--space-8); height: var(--space-8); }
+.upload-label input { padding: var(--space-3); font-size: var(--text-sm); }
+.brief-text { margin-top: var(--space-5); font-size: var(--text-sm); }
+.brief-assets { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-3); font-size: var(--text-sm); color: var(--color-accent); }
+.guide p { margin: var(--space-4) 0; line-height: 1.85; color: var(--color-text-muted); }
+.guide b { color: var(--color-text); }
+@media (max-width: 860px) { .form-grid { grid-template-columns: 1fr; } .form-side { border-left: 0; border-top: var(--border-width) solid var(--color-border); padding: var(--space-4) 0; } .cast-picker { display: grid; grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px) { dialog { padding: var(--space-5); border-radius: var(--radius-lg); } .dialog-heading h2 { font-size: var(--text-lg); } .form-footer { flex-wrap: wrap; } .form-footer > div { display: flex; flex-wrap: wrap; gap: var(--space-2); } .form-row { gap: var(--space-2); } }

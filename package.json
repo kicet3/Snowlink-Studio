@@ -19,7 +19,10 @@
     "dev": "node server/main.mjs",
     "mcp": "node scripts/mcp-stdio.mjs",
     "test": "npm run theme:check && node --test tests/*.test.mjs",
-    "ui:build": "npm run theme:build && npm --prefix vendor/ima2-ui run build:studio"
+    "ui:build": "npm run theme:build && npm --prefix vendor/ima2-ui run build:studio",
+    "studio:dev": "npm --prefix apps/studio run dev",
+    "studio:build": "npm --prefix apps/studio run build",
+    "studio:start": "npm --prefix apps/studio start"
   },
   "dependencies": {
     "@modelcontextprotocol/node": "2.1.1",
