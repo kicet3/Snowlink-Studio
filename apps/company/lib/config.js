@@ -10,7 +10,7 @@ export function companyConfig() {
     address: '관악구 조원로 8길 10',
     email: 'snowlink@snowlink.team',
     service: {
-      url: 'https://studio.snowfall.team',
+      url: 'https://studio.snowlink.team',
       name: 'snowlink-studio',
       button: 'snowlink-studio 시작하기',
       caption: 'AI 콘텐츠 제작 작업실',
