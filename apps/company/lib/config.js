@@ -1,27 +1,16 @@
-// Only deployment-specific public details are configurable. Page copy is fixed in code.
-export function companyConfig(env = process.env) {
-  const value = (key, fallback) => env[key]?.trim() || fallback;
-  const serviceUrl = env.SERVICE_URL?.trim() || '';
-  if (serviceUrl) {
-    let parsed;
-    try { parsed = new URL(serviceUrl); } catch { throw new Error('SERVICE_URL must be an absolute HTTP(S) URL.'); }
-    if (!['https:', 'http:'].includes(parsed.protocol) || parsed.username || parsed.password) {
-      throw new Error('SERVICE_URL must be an HTTP(S) URL without embedded credentials.');
-    }
-  }
-  const email = value('COMPANY_EMAIL', 'snowlink@snowlink.team');
-  if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) throw new Error('COMPANY_EMAIL must be a valid email address.');
+// All public company details, page copy and the service URL are fixed here.
+export function companyConfig() {
   return {
     name: '스노우링크(SnowLink)',
     brand: 'SnowLink',
-    registration: value('COMPANY_REGISTRATION_NUMBER', '335-17-02746'),
-    openingDate: value('COMPANY_OPENING_DATE', '6월 30일'),
-    registrationDate: value('COMPANY_REGISTRATION_DATE', '6월 30일'),
-    representative: value('COMPANY_REPRESENTATIVE', '이현대'),
-    address: value('COMPANY_ADDRESS', '관악구 조원로 8길 10'),
-    email,
+    registration: '335-17-02746',
+    openingDate: '6월 30일',
+    registrationDate: '6월 30일',
+    representative: '이현대',
+    address: '관악구 조원로 8길 10',
+    email: 'snowlink@snowlink.team',
     service: {
-      url: serviceUrl,
+      url: 'https://snowfall-macmini.tail447a11.ts.net:9450',
       name: 'snowlink-studio',
       button: 'snowlink-studio 시작하기',
       caption: 'AI 콘텐츠 제작 작업실',
