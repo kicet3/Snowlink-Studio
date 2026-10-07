@@ -8,7 +8,7 @@ export function companyConfig() {
     registrationDate: '6월 30일',
     representative: '이현대',
     address: '관악구 조원로 8길 10',
-    email: 'kicet3@snowlink.team',
+    email: 'ceo@snowlink.team',
     service: {
       url: 'https://studio.snowlink.team',
       name: 'snowlink-studio',
