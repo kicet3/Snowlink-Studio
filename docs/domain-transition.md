@@ -13,7 +13,7 @@
 
 - 회사 소개 루트 도메인은 Vercel에 연결됐으며 `www.snowfall.it.com`으로 이동합니다.
 - API는 Mac mini IP로 연결됐고 Nginx HTTPS 및 Let's Encrypt 인증서 발급을 완료했습니다. 기존 API 주소도 유지합니다.
-- Studio의 Cloudflare 권한 DNS 레코드와 Vercel HTTPS 연결을 확인했습니다. 일부 재귀 DNS에는 이전 NXDOMAIN 캐시가 남아 있을 수 있습니다.
+- Studio의 Cloudflare 권한 DNS 레코드와 Vercel HTTPS 연결을 확인했습니다. Google·Cloudflare·KT DNS도 정상 응답합니다. Mac의 시스템 DNS에는 이전 NXDOMAIN 캐시가 남아 있어 브라우저 캡처 갱신을 기다립니다. HTTPS·로그인·세션·Google 콜백은 새 호스트명과 정상 인증서를 사용해 확인했습니다.
 - `config.json`의 기본 API와 프론트 origin은 새 도메인으로 전환했으며 이전 주소는 호환용 origin으로 유지합니다.
 - 회사의 서비스 버튼은 `studio.snowfall.it.com`, Studio의 회사 소개 링크는 `snowfall.it.com`을 사용합니다.
 - 공개 회사·Studio 프론트는 AI를 포함한 모든 크롤러에 접근을 허용합니다. 계정별 데이터의 인증은 유지합니다.
