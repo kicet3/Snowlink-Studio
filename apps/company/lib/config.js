@@ -10,7 +10,7 @@ export function companyConfig(env = process.env) {
       throw new Error('SERVICE_URL must be an HTTP(S) URL without embedded credentials.');
     }
   }
-  const email = value('COMPANY_EMAIL', 'snowfall@snowfall.team');
+  const email = value('COMPANY_EMAIL', 'snowlink@snowlink.team');
   if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) throw new Error('COMPANY_EMAIL must be a valid email address.');
   return {
     name: value('COMPANY_NAME', '스노우링크(SnowLink)'),
