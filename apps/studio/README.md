@@ -1,4 +1,8 @@
-# snowlink-studio 프론트엔드
+# snowfall studio 프론트엔드
+
+제품 표시 이름은 `app/_lib/branding.js`에서 관리합니다. MCP 연결 별칭·패키지 이름·저장소 키는 기존 연동을 유지하기 위해 변경하지 않습니다.
+
+전환 예정 도메인은 Studio `studio.snowfall.it.com`, API `api.snowfall.it.com`, 회사 소개 `snowfall.it.com`입니다. 사용자가 네임서버를 변경 중이므로 현재 접속 주소와 환경변수는 유지합니다. DNS와 HTTPS 확인 후 `STUDIO_API_ORIGIN`, `NEXT_PUBLIC_COMPANY_SITE_URL`, 백엔드의 허용 origin 및 OAuth 콜백을 함께 전환합니다.
 
 Studio 화면을 Next.js App Router와 React로 구성한 독립 앱입니다. 제작 보드, 캐릭터, 시나리오, 이미지·영상, 컷 편집, 트렌드와 설정 화면의 소스 및 빌드 의존성을 이 폴더에 포함합니다. 회사 소개는 별도 앱인 `apps/company`에서 배포합니다.
 

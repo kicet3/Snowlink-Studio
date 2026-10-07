@@ -12,7 +12,7 @@ const screens = [
   { id: 'cuts', label: 'ShortGPT · 컷 편집', icon: 'film', title: '장면의 흐름을 다듬는 시간', description: '컷별 내레이션, 화면 연출, 길이를 편집하고 AI와 대화하면서 장면 구성을 수정합니다.' },
 ];
 
-export function ProductShowcase() {
+export function ProductShowcase({ productName }) {
   const [selected, setSelected] = useState(0);
   const screen = screens[selected];
   const source = `/screenshots/${screen.id}.jpg?v=20261007-monochrome`;
@@ -26,9 +26,9 @@ export function ProductShowcase() {
       {screens.map((item, index) => <button key={item.id} type="button" aria-pressed={selected === index} aria-controls="company-screen" onClick={() => setSelected(index)}><Icon name={item.icon}/>{item.label}</button>)}
     </div>
     <figure id="company-screen" className="company-screen">
-      <div className="company-screen-bar"><span><i/><i/><i/></span><span>snowlink-studio</span><span>{String(selected + 1).padStart(2, '0')} / {String(screens.length).padStart(2, '0')}</span></div>
+      <div className="company-screen-bar"><span><i/><i/><i/></span><span>{productName}</span><span>{String(selected + 1).padStart(2, '0')} / {String(screens.length).padStart(2, '0')}</span></div>
       <a className="company-screen-image" href={source} target="_blank" rel="noopener noreferrer" aria-label={`${screen.label} 화면 원본 크게 보기 (새 탭)`}>
-        <img key={screen.id} src={source} width="1474" height="829" loading="lazy" alt={`snowlink-studio ${screen.label} 탭의 실제 화면 — ${screen.title}`}/>
+        <img key={screen.id} src={source} width="1474" height="829" loading="lazy" alt={`${productName} ${screen.label} 탭의 실제 화면 — ${screen.title}`}/>
       </a>
       <figcaption>
         <div aria-live="polite"><h4>{screen.title}</h4><p>{screen.description}</p></div>

@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { api } from '../_lib/api';
 import { Button } from './Primitives';
+import { PRODUCT_NAME } from '../_lib/branding';
 
 const Context = createContext(null);
 export const useStudio = () => useContext(Context);
@@ -59,7 +60,7 @@ export function StudioProvider({ children }) {
     {children}
     <div id="toast" role="status" aria-live="polite" hidden={!message}>{message}</div>
     <dialog ref={dialog} id="editor" aria-labelledby="dialog-title" className={modal?.wide ? 'wide-dialog' : ''} onClose={closeModal}>
-      {modal && <div key={modal.key} style={{display:'contents'}}><div className="dialog-heading"><div><p className="eyebrow">SNOWLINK-STUDIO</p><h2 id="dialog-title">{modal.title}</h2></div><Button variant="icon-button" icon="close" aria-label="닫기" onClick={closeModal}/></div>{modal.content}</div>}
+      {modal && <div key={modal.key} style={{display:'contents'}}><div className="dialog-heading"><div><p className="eyebrow">{PRODUCT_NAME}</p><h2 id="dialog-title">{modal.title}</h2></div><Button variant="icon-button" icon="close" aria-label="닫기" onClick={closeModal}/></div>{modal.content}</div>}
     </dialog>
   </Context.Provider>;
 }

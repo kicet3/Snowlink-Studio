@@ -35,7 +35,7 @@ export function field({ label, name, value = '', type = 'text', placeholder = ''
   return `<label class="field"><span>${e(label)}</span>${control}</label>`;
 }
 export function dialogHeading(title) {
-  return `<div class="dialog-heading"><div><p class="eyebrow">SNOWLINK-STUDIO</p><h2 id="dialog-title">${e(title)}</h2></div>${button('', { variant: 'icon-button', iconName: 'close', attrs: { 'data-close': true, 'aria-label': '닫기' } })}</div>`;
+  return `<div class="dialog-heading"><div><p class="eyebrow">snowfall studio</p><h2 id="dialog-title">${e(title)}</h2></div>${button('', { variant: 'icon-button', iconName: 'close', attrs: { 'data-close': true, 'aria-label': '닫기' } })}</div>`;
 }
 function seasonMark() {
   return `<svg class="season-mark" viewBox="0 0 130 76" fill="none" aria-hidden="true"><g class="season-snow" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M33 9v53M10 22l46 26M10 48l46-26M24 13l9 9 9-9M24 58l9-9 9 9M12 31l12-3-3-12m25 39 3-12 12-3M12 40l12 3-3 12m25-39 3 12 12 3"/></g><g class="season-leaf"><path d="M76 58C54 33 76 13 113 13c-2 32-10 54-37 45Z" fill="currentColor"/><path d="M69 69 101 26m-21 30-1-15m10 2 13-1" stroke="var(--color-surface)" stroke-width="1.4" stroke-linecap="round"/></g><circle cx="116" cy="64" r="2" fill="var(--color-accent-border)"/></svg>`;

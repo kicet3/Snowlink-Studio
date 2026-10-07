@@ -1,4 +1,5 @@
 import { StudioShell } from './_components/StudioShell';
+import { PRODUCT_NAME } from './_lib/branding';
 import './_styles/tokens.css';
 import './_styles/base.css';
 import './_styles/components.css';
@@ -13,7 +14,7 @@ import './_styles/monochrome.css';
 import './_styles/wordmark.css';
 
 export const metadata = {
-  title: 'snowlink-studio · 콘텐츠 작업실',
+  title: `${PRODUCT_NAME} · 콘텐츠 작업실`,
   robots: { index: false, follow: false, noimageindex: true, nosnippet: true },
   icons: { icon: '/logo.svg' },
 };

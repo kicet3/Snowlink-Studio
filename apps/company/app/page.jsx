@@ -39,7 +39,7 @@ export default function CompanyPage() {
         <div className="company-section-heading"><SectionLabel number="02">OUR PRODUCT</SectionLabel><span>{c.service.caption}</span></div>
         <div className="company-product-heading"><div><h2 id="product-title">{c.service.name}<span className="product-period">.</span></h2><p>{c.service.description}</p></div><ServiceLink service={c.service} className="button primary">{c.service.button}</ServiceLink></div>
         <div className="company-capabilities">{c.features.map((feature, index) => <article key={feature.title}><div><span>0{index + 1} /</span><Icon name={feature.icon}/></div><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
-        <ProductShowcase/>
+        <ProductShowcase productName={c.service.name}/>
         <ProductDetails workflow={c.workflow} details={c.productDetails}/>
       </section>
       <section className="company-contact" id="contact" aria-labelledby="contact-title">
@@ -51,7 +51,7 @@ export default function CompanyPage() {
       <div className="company-footer-top">
         <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
         <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">스노우링크 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
-        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">snowlink-studio 소개</a><a href={c.service.url}>스튜디오 시작하기 <Icon name="external"/></a></nav>
+        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>스튜디오 시작하기 <Icon name="external"/></a></nav>
       </div>
       <div className="company-footer-business">
         <h2>{c.name}</h2>
