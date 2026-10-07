@@ -4,7 +4,7 @@ Next.js Studio 프론트는 [`apps/studio`](apps/studio/README.md)에 있습니�
 
 제품 표시 이름은 `snowfall studio`입니다. 회사명은 스노우링크(SnowLink)입니다. 기존 접속 주소·프로젝트 디렉터리·데이터·로그인·MCP 연결은 그대로 사용합니다. 패키지 이름과 MCP 연결 별칭 `snowlink-studio`, `SNOWFALL_*` 환경변수, `snowfall://workflow` 등 기술 식별자는 호환성을 위해 유지합니다.
 
-새 도메인은 회사 소개 `snowfall.it.com`, Studio `studio.snowfall.it.com`, API `api.snowfall.it.com`으로 확정했습니다. 사용자가 네임서버 변경을 진행 중이며, DNS·HTTPS 연결을 확인하기 전까지 현재 서비스 URL과 API 설정을 유지합니다. 회사 공개 이메일은 `ceo@snowfall.it.com`으로 변경했습니다.
+새 도메인은 회사 소개 `snowfall.it.com`, Studio `studio.snowfall.it.com`, API `api.snowfall.it.com`입니다. 회사 소개와 API HTTPS 연결을 확인했으며 Studio 서브도메인의 DNS·Vercel 설정은 확인 중입니다. 기존 주소도 유지합니다. 회사 공개 이메일은 `admin@snowfall.it.com`입니다. [전환 상태와 설정 값](docs/domain-transition.md)을 참고하세요.
 
 캐릭터와 이야기를 중심으로 트렌드 탐색, 이미지·영상 제작, ShortGPT 컷 편집을 모은 작업실입니다. Node.js 22 이상과 공식 MCP SDK를 사용하며, 내재화한 React 제작 UI는 자체 의존성과 빌드 단계를 가집니다.
 

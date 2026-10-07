@@ -15,7 +15,7 @@ const screens = [
 export function ProductShowcase({ productName }) {
   const [selected, setSelected] = useState(0);
   const screen = screens[selected];
-  const source = `/screenshots/${screen.id}.jpg?v=20261007-monochrome`;
+  const source = `/screenshots/${screen.id}.jpg?v=20261007-snowfall-studio`;
 
   return <section className="company-showcase" aria-labelledby="showcase-title">
     <div className="company-showcase-heading">

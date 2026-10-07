@@ -9,7 +9,7 @@ export function companyConfig() {
     registrationDate: '2026년 6월 30일',
     representative: '이현대',
     address: '관악구 조원로 8길 10',
-    email: 'ceo@snowfall.it.com',
+    email: 'admin@snowfall.it.com',
     service: {
       url: 'https://studio.snowlink.team',
       name: 'snowfall studio',
