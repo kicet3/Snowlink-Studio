@@ -3,7 +3,6 @@
 import { COMPANY_SITE_URL, PRODUCT_NAME } from '../_lib/branding';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import VectorWordmark from './VectorWordmark';
 import { api } from '../_lib/api';
 import { loginDestination } from '../_lib/login-destination';
@@ -11,7 +10,6 @@ import { useStudio } from './StudioProvider';
 
 export function Login() {
   const { authenticate, loading } = useStudio();
-  const router = useRouter();
   const [register, setRegister] = useState(false), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   async function submit(event) {
     event.preventDefault(); const values = Object.fromEntries(new FormData(event.currentTarget));
@@ -21,7 +19,8 @@ export function Login() {
       const result = await api(`/api/auth/${register ? 'register' : 'login'}`, 'POST', { username: values.username, password: values.password, ...(register ? { name: values.name } : {}) });
       await authenticate(result.user);
       const next = new URLSearchParams(location.search).get('next');
-      router.replace(loginDestination(next));
+      // Reset the embedded editor's in-memory workspace when switching accounts.
+      location.replace(loginDestination(next));
     } catch (err) { setError(err.message); }
     finally { setBusy(false); }
   }
