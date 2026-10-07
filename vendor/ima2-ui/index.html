@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+    />
+    <title>ima2</title>
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (function () {
+        try {
+          var m = localStorage.getItem("snowfall.ima2.themeMode");
+          var light =
+            !m || m === "light" ||
+            (m === "system" &&
+              window.matchMedia("(prefers-color-scheme: light)").matches);
+          if (light) document.documentElement.dataset.theme = "light";
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="/fonts/Satoshi-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/ClashDisplay-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/IBMPlexMono-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  <link rel="stylesheet" href="/_studio/tokens.css">
+<link rel="stylesheet" href="/_studio/theme.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

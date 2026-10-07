@@ -1,0 +1,86 @@
+/* Color aliases only. Original component layout and typography stay in the vendored UI. */
+.snowfall-media[data-theme="light"] {
+  --bg: var(--color-background);
+  --surface: var(--color-surface);
+  --surface-2: var(--color-surface-soft);
+  --surface-3: var(--color-border);
+  --border: var(--color-border);
+  --border-strong: var(--color-border-strong);
+  --text: var(--color-text);
+  --text-dim: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --text-faint: var(--color-text-muted);
+  --canvas-muted: var(--color-border-strong);
+  --accent: var(--color-accent);
+  --accent-bright: var(--color-accent-hover);
+  --accent-soft: var(--color-accent-soft);
+  --accent-ink: var(--color-on-accent);
+  --focus-ring: var(--color-focus);
+  --focus-ring-strong: var(--color-accent);
+  --control-bg: var(--color-surface);
+  --control-hover: var(--color-surface-soft);
+  --green: var(--color-success);
+  --amber: var(--color-warning);
+  --red: var(--color-danger);
+  --blue: var(--color-info);
+  --paper: var(--color-surface);
+  --paper-edge: var(--color-surface-soft);
+  --glass: var(--color-surface);
+  --glass-line: var(--color-border);
+  --canvas-stage-bg: var(--color-background);
+  --canvas-dot: var(--color-border-strong);
+  --canvas-topscrim: var(--color-background);
+  --canvas-plate: var(--color-surface);
+  --canvas-plate-soft: var(--color-surface-soft);
+  --canvas-plate-strong: var(--color-surface);
+  --canvas-plate-mid: var(--color-surface-soft);
+  --canvas-grid: var(--color-border);
+  --minimap-bg: var(--color-surface);
+  --minimap-border: var(--color-border);
+  --minimap-node-fill: var(--color-accent-soft);
+  --minimap-node-stroke: var(--color-accent);
+  --tint-02: color-mix(in srgb, var(--color-text) 2%, transparent);
+  --tint-03: color-mix(in srgb, var(--color-text) 3%, transparent);
+  --tint-04: color-mix(in srgb, var(--color-text) 4%, transparent);
+  --tint-05: color-mix(in srgb, var(--color-text) 5%, transparent);
+  --tint-06: color-mix(in srgb, var(--color-text) 6%, transparent);
+  --tint-08: color-mix(in srgb, var(--color-text) 8%, transparent);
+  --tint-10: color-mix(in srgb, var(--color-text) 10%, transparent);
+  --tint-12: color-mix(in srgb, var(--color-text) 12%, transparent);
+  --tint-14: color-mix(in srgb, var(--color-text) 14%, transparent);
+  --tint-16: color-mix(in srgb, var(--color-text) 16%, transparent);
+  --tint-18: color-mix(in srgb, var(--color-text) 18%, transparent);
+  --tint-20: color-mix(in srgb, var(--color-text) 20%, transparent);
+  --tint-26: color-mix(in srgb, var(--color-text) 26%, transparent);
+  --tint-32: color-mix(in srgb, var(--color-text) 32%, transparent);
+  --tint-50: color-mix(in srgb, var(--color-text) 50%, transparent);
+  --tint-72: color-mix(in srgb, var(--color-text) 72%, transparent);
+  --tint-78: color-mix(in srgb, var(--color-text) 78%, transparent);
+  --chrome: var(--color-surface);
+  --prism: linear-gradient(120deg,var(--color-accent),var(--color-warning),var(--color-info));
+}
+.snowfall-media:not([data-theme="light"]) { --accent: var(--palette-maple-200); --accent-bright: var(--palette-snow-100); --accent-soft: color-mix(in srgb,var(--color-accent) 25%,transparent); --accent-ink: var(--color-text); }
+
+.snowfall-media[data-theme="dark"] { color-scheme: dark; }
+
+.media-workspace-panel { height: 100dvh; overflow: hidden; }
+.snowfall-media { position: relative; --studio-media-height: calc(100dvh - 54px); min-height: 0 !important; height: 100%; background: var(--color-background); color: var(--color-text); font-family: var(--font-sans); }
+.snowfall-media .studio-media-bridge { min-height: 54px; display: flex; align-items: center; gap: 12px; padding: 8px 16px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); font: 12px var(--font-sans); }
+.snowfall-media .studio-media-bridge label { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.snowfall-media .studio-media-bridge select, .snowfall-media .studio-media-bridge button { background: var(--color-surface-soft); border: 1px solid var(--color-border); color: var(--color-text); border-radius: var(--radius-sm); padding: 6px 8px; }
+.snowfall-media .studio-media-bridge a { color: var(--color-accent); }
+@media (max-width: 760px) { .media-workspace-panel { height: calc(100dvh - 65px); } .snowfall-media { --studio-media-height: calc(100dvh - 165px); } .snowfall-media .studio-media-bridge { flex-wrap: wrap; min-height: 100px; gap: 6px; } .snowfall-media .studio-media-bridge strong { display: none; } .snowfall-media .studio-media-bridge label { margin-left: 0; } }
+
+.snowfall-media .sidebar-top { left: var(--layout-sidebar); top: 54px; }
+.snowfall-media .panel-top { top: 54px; }
+/* Keep the scrollport below the fixed panel toggle, including when scrolled. */
+.snowfall-media .app:not([data-mobile="1"]) .right-panel-body {
+  margin-top: var(--chrome-top-h);
+  padding-top: 16px;
+  min-height: 0;
+}
+.snowfall-media .logo-title { font-size: 20px; }
+.snowfall-media .logo-title--gen { font-size: 13px; letter-spacing: .05em; }
+@media(max-width:760px) { .snowfall-media .sidebar-top { left:0; top:165px; } .snowfall-media .panel-top { top:165px; } }
+
+.snowfall-media .logo-title { background: none; color: var(--color-text); -webkit-text-fill-color: var(--color-text); }

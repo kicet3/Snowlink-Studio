@@ -1,0 +1,56 @@
+# Local credentials and configuration (commit only the empty example).
+.env
+.env.*
+!.env.example
+config.local.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Accounts, sessions, OAuth tokens, stories, uploads and rendered media.
+.data/
+
+# Installed dependencies and Python environments.
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Build output and tool caches. Keep source assets and package lockfiles.
+/dist/
+/build/
+/vendor/*/dist/
+.vite/
+.cache/
+*.tsbuildinfo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Test coverage and browser-test artifacts.
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+blob-report/
+
+# Logs, process files and temporary backups.
+*.log
+*.log.*
+*.pid
+*.pid.lock
+*.tmp
+*.bak
+*~
+
+# Local editor and operating-system files.
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,32 @@
+{
+  "name": "snowlink-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "트렌드 탐색부터 캐릭터와 콘텐츠 제작까지, 하나의 작업실",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "theme:build": "node scripts/build-theme.mjs",
+    "theme:check": "node scripts/build-theme.mjs --check",
+    "prestart": "npm run theme:build",
+    "predev": "npm run theme:build",
+    "start": "node scripts/control.mjs start",
+    "stop": "node scripts/control.mjs stop",
+    "status": "node scripts/control.mjs status",
+    "meta:status": "node scripts/meta-status.mjs",
+    "dev": "node server/main.mjs",
+    "mcp": "node scripts/mcp-stdio.mjs",
+    "test": "npm run theme:check && node --test tests/*.test.mjs",
+    "ui:build": "npm run theme:build && npm --prefix vendor/ima2-ui run build:studio"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "2.1.1",
+    "@modelcontextprotocol/server": "2.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.0"
+  }
+}

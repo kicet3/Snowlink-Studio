@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 업무 위임 루프"
+  short_description: "반복 업무를 재사용 가능한 절차·도구·검증을 갖춘 스킬로 정리"
+  default_prompt: "$ai-delegation-loop 내가 반복하는 업무를 입력·절차·도구·검증 기준을 갖춘 업무 스킬로 정리해줘."
