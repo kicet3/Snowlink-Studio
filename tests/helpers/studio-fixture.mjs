@@ -63,6 +63,7 @@ export async function studioFixture(port = 0, { publicAccess = false } = {}) {
     if (url.pathname.startsWith('/generated/')) { res.writeHead(200, { 'Content-Type': 'image/png' }); res.end(PNG); return; }
     if (url.pathname === '/api/events') { res.writeHead(200, { 'Content-Type': 'text/event-stream' }); res.write(': ready\n\n'); return; }
     if (url.pathname === '/api/health') return reply(res, { ok: true });
+    if (url.pathname === '/api/grok/status') return reply(res, { status: 'ready', models: ['grok-imagine-image-2.0'], credential: 'private-fixture-value' });
     reply(res, {});
   });
   upstream.listen(0, '127.0.0.1'); await once(upstream, 'listening');

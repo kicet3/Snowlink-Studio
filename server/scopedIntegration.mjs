@@ -17,13 +17,14 @@ export async function handleScopedIntegration(req, res, url, config, ownership) 
   if (path === '/api/auth/lan/session' && req.method === 'GET') { json(res, 200, { mode: 'local', authenticated: true, expiresAt: null }); return true; }
   if (!admin && req.method === 'GET' && path === '/api/mcp/providers') { json(res, 200, { ok: true, providers: [], managed: true }); return true; }
   if (!admin && req.method === 'GET' && path === '/api/assets') { json(res, 200, { assets: [], nextCursor: null }); return true; }
-  if (!admin && req.method === 'GET' && ['/api/oauth/status', '/api/capabilities'].includes(path)) {
+  if (!admin && req.method === 'GET' && ['/api/oauth/status', '/api/grok/status', '/api/capabilities'].includes(path)) {
     const response = await fetch(new URL(path, config.tools.ima2.target), { signal: AbortSignal.timeout(20000), redirect: 'error' });
     if (!response.ok) throw bad('제작 엔진 상태를 확인하지 못했습니다.', 502);
     const source = await response.json();
     const publicAuth = (value, provider) => ({ provider, loggedIn: !!value?.loggedIn, health: value?.health || 'not_logged_in', refreshable: !!value?.refreshable });
     const result = path === '/api/oauth/status'
       ? { status: source.status || 'offline', models: source.models, auth: publicAuth(source.auth, 'gpt'), grokAuth: publicAuth(source.grokAuth, 'grok'), managed: true }
+      : path === '/api/grok/status' ? { status: source.status || 'offline', models: source.models, managed: true }
       : { limits: source.limits, valid: { videoModels: { referenceAudio: source.valid?.videoModels?.referenceAudio } }, defaults: { nai: source.defaults?.nai } };
     json(res, 200, result); return true;
   }

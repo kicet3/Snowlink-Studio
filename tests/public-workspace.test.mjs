@@ -20,6 +20,9 @@ test('public visitors get isolated persistent workspaces and use the existing AI
     assert.equal((await (await req('/api/workspace', ca)).json()).characters.length, 1);
     assert.equal((await (await req('/api/workspace', cb)).json()).characters.length, 0);
     assert.equal((await req(upload.image, cb)).status, 404);
+    const grokStatus = await req('/integrations/ima2/api/grok/status', ca);
+    assert.equal(grokStatus.status, 200);
+    assert.deepEqual(await grokStatus.json(), { status: 'ready', models: ['grok-imagine-image-2.0'], managed: true });
     const admin = await f.login();
     assert.equal((await (await req('/api/workspace', admin)).json()).characters.length, 0);
     const completion = await req('/v1/chat/completions', ca, 'POST', { messages: [{ role: 'system', content: '영상 아트 디렉터' }, { role: 'user', content: '{}' }] });

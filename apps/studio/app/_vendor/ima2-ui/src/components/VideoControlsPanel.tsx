@@ -96,8 +96,10 @@ export function VideoControlsPanel() {
   const [plannerConfig, setPlannerConfig] = useState<PlannerConfig | null>(null);
   useEffect(() => {
     fetchApi("/api/config/grok-planner")
-      .then((r) => r.json() as Promise<PlannerConfig>)
-      .then(setPlannerConfig)
+      .then(async (r) => r.ok ? await r.json() as PlannerConfig : null)
+      .then((value) => {
+        if (value && typeof value.model === "string" && Array.isArray(value.options)) setPlannerConfig(value);
+      })
       .catch(() => {});
   }, []);
   const onPlannerChange = async (model: string) => {
