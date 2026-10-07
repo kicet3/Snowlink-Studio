@@ -47,6 +47,7 @@ try {
   await listen(localAi, 0);
   const discovery = createDiscovery(config);
   for (const [id, tool] of Object.entries(config.tools)) {
+    if (config.backendOnly) continue;
     if (id === 'trends') {
       const frontends = new Map();
       await listen(createProxy({ target: tool.target, allowedOrigins: origins(tool), parentOrigins: origins(config), frontend: async (req, res) => {

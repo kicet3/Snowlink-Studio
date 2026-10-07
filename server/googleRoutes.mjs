@@ -1,7 +1,7 @@
 import { json, readJson } from './http.mjs';
 import { GOOGLE_CALLBACK_PATH } from './google.mjs';
 
-export async function handleGoogle(req, res, url, google) {
+export async function handleGoogle(req, res, url, google, frontendOrigin) {
   if (!url.pathname.startsWith('/api/google/')) return false;
   if (url.pathname === GOOGLE_CALLBACK_PATH && req.method === 'GET') {
     let result = 'connected';
@@ -10,7 +10,7 @@ export async function handleGoogle(req, res, url, google) {
       const codes = ['state_invalid', 'access_denied', 'authorization_failed', 'scope_required', 'refresh_required', 'token_failed', 'network_error', 'youtube_api_error', 'storage_error', 'cancelled'];
       result = codes.includes(error.code) ? error.code : 'failed';
     }
-    res.writeHead(303, { Location: '/#settings/google/' + result, 'Set-Cookie': google.clearCookie(req), 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' });
+    res.writeHead(303, { Location: frontendOrigin ? frontendOrigin + '/settings/google/' + result : '/#settings/google/' + result, 'Set-Cookie': google.clearCookie(req), 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' });
     res.end();
     return true;
   }

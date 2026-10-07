@@ -2,6 +2,38 @@
 
 Studio 화면을 Next.js App Router와 React로 구성한 독립 앱입니다. 제작 보드, 캐릭터, 시나리오, 이미지·영상, 컷 편집, 트렌드와 설정 화면의 소스 및 빌드 의존성을 이 폴더에 포함합니다. 회사 소개는 별도 앱인 `apps/company`에서 배포합니다.
 
+## 프로젝트 구조
+
+```text
+apps/studio/
+├── app/
+│   ├── layout.jsx              # 로그인 상태·공통 메뉴·전역 스타일
+│   ├── page.jsx                # /board로 이동
+│   ├── board/page.jsx
+│   ├── characters/page.jsx
+│   ├── scenarios/page.jsx
+│   ├── trends/page.jsx
+│   ├── ima2/page.jsx
+│   ├── ima2/graph/[sessionId]/page.jsx
+│   ├── shortgpt/page.jsx
+│   ├── settings/page.jsx
+│   ├── settings/google/[result]/page.jsx
+│   ├── oauth/[requestId]/page.jsx
+│   ├── _components/            # 공용 React 컴포넌트
+│   ├── _lib/                   # API·데이터 유틸리티
+│   ├── _styles/                # 스타일·디자인 토큰
+│   └── _vendor/                # 자체 포함한 React 미디어 편집기
+├── public/                     # 로고·폰트·robots.txt
+├── scripts/                    # Studio 전용 빌드 변환
+├── tests/
+├── next.config.mjs
+├── package.json
+├── package-lock.json
+└── vercel.json
+```
+
+화면은 각 경로의 `page.jsx`에서 렌더링합니다. 밑줄로 시작하는 폴더는 라우트로 노출하지 않는 내부 코드입니다. `apps/company`의 소스나 의존성을 가져오지 않으며 회사 소개 링크는 외부 URL로만 이동합니다.
+
 ## 로컬 실행
 
 ```sh

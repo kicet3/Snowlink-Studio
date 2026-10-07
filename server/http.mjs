@@ -3,11 +3,12 @@ export function json(res, status, value) {
   res.end(JSON.stringify(value));
 }
 
-export function authorize(req, allowedOrigins) {
+export function authorize(req, allowedOrigins, { frontendOrigins = [] } = {}) {
   const host = req.headers.host;
   const allowed = allowedOrigins.filter(origin => new URL(origin).host === host);
   if (!allowed.length) throw Object.assign(new Error('허용되지 않은 접속 주소입니다.'), { status: 403 });
-  if (req.headers.origin && !allowed.includes(req.headers.origin)) {
+  const frontendRequest = frontendOrigins.includes(req.headers.origin);
+  if (req.headers.origin && !allowed.includes(req.headers.origin) && !frontendRequest) {
     throw Object.assign(new Error('허용되지 않은 요청 출처입니다.'), { status: 403 });
   }
   if (req.headers['sec-fetch-site'] === 'cross-site' && !['GET', 'HEAD'].includes(req.method)) {

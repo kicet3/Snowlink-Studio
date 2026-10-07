@@ -24,8 +24,9 @@ config.ai = { ...base.ai, ...local.ai };
 config.shortgpt = { ...base.shortgpt, ...local.shortgpt };
 config.shortgpt.directory = resolve(ROOT, config.shortgpt.directory);
 config.shortgpt.python = resolve(ROOT, config.shortgpt.python);
-export const origins = item => [`http://127.0.0.1:${item.port}`, `http://localhost:${item.port}`, item.publicOrigin].filter(Boolean);
+export const origins = item => [`http://127.0.0.1:${item.port}`, `http://localhost:${item.port}`, item.publicOrigin, ...(item.additionalOrigins || [])].filter(Boolean);
 export function toolUrls(host) {
+  if (config.backendOnly) return Object.fromEntries(Object.keys(config.tools).map(id => [id, config.frontendOrigin + '/' + id]));
   const remote = config.publicOrigin && host === new URL(config.publicOrigin).host;
   const hostname = host?.startsWith('localhost:') ? 'localhost' : '127.0.0.1';
   return Object.fromEntries(Object.entries(config.tools).map(([id, tool]) => [id, remote ? tool.publicOrigin : `http://${hostname}:${tool.port}`]));

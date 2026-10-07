@@ -66,3 +66,13 @@ test('host and origin allowlists reject cross-site writes', () => {
   assert.throws(() => authorize({ headers: { host: '127.0.0.1:3400', origin: 'https://evil.test' }, method: 'POST' }, allowed), { status: 403 });
   assert.doesNotThrow(() => authorize({ headers: { host: '127.0.0.1:3400', origin: allowed[0] }, method: 'POST' }, allowed));
 });
+
+test('split deployment accepts only configured frontend origins and still checks API hosts', () => {
+  const allowed = ['https://api.snowlink.team'];
+  const options = { frontendOrigins: ['https://studio.snowlink.team'] };
+  const request = { method: 'POST', headers: { host: 'api.snowlink.team', origin: 'https://studio.snowlink.team', 'sec-fetch-site': 'same-origin' } };
+  assert.doesNotThrow(() => authorize(request, allowed, options));
+  for (const patch of [{ origin: 'https://unknown.example' }, { host: 'unknown.example' }, { 'sec-fetch-site': 'cross-site' }]) {
+    assert.throws(() => authorize({ ...request, headers: { ...request.headers, ...patch } }, allowed, options), { status: 403 });
+  }
+});

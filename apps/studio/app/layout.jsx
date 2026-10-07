@@ -1,15 +1,15 @@
-import { StudioShell } from '../frontend/components/StudioShell';
-import '../public/styles/tokens.css';
-import '../public/styles/base.css';
-import '../public/styles/components.css';
-import '../public/styles/workspace.css';
-import '../public/styles/forms.css';
-import '../public/cuts.css';
-import '../public/styles/studio.css';
-import '../public/styles/character-studio.css';
-import '../public/styles/scenarios.css';
-import '../public/styles/account.css';
-import tokens from '../design/tokens.resolved.json';
+import { StudioShell } from './_components/StudioShell';
+import './_styles/tokens.css';
+import './_styles/base.css';
+import './_styles/components.css';
+import './_styles/workspace.css';
+import './_styles/forms.css';
+import './_styles/cuts.css';
+import './_styles/studio.css';
+import './_styles/character-studio.css';
+import './_styles/scenarios.css';
+import './_styles/account.css';
+import tokens from './_styles/tokens.resolved.json';
 
 export const metadata = {
   title: 'snowlink-studio · 콘텐츠 작업실',

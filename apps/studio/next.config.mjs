@@ -9,6 +9,7 @@ if (apiOrigin.username || apiOrigin.password || apiOrigin.pathname !== '/' || ap
 }
 
 const nextConfig = {
+  agentRules: false,
   poweredByHeader: false,
   reactStrictMode: true,
   outputFileTracingRoot: root,
@@ -29,7 +30,7 @@ const nextConfig = {
       config.resolve.fallback = { ...config.resolve.fallback, fs: false, https: false, "image-size": false };
     }
     config.resolve.extensionAlias = { ...config.resolve.extensionAlias, ".js": [".ts", ".tsx", ".js"], ".mjs": [".mjs", ".mts"] };
-    config.module.rules.push({ test: /\.[jt]sx?$/, include: path.join(root, 'vendor/ima2-ui/src'),
+    config.module.rules.push({ test: /\.[jt]sx?$/, include: path.join(root, 'app/_vendor/ima2-ui/src'),
       enforce: 'pre', use: [path.join(root, 'scripts/studio-source-loader.cjs')] });
     return config;
   },

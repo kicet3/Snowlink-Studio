@@ -57,6 +57,19 @@ test('Google env selects only its keys, preserves file and explicit empty overri
   assert.deepEqual(loadGoogleCredentials(join(dataDir, 'absent'), {}), { clientId: '', clientSecret: '', apiKey: '' });
 });
 
+test('split deployment keeps Google callback and nonce cookie on the Studio origin', async t => {
+  const apiOrigin = 'https://api.snowlink.team', frontendOrigin = 'https://studio.snowlink.team';
+  const { connection, calls } = fixture(t, { allowedOrigins: [apiOrigin], apiOrigin, frontendOrigin });
+  const req = { headers: { host: new URL(apiOrigin).host, origin: frontendOrigin } };
+  assert.equal(connection.status(req).callbackUrl, frontendOrigin + GOOGLE_CALLBACK_PATH);
+  const flow = connection.start(req), url = new URL(flow.authorizationUrl);
+  assert.equal(url.searchParams.get('redirect_uri'), frontendOrigin + GOOGLE_CALLBACK_PATH);
+  assert.match(flow.cookie, /; Secure$/);
+  await connection.callback({ headers: { ...req.headers, cookie: flow.cookie.split(';')[0] } },
+    new URLSearchParams({ state: url.searchParams.get('state'), code: 'fixture-code' }));
+  assert.equal(calls[0].options.body.get('redirect_uri'), frontendOrigin + GOOGLE_CALLBACK_PATH);
+});
+
 test('OAuth uses allowed origins, browser binding, PKCE and offline consent; encrypted connection survives restart', async t => {
   const { connection, options, calls, dataDir } = fixture(t);
   assert.equal(connection.status(request()).accountConnected, false);

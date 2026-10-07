@@ -37,7 +37,7 @@ async function staticFile(res, root, pathname) {
 
 export function createApp({ root, dataDir, config, allowedOrigins, toolUrls, bootId, metaCredentials, googleCredentials, googleFetch, ai: suppliedAi, auth: suppliedAuth, testAuthBypass = false }) {
   const auth = suppliedAuth || createAuth(dataDir);
-  const oauth = createMcpOAuth({ directory: dataDir, auth, allowedOrigins });
+  const oauth = createMcpOAuth({ directory: dataDir, auth, allowedOrigins, frontendOrigin: config.frontendOrigin });
   const ownershipFor = createMediaOwnership(dataDir), contexts = new Map();
   function context(account) {
     if (contexts.has(account.id)) return contexts.get(account.id);
@@ -45,7 +45,8 @@ export function createApp({ root, dataDir, config, allowedOrigins, toolUrls, boo
     const store = createStore(directory), ai = suppliedAi || createAi(config, directory);
     const templates = createCharacterTemplates(directory), cutStore = createCutStore(directory);
     const render = createRenderer(config, root, directory);
-    const google = createGoogleConnection({ credentials: googleCredentials, dataDir: directory, allowedOrigins, fetchImpl: googleFetch });
+    const google = createGoogleConnection({ credentials: googleCredentials, dataDir: directory, allowedOrigins, fetchImpl: googleFetch,
+      apiOrigin: config.publicOrigin, frontendOrigin: config.frontendOrigin });
     const ownership = ownershipFor(account);
     const actions = createStudioActions({ config, dataDir: directory, store, ai, templates, ownership });
     const mcp = createMcpRoutes({ root, dataDir: directory, config, actions, account });
@@ -55,13 +56,20 @@ export function createApp({ root, dataDir, config, allowedOrigins, toolUrls, boo
   const server = http.createServer(async (req, res) => {
     res.setHeader('X-Robots-Tag', ROBOTS_TAG);
     try {
-      authorize(req, allowedOrigins);
+      authorize(req, allowedOrigins, {
+        frontendOrigins: [config.frontendOrigin, ...(config.frontendOrigins || [])].filter(Boolean) });
       if (handleRobots(req, res)) return;
       res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
       res.setHeader('X-Content-Type-Options', 'nosniff');
       const frames = Object.values(toolUrls(req.headers.host)).join(' ');
       res.setHeader('Content-Security-Policy', `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self'; frame-src ${frames}; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`);
       const url = new URL(req.url, 'http://localhost');
+      if (config.backendOnly && !/^(\/api\/|\/v1\/|\/mcp(?:$|\/)|\/media\/|\/renders\/|\/generated\/|\/integrations\/|\/oauth\/|\/\.well-known\/oauth-)/.test(url.pathname)) {
+        if (url.pathname === '/' && req.method === 'GET') {
+          res.writeHead(302, { Location: config.frontendOrigin, 'Cache-Control': 'no-store' }); res.end(); return;
+        }
+        return json(res, 404, { error: 'API 서버입니다. Studio 웹에서 접속해주세요.' });
+      }
       if (testAuthBypass && url.pathname === '/api/auth/session') return json(res, 200, { user: { id: 'test-owner', username: 'fixture', name: '테스트 작업실', role: 'admin' }, registration: false });
       if (await oauth.handle(req, res, url)) return;
       if (await auth.handle(req, res, url)) return;
@@ -73,7 +81,7 @@ export function createApp({ root, dataDir, config, allowedOrigins, toolUrls, boo
       if (!protectedPath && !account) return await staticFile(res, join(root, 'public'), url.pathname === '/' ? '/index.html' : decodeURIComponent(url.pathname));
       const { directory, store, ai, templates, cutStore, render, google, mcp, ownership } = context(account);
       if (await mcp.handle(req, res, url, mcpRequest && !!account)) return;
-      if (await handleGoogle(req, res, url, google)) return;
+      if (await handleGoogle(req, res, url, google, config.publicOrigin && req.headers.host === new URL(config.publicOrigin).host ? config.frontendOrigin : undefined)) return;
       if (url.pathname.startsWith('/generated/')) url.pathname = '/integrations/ima2' + url.pathname;
       if (testAuthBypass ? handleIntegration(req, res, url, config) : await handleScopedIntegration(req, res, url, config, ownership)) return;
       if (req.method === 'GET' && url.pathname.startsWith('/studio-media/')) return await staticFile(res, join(root, 'vendor/ima2-ui/dist'), decodeURIComponent(url.pathname.slice('/studio-media'.length)));

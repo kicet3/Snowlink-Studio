@@ -22,7 +22,7 @@ export function loadGoogleCredentials(envPath, environment = process.env) {
   return Object.freeze({ clientId: value('GOOGLE_CLIENT_ID'), clientSecret: value('GOOGLE_CLIENT_SECRET'), apiKey: value('YOUTUBE_API_KEY') });
 }
 
-export function createGoogleConnection({ credentials = {}, dataDir, allowedOrigins, fetchImpl = fetch, now = Date.now }) {
+export function createGoogleConnection({ credentials = {}, dataDir, allowedOrigins, fetchImpl = fetch, now = Date.now, apiOrigin, frontendOrigin }) {
   const vault = createGoogleVault(dataDir);
   const pending = new Map();
   const clientId = credentials.clientId || '';
@@ -38,7 +38,8 @@ export function createGoogleConnection({ credentials = {}, dataDir, allowedOrigi
   function origin(req) {
     const value = allowedOrigins.find(value => new URL(value).host === req.headers.host);
     if (!value) throw error('허용되지 않은 Google 연결 주소입니다.', 403);
-    const parsed = new URL(value);
+    // The browser's nonce/session cookies live on the frontend, which proxies this callback.
+    const parsed = new URL(value === apiOrigin && frontendOrigin ? frontendOrigin : value);
     if (parsed.protocol !== 'https:' && !(parsed.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(parsed.hostname))) {
       throw error('Google 연결은 HTTPS 또는 localhost에서 시작해주세요.', 400);
     }

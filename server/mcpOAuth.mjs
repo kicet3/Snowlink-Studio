@@ -19,7 +19,7 @@ async function readForm(req) {
   for (const key of params.keys()) if (params.getAll(key).length !== 1) throw fail('invalid_request', '중복된 OAuth 매개변수입니다.');
   return Object.fromEntries(params);
 }
-export function createMcpOAuth({ directory, auth, allowedOrigins }) {
+export function createMcpOAuth({ directory, auth, allowedOrigins, frontendOrigin }) {
   const file = join(directory, 'mcp-oauth.json');
   let state = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : { version: 1, clients: [], requests: [], codes: [], access: [], refresh: [], grants: [] };
   const rates = new Map();
@@ -81,7 +81,7 @@ export function createMcpOAuth({ directory, auth, allowedOrigins }) {
           if ((p.get('state') || '').length > 2000) throw fail('invalid_request', 'state가 너무 깁니다.');
           const request = { id: token(), issuer, resource: resource(req), clientId: registered.client_id, redirectUri, state: p.get('state') || '', challenge: p.get('code_challenge'), scope: SCOPE, expiresAt: Date.now() + 10 * 60000 };
           state.requests.push(request); persist();
-          res.writeHead(302, { Location: issuer + '/#oauth/' + request.id, 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' }); res.end(); return true;
+          res.writeHead(302, { Location: frontendOrigin ? frontendOrigin + '/oauth/' + request.id : issuer + '/#oauth/' + request.id, 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' }); res.end(); return true;
         }
         if (path.startsWith('/api/oauth/')) {
           const account = auth.user(req); if (!account) throw fail('login_required', '로그인이 필요합니다.', 401);
