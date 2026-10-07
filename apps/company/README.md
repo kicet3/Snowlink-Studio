@@ -21,7 +21,7 @@ npm run dev
 3. 환경변수 입력 없이 Deploy를 실행합니다. 기존에 등록한 `COMPANY_*`, `SERVICE_*` 환경변수는 사용하지 않으므로 삭제해도 됩니다.
 4. 회사 정보나 서비스 주소를 변경하려면 `lib/config.js`를 수정하고 재배포합니다.
 
-서비스 버튼은 `https://snowfall-macmini.tail447a11.ts.net:9450`으로 연결됩니다. 해당 Tailscale 네트워크에 접근할 수 있는 방문자만 서비스를 열 수 있습니다.
+서비스 버튼은 `https://studio.snowfall.team`으로 연결됩니다.
 
 [루트 디렉터리 설정](https://vercel.com/docs/project-configuration/project-settings).
 
