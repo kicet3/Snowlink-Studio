@@ -11,9 +11,9 @@ import { createAuth } from '../../server/auth.mjs';
 export const TEST_PASSWORD = 'fixture-password-123!';
 export const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j0f0AAAAASUVORK5CYII=', 'base64');
 const reply = (res, data, status = 200) => { res.writeHead(status, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(data)); };
-export async function studioFixture(port = 0) {
+export async function studioFixture(port = 0, { publicAccess = false } = {}) {
   const dataDir = mkdtempSync(join(tmpdir(), 'snowfall-story-'));
-  const auth = createAuth(dataDir); await auth.createUser({ username: 'admin', name: '테스트 관리자', password: TEST_PASSWORD }, 'admin');
+  const auth = createAuth(dataDir, { publicAccess }); await auth.createUser({ username: 'admin', name: '테스트 관리자', password: TEST_PASSWORD }, 'admin');
   const sessions = new Map(), history = [], flights = [], captured = { chats: [], generations: [], graphWrites: [] }, behavior = { short: false };
   const roles = { chat: { provider: 'gpt', model: 'fixture-chat' }, planning: { provider: 'gpt', model: 'fixture-chat' }, image: { provider: 'gpt', model: 'fixture-image' }, video: { provider: 'grok', model: 'fixture-video' } };
   const ai = { settings: { read: () => ({ roles, revision: 0 }) }, catalog: async () => Object.fromEntries(Object.entries(roles).map(([role, value]) => [role, { [value.provider]: [{ id: value.model, label: value.model }] }])), status: async () => ({ selected: 'gpt', providers: { gpt: { ready: true }, grok: { ready: true } } }),
@@ -67,7 +67,7 @@ export async function studioFixture(port = 0) {
   });
   upstream.listen(0, '127.0.0.1'); await once(upstream, 'listening');
   const target = `http://127.0.0.1:${upstream.address().port}`, origins = [];
-  const config = { port, ai: { provider: 'gpt', gptModel: 'fixture-chat', grokModel: 'fixture-chat' }, tools: { ima2: { target, name: '테스트 미디어' }, trends: { target, name: '테스트 트렌드' } }, shortgpt: {} };
+  const config = { port, publicAccess, ai: { provider: 'gpt', gptModel: 'fixture-chat', grokModel: 'fixture-chat' }, tools: { ima2: { target, name: '테스트 미디어' }, trends: { target, name: '테스트 트렌드' } }, shortgpt: {} };
   const server = createApp({ root: fileURLToPath(new URL('../../', import.meta.url)), dataDir, config, allowedOrigins: origins, toolUrls: () => ({ ima2: target, trends: target }), ai, auth });
   server.listen(port, '127.0.0.1'); await once(server, 'listening');
   const base = `http://127.0.0.1:${server.address().port}`; origins.push(base);

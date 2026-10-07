@@ -32,6 +32,23 @@ test('selected GPT model reaches OAuth inference separately for planning and cut
   const messages = [{ role: 'user', content: '원고 정리' }];
   assert.equal((await ai.complete(messages, undefined, 'planning')).content, 'gpt-6-sol');
   assert.equal((await ai.complete(messages)).content, 'gpt-6-astra');
+  const fixed = createAi({ ai: { ...aiConfig, fixedProviders: true }, tools: { ima2: { directory: dir } } }, dir);
+  assert.equal((await fixed.complete(messages, 'grok')).provider, 'gpt');
+  assert.equal((await fixed.complete(messages, 'grok', 'planning')).content, 'gpt-6-sol');
+});
+test('fixed providers migrate old preferences and retain model choices in the correct lane', async t => {
+  const dir = await mkdtemp(join(tmpdir(), 'snowfall-fixed-models-')); t.after(() => rm(dir, { recursive: true, force: true }));
+  await writeFile(join(dir, 'ai.json'), JSON.stringify({ provider: 'grok', roles: { image: { provider: 'gpt', model: 'gpt-6-sol' }, video: { provider: 'grok', model: 'grok-imagine-video-1.5' } }, revision: 4 }));
+  const settings = createModelSettings({ ai: { ...aiConfig, provider: 'grok', fixedProviders: true } }, dir);
+  const current = settings.read();
+  assert.deepEqual(Object.values(current.roles).map(value => value.provider), ['gpt', 'gpt', 'grok', 'grok']);
+  assert.equal(current.roles.image.model, 'grok-imagine-image-2.0');
+  assert.equal(current.roles.chat.model, 'gpt-6-luna');
+  assert.equal(current.revision, 4);
+  assert.throws(() => settings.save('chat', { provider: 'grok', model: 'grok-4.3' }), /기본값/);
+  assert.throws(() => settings.save('image', { provider: 'gpt', model: 'gpt-6-sol' }), /기본값/);
+  settings.save('chat', { provider: 'gpt', model: 'gpt-6-astra' }, 4);
+  assert.equal(settings.read().roles.chat.model, 'gpt-6-astra');
 });
 test('keyword discovery encodes searches, filters collected TikTok videos and exposes partial failures', async () => {
   const requests = [];

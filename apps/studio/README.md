@@ -20,6 +20,9 @@ apps/studio/
 │   ├── ima2/page.jsx
 │   ├── ima2/graph/[sessionId]/page.jsx
 │   ├── shortgpt/page.jsx
+│   ├── login/page.jsx           # 별도 계정 로그인
+│   ├── mcp/page.jsx             # 공개 MCP 안내·연결 관리
+│   ├── profile/page.jsx         # 계정 로그인 필요
 │   ├── settings/page.jsx
 │   ├── settings/google/[result]/page.jsx
 │   ├── oauth/[requestId]/page.jsx
@@ -72,4 +75,10 @@ npm run dev
 
 ## 공개 페이지 크롤링
 
-SEO description, canonical, Open Graph, 구조화 데이터와 sitemap을 생성하지 않습니다. 공개 프론트의 robots 메타 및 `X-Robots-Tag` 차단은 제거했으며 `public/robots.txt`는 모든 봇에 `Allow: /`를 반환합니다. 로그인 전 화면은 AI 크롤러도 읽을 수 있지만, 작업실 데이터와 API는 기존 계정 인증 및 권한 검사를 유지합니다.
+SEO description, canonical, Open Graph, 구조화 데이터와 sitemap을 생성하지 않습니다. 공개 프론트의 robots 메타 및 `X-Robots-Tag` 차단은 제거했으며 `public/robots.txt`는 모든 봇에 `Allow: /`를 반환합니다. 로그인 전 화면은 AI 크롤러도 읽을 수 있지만, 작업 데이터와 API는 방문자/계정 세션별 권한 검사를 유지합니다.
+
+## 접근 및 기본 AI
+
+일반 제작 페이지는 방문자 세션으로 로그인 없이 사용할 수 있습니다. `/settings`와 `/profile`은 `/login?next=...`로 이동하며 로그인 후 원래 페이지로 돌아옵니다. 제공업체 OAuth 로그인과 Provider 선택 UI는 표시하지 않습니다. 서버의 기존 OAuth 연결을 사용하며 대화·기획은 GPT, 이미지·영상은 Grok이 기본입니다. Claude API 키를 프론트 환경변수에 설정할 필요가 없습니다.
+
+MCP 설명은 `/mcp`에서 누구나 읽을 수 있습니다. MCP 연결 인증과 계정 작업 접근은 로그인·OAuth 승인이 필요합니다. `/oauth/[requestId]` 승인 요청은 별도 로그인 후 이어집니다. 방문자 작업실과 계정 작업실은 분리됩니다.

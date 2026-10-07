@@ -16,7 +16,7 @@ export interface NodeBranchDialogProps {
   onClose(): void;
 }
 
-const providers = ["oauth", "api", "grok", "gemini-api"] as const;
+const providers = ["grok"] as const;
 
 function createDraft(index: number, label: string): VariantDraft {
   return { id: `variant-${index + 1}`, label, provider: providers[index % providers.length], model: "", size: "" };
@@ -56,7 +56,6 @@ export function NodeBranchDialog({ sourceLabel, onApply, onClose }: NodeBranchDi
       {drafts.map((draft, index) => <fieldset key={draft.id} className="node-template-picker__card">
         <legend>{t("nodeStudio.branch.variantLegend", { index: index + 1 })}</legend>
         <label className="node-template-picker__search"><span>{t("nodeStudio.branch.label")}</span><input autoFocus={index === 0} value={draft.label} onChange={(event) => update(index, { label: event.target.value })} /></label>
-        <label className="node-template-picker__search"><span>{t("nodeStudio.branch.provider")}</span><select value={draft.provider} onChange={(event) => update(index, { provider: event.target.value })}>{providers.map((provider) => <option key={provider} value={provider}>{provider}</option>)}</select></label>
         <label className="node-template-picker__search"><span>{t("nodeStudio.branch.modelOverride")}</span><input value={draft.model} onChange={(event) => update(index, { model: event.target.value })} placeholder={t("nodeStudio.branch.currentModel")} /></label>
         <label className="node-template-picker__search"><span>{t("nodeStudio.branch.sizeOverride")}</span><input value={draft.size} onChange={(event) => update(index, { size: event.target.value })} placeholder={t("nodeStudio.branch.currentSize")} /></label>
         <button type="button" disabled={drafts.length <= 2} onClick={() => remove(index)}>{t("nodeStudio.branch.remove")}</button>

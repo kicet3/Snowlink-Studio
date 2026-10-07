@@ -12,9 +12,9 @@ import { McpReadinessDetails } from "./McpReadinessDetails";
  * chain so a newly registered lane (nai) never silently renders "GPT API".
  */
 const PROVIDER_READINESS_LABELS: Record<string, string> = {
-  oauth: "GPT OAuth",
+  oauth: "GPT · Studio",
   api: "GPT API",
-  grok: "Grok OAuth",
+  grok: "Grok · Studio",
   "grok-api": "Grok API",
   agy: "Gemini",
   "gemini-api": "Gemini API",

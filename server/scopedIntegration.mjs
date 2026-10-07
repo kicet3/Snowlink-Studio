@@ -55,6 +55,10 @@ export async function handleScopedIntegration(req, res, url, config, ownership) 
       if (n.data?.serverNodeId) ownership.require('nodes', n.data.serverNodeId);
     }
     if (generation) {
+      if (config.ai.fixedProviders) {
+        if (body.provider !== 'grok' || !body.model) body.model = path.includes('/video') ? config.ai.videoModel : config.ai.imageModel;
+        body.provider = 'grok';
+      }
       body.requestId ||= 'studio-' + randomUUID();
       if (typeof body.requestId !== 'string' || !/^[\w-]{1,100}$/.test(body.requestId)) throw bad('요청 ID를 확인해주세요.', 400);
       ownership.claim('requests', body.requestId);

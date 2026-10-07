@@ -85,20 +85,20 @@ claude mcp login snowlink-studio
 1. **트렌드 탐색**에서 소재를 찾습니다. 작업실에 내재화한 화면에서 급상승 검색·YouTube·Shorts·Instagram·TikTok·X·Threads·AI 소식·데이트 소재·AI 분석을 탐색합니다. 소재를 보관하고, 급상승 탭의 **SNS 영상** 버튼으로 같은 키워드의 관련 영상을 조회합니다. YouTube·Shorts는 검색 결과, TikTok은 현재 수집된 영상에서의 일치 결과를 보여줍니다. Instagram·X는 현재 수집 제한과 원본 검색 링크를 표시합니다.
 2. **캐릭터 시트**에 이름, 설정, 태그, 이미지(PNG/JPEG/WebP, 6MB 이하)를 등록합니다.
 3. **제작 보드**에서 썰 영상·카드뉴스·YouTube 형식을 고르고 대본, 출연 캐릭터, 제작 단계를 저장합니다. 기획 카드의 제작 자료에서 프롬프트와 시트를 가져갈 수 있습니다.
-4. **이미지 · 영상 제작**에서 GPT/Grok OAuth로 이미지 생성·원본 편집·Grok 영상 생성을 진행합니다. 저장한 기획과 캐릭터 시트를 불러올 수 있고, 생성 결과는 다운로드·캐릭터 등록·참고 이미지로 재사용할 수 있습니다. 진행 상황은 SSE로 이어지며 메뉴를 옮겨도 작업이 유지됩니다.
+4. **이미지 · 영상 제작**에서 Grok으로 이미지 생성·편집·영상 생성을 진행합니다. 저장한 기획과 캐릭터 시트를 불러올 수 있고, 생성 결과는 다운로드·캐릭터 등록·참고 이미지로 재사용할 수 있습니다. 진행 상황은 SSE로 이어지며 메뉴를 옮겨도 작업이 유지됩니다.
 5. **ShortGPT · 컷 편집**에서 기획을 선택해 컷을 나누고, “2번 컷을 3초로 줄여줘”처럼 수정합니다. 직접 수정·순서 이동·삭제·최근 20회 되돌리기·JSON 내보내기를 지원합니다.
 6. **콘티 MP4**는 실제 ShortGPT CoreEditingEngine으로 캐릭터 시트와 대사를 합성한 무음 미리보기를 출력합니다. 썰 영상은 세로, YouTube는 가로입니다.
 
-## GPT OAuth / Grok OAuth
+## 공개 작업실과 AI 연결
 
-새 작업실의 컷 편집과 트렌드 분석은 선택한 **GPT OAuth 또는 Grok OAuth**만 사용합니다. ShortGPT의 `llm_completion`도 동일한 로컬 연결로 바꿨습니다. API 키로 자동 전환하지 않습니다.
+제작 보드, 캐릭터, 시나리오, 트렌드, 이미지·영상과 컷 편집 페이지는 계정 로그인 없이 열 수 있습니다. 서버의 `publicAccess: true` 설정으로 브라우저별 방문자 세션을 만들고 작업 데이터를 분리합니다. 방문자 쿠키는 7일 유효하며 쿠키가 사라지면 이전 방문자 작업실에 다시 접근할 수 없습니다. 방문자 작업은 계정 작업실로 자동 이전되지 않습니다.
 
-- 로그인: **왼쪽 사이드바 → 설정 · OAuth**에서 로그인 버튼을 누르고 인증 페이지에 코드를 입력합니다. Tailscale PC에서도 같은 코드 방식으로 로그인합니다. 대기·취소·만료·재시도 상태를 표시하며, 기존 토큰을 화면으로 전달하지 않습니다.
-- 선택: **설정 · OAuth → 작업별 AI 모델**에서 기획·트렌드 분석 / 대화·컷 편집 / 이미지 / 영상을 각각 선택합니다. 제공자와 모델이 서버에 저장되어 다음 요청에 적용됩니다.
-- 제작 화면에서도 해당 작업의 모델을 선택할 수 있습니다. GPT OAuth 이미지의 선택값은 기획 모델이며, 실제 렌더러는 현재 `gpt-image-2`입니다. OAuth 인증과 이미지·영상 지원 능력을 구분합니다.
-- OAuth 토큰은 ima2-gen의 기존 세션 저장소에 남습니다. 작업실·ShortGPT DB나 브라우저에 복사하지 않습니다.
-- 로그인 계정 정보와 현재 OAuth 자격 증명 확인 결과를 함께 표시합니다. 실제 모델 호출의 사용량·권한 제한은 요청 결과로 표시됩니다.
-- 현재 기본값은 GPT OAuth / `gpt-6-luna`, Grok OAuth / `grok-4.3`입니다. 모델·경로·포트는 `config.local.json`에서 덮어쓸 수 있습니다.
+- `/login`은 독립된 계정 로그인·회원가입 페이지입니다. `/settings`와 `/profile`은 계정 로그인이 필요합니다.
+- `/mcp`는 공개 연결 안내입니다. Claude Code·Codex의 MCP 접근은 계정 로그인과 OAuth + PKCE 승인이 필요합니다. 방문자는 MCP 토큰 발급이나 연결 승인을 할 수 없습니다.
+- Provider 선택과 제공업체 OAuth 로그인 UI는 숨깁니다. 서버는 기존 GPT/Grok OAuth 연결을 계속 사용하며, 실제 Claude API 연동이나 API 키 전환은 포함하지 않습니다.
+- `ai.fixedProviders: true`일 때 대화·기획은 GPT, 이미지·영상은 Grok을 사용합니다. 이전에 저장된 다른 Provider 설정도 읽을 때 기본 연결로 정리합니다. API 요청에서 다른 Provider를 보내도 실행 경로는 고정됩니다.
+- 기본 모델은 대화·기획 `gpt-6-luna`, 이미지 `grok-imagine-image-2.0`, 영상 `grok-imagine-video-1.5`입니다. 계정 사용자는 `/settings`에서 해당 Provider의 모델을 선택할 수 있습니다.
+- 인증 토큰은 제작 엔진의 기존 서버 저장소에 남습니다. 브라우저에는 연결 가능 여부만 전달합니다. 사용량·권한·모델 실행 오류는 실제 요청 결과에 따릅니다.
 
 ## SNS API 자격증명 준비
 
@@ -113,13 +113,13 @@ claude mcp login snowlink-studio
 
 **현재 실행의 필수 설정은 아니며, 연결할 플랫폼의 항목만 설정합니다.** 서버는 시작할 때 루트 `.env`의 Google 세 항목과 `META_APP_ID`, `META_APP_SECRET`을 읽습니다. 이미 설정된 프로세스 환경변수는 빈 값까지 우선하며 파일을 변경하지 않습니다. 시크릿·API 키는 일반 설정 객체, 자식 도구의 환경변수, 브라우저, 백업에 전달하지 않습니다. Google 클라이언트 ID는 인증에 필요한 Google 로그인 URL에만 포함됩니다. `YOUTUBE_API_KEY`는 입력 상태만 확인하며 기존 트렌드 수집기는 이 키를 사용하지 않습니다. X 키는 아직 로드하지 않습니다.
 
-`npm run meta:status`, `GET /api/meta/status`, **설정 · OAuth → Instagram 연결 준비**에서 비밀값 없는 입력 상태를 확인할 수 있습니다. ID의 숫자 형식과 값의 존재만 확인하므로 **앱 자격증명 준비, Meta MCP 로그인, Instagram 계정 연결은 각각 별개**입니다. `.env`를 수정하면 서버를 재시작해야 합니다. Instagram·X의 공식 API 어댑터, OAuth 콜백·계정 토큰 보관, 수집·성과 조회·게시·예약 실행은 아직 구현 전입니다. Meta 콜백 URL은 구현과 검증이 끝난 뒤에 등록합니다.
+`npm run meta:status` 또는 계정 인증 후 `GET /api/meta/status`에서 비밀값 없는 입력 상태를 확인할 수 있습니다. ID의 숫자 형식과 값의 존재만 확인하므로 **앱 자격증명 준비, Meta MCP 로그인, Instagram 계정 연결은 각각 별개**입니다. `.env`를 수정하면 서버를 재시작해야 합니다. Instagram·X의 공식 API 어댑터, OAuth 콜백·계정 토큰 보관, 수집·성과 조회·게시·예약 실행은 아직 구현 전입니다. Meta 콜백 URL은 구현과 검증이 끝난 뒤에 등록합니다.
 
 Instagram은 [Facebook Login 경로](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/)를 사용하도록 준비합니다. Facebook 페이지에 연결된 비즈니스·크리에이터 계정이 필요합니다. 본인 또는 관리 계정의 개발 테스트에는 [Standard Access](https://developers.facebook.com/docs/instagram-platform/overview/)를 기준으로 하며 앱을 개발 상태로 유지합니다. 다른 계정의 데이터는 [Business Discovery](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/business-discovery/)가 허용하는 프로페셔널 계정의 공개 메타데이터·지표 범위에 한정됩니다. 일반 개인 계정, 임의 검색·전체 수집, 타 계정의 비공개 인사이트를 제공하는 기능으로 취급하지 않습니다.
 
 개발 앱에 추가한 권한은 계정·페이지 조회의 `pages_show_list`, `pages_read_engagement`, `instagram_basic`, 성과 조회의 `instagram_manage_insights`, 승인된 결과 게시의 `instagram_content_publish`입니다. 대시보드의 **테스트 준비 완료**는 실제 사용자의 데이터 접근 승인이나 앱 검수 승인을 뜻하지 않습니다. 계정 OAuth 구현 시 사용하는 엔드포인트의 종속 권한과 실제 승인 범위를 확인해야 합니다. 댓글·DM·광고·결제 권한은 이번 준비 범위에 포함하지 않습니다. 해시태그 검색에는 별도의 Instagram Public Content Access 검토가 필요합니다. [공식 권한 참고](https://developers.facebook.com/docs/permissions/).
 
-현재 GPT·Grok 로그인은 위 설정 화면을 사용합니다. 플랫폼 계정별 액세스/갱신 토큰은 `.env`에 직접 넣지 않습니다. Google 토큰은 아래 OAuth 연결에서 발급·보관합니다. 인증 참고: [YouTube API 자격증명](https://developers.google.com/youtube/registering_an_application), [X 앱 전용 Bearer Token](https://docs.x.com/fundamentals/authentication/oauth-2-0/application-only).
+GPT·Grok 인증은 운영자가 서버의 기존 제작 엔진에서 관리합니다. 플랫폼 계정별 액세스/갱신 토큰은 `.env`에 직접 넣지 않습니다. Google 토큰은 아래 OAuth 연결에서 발급·보관합니다. 인증 참고: [YouTube API 자격증명](https://developers.google.com/youtube/registering_an_application), [X 앱 전용 Bearer Token](https://docs.x.com/fundamentals/authentication/oauth-2-0/application-only).
 
 ### Google · YouTube 연결
 

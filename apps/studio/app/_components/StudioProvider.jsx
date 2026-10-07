@@ -7,6 +7,15 @@ import { PRODUCT_NAME } from '../_lib/branding';
 
 const Context = createContext(null);
 export const useStudio = () => useContext(Context);
+let sessionRequest;
+function workspaceSession() {
+  // Strict Mode and multiple consumers share one browser-session bootstrap.
+  if (!sessionRequest) sessionRequest = (async () => {
+    const current = await api('/api/auth/session');
+    return current.user ? current : await api('/api/auth/guest', 'POST', {});
+  })().finally(() => { sessionRequest = null; });
+  return sessionRequest;
+}
 
 export async function isolateAccount(user) {
   try {
@@ -20,16 +29,23 @@ export function StudioProvider({ children }) {
   const [user, setUser] = useState(null), [loading, setLoading] = useState(true), [error, setError] = useState('');
   const [workspace, setWorkspace] = useState({ characters: [], productions: [] });
   const [connections, setConnections] = useState({}), [message, setMessage] = useState(''), [modal, setModal] = useState(null);
-  const toastTimer = useRef(), dialog = useRef();
+  const toastTimer = useRef(), dialog = useRef(), accountId = useRef(null);
   const toast = useCallback(value => { setMessage(value); clearTimeout(toastTimer.current); toastTimer.current = setTimeout(() => setMessage(''), 4000); }, []);
   const refresh = useCallback(async () => {
-    const data = await api('/api/workspace'); setWorkspace(data);
+    const id = accountId.current;
+    const data = await api('/api/workspace');
+    if (id !== accountId.current) return data;
+    setWorkspace(data);
     document.dispatchEvent(new Event('workspace-updated')); return data;
   }, []);
-  const authenticate = useCallback(async account => { await isolateAccount(account); setUser(account); }, []);
+  const authenticate = useCallback(async account => {
+    accountId.current = account.id;
+    setWorkspace({ characters: [], productions: [] }); setConnections({});
+    await isolateAccount(account); setUser(account);
+  }, []);
   const loadSession = useCallback(async () => {
     setLoading(true); setError('');
-    try { const session = await api('/api/auth/session'); if (session.user) await authenticate(session.user); }
+    try { const session = await workspaceSession(); if (session.user) await authenticate(session.user); }
     catch (err) { setError(err.message); }
     finally { setLoading(false); }
   }, [authenticate]);

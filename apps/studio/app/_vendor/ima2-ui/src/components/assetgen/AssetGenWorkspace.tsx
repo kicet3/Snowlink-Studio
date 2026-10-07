@@ -6,7 +6,6 @@ import { InFlightList } from "../InFlightList";
 import { AssetMediaLightbox } from "./AssetMediaLightbox";
 import { AssetGenProjectRail } from "./AssetGenProjectRail";
 import { BackgroundPresetPicker } from "./BackgroundPresetPicker";
-import { AssetGenModelPicker } from "./AssetGenModelPicker";
 import { ProjectSelect } from "./ProjectSelect";
 import { KeyingPanel } from "./KeyingPanel";
 import { VectorizePanel } from "./VectorizePanel";
@@ -104,7 +103,6 @@ export function AssetGenWorkspace() {
           />
         </div>
         <BackgroundPresetPicker />
-        <AssetGenModelPicker />
         <div className="assetgen-field">
           <span className="assetgen-field__label" id="assetgen-kind-label">{t("assetGen.kind")}</span>
           <div className="assetgen-bg-picker" role="group" aria-labelledby="assetgen-kind-label">

@@ -6,21 +6,7 @@ import { useAppStore } from "../../store/useAppStore";
 import type { Provider } from "../../types";
 import type { ProviderAvailability } from "../../hooks/useProviderAvailability";
 import { Chip, ChipRow } from "../controls";
-import { Select, type SelectItem } from "../controls/Select";
 import { NegativePromptField } from "../NegativePromptField";
-
-const PROVIDER_LABELS: Record<Provider, string> = {
-  oauth: "GPT OAuth",
-  api: "GPT API",
-  grok: "Grok OAuth",
-  "grok-api": "Grok API",
-  agy: "Antigravity",
-  "gemini-api": "Gemini API",
-  atlascloud: "Atlas Cloud",
-  minimax: "MiniMax",
-  nai: "NovelAI",
-  comfy: "ComfyUI",
-};
 
 function homeReferenceThumbnail(item: TrayItem): string | undefined {
   if (item.kind === "attachment") return item.source.dataUrl;
@@ -39,7 +25,6 @@ export function HomePromptComposer({ providerAvailability }: HomePromptComposerP
   const prompt = useAppStore((state) => state.prompt);
   const setPrompt = useAppStore((state) => state.setPrompt);
   const provider = useAppStore((state) => state.provider);
-  const setProvider = useAppStore((state) => state.setProvider);
   const selectedPresetIds = useAppStore((state) => state.selectedPresetIds);
   const removePreset = useAppStore((state) => state.removePreset);
   const generate = useAppStore((state) => state.generate);
@@ -56,18 +41,6 @@ export function HomePromptComposer({ providerAvailability }: HomePromptComposerP
     void generate();
     useAppStore.getState().setUIMode("classic");
   };
-  const providerItems = Object.entries(PROVIDER_LABELS).map(([value, label]) => {
-    const providerValue = value as Provider;
-    const availability = providerAvailability[providerValue];
-    return {
-      value: providerValue,
-      label,
-      sub: providerValue === "comfy" ? availability.reason : availability.ok ? t("readiness.ready") : availability.reason,
-      // ComfyUI is selectable even before a workflow is observed so the user
-      // can reach its existing Settings manager and configure the local lane.
-      disabled: !availability.ok && providerValue !== "comfy",
-    } satisfies SelectItem<Provider>;
-  });
 
   return (
     <div className="home-prompt">
@@ -137,13 +110,6 @@ export function HomePromptComposer({ providerAvailability }: HomePromptComposerP
       </div>
 
       <div className="home-prompt__footer">
-        <Select
-          className="home-prompt__provider"
-          items={providerItems}
-          value={provider}
-          onChange={setProvider}
-          ariaLabel={t("readiness.provider")}
-        />
         <button
           type="button"
           className="home-prompt__generate"

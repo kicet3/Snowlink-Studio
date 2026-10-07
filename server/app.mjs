@@ -36,7 +36,7 @@ async function staticFile(res, root, pathname) {
 }
 
 export function createApp({ root, dataDir, config, allowedOrigins, toolUrls, bootId, metaCredentials, googleCredentials, googleFetch, ai: suppliedAi, auth: suppliedAuth, testAuthBypass = false }) {
-  const auth = suppliedAuth || createAuth(dataDir);
+  const auth = suppliedAuth || createAuth(dataDir, { publicAccess: config.publicAccess });
   const oauth = createMcpOAuth({ directory: dataDir, auth, allowedOrigins, frontendOrigin: config.frontendOrigin });
   const ownershipFor = createMediaOwnership(dataDir), contexts = new Map();
   function context(account) {
@@ -79,6 +79,7 @@ export function createApp({ root, dataDir, config, allowedOrigins, toolUrls, boo
       const account = testAuthBypass ? { id: 'test-owner', role: 'admin', username: 'test-owner' } : mcpRequest ? oauth.bearerUser(req) || (url.pathname === '/api/mcp/execute' ? auth.bearerUser(req) : null) : auth.user(req);
       if (protectedPath && !account) { if (mcpRequest) oauth.challenge(req, res); return json(res, 401, { error: '로그인이 필요합니다.' }); }
       if (!protectedPath && !account) return await staticFile(res, join(root, 'public'), url.pathname === '/' ? '/index.html' : decodeURIComponent(url.pathname));
+      if (account?.role === 'guest' && (url.pathname.startsWith('/api/google/') || url.pathname === '/api/meta/status' || req.method !== 'GET' && ['/api/ai/settings', '/api/ai/provider'].includes(url.pathname))) return json(res, 401, { error: '설정을 변경하려면 계정으로 로그인해주세요.' });
       const { directory, store, ai, templates, cutStore, render, google, mcp, ownership } = context(account);
       if (await mcp.handle(req, res, url, mcpRequest && !!account)) return;
       if (await handleGoogle(req, res, url, google, config.publicOrigin && req.headers.host === new URL(config.publicOrigin).host ? config.frontendOrigin : undefined)) return;

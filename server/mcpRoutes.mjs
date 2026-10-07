@@ -9,12 +9,13 @@ import { json, readJson } from './http.mjs';
 
 export function createMcpRoutes({ root, dataDir, config, actions, account }) {
   const file = join(dataDir, 'mcp-token');
-  if (!existsSync(file)) writeFileSync(file, randomBytes(32).toString('base64url'), { mode: 0o600, flag: 'wx' });
-  chmodSync(file, 0o600);
-  const token = readFileSync(file, 'utf8').trim();
+  if (account?.role !== 'guest' && !existsSync(file)) writeFileSync(file, randomBytes(32).toString('base64url'), { mode: 0o600, flag: 'wx' });
+  if (account?.role !== 'guest') chmodSync(file, 0o600);
+  const token = account?.role === 'guest' ? null : readFileSync(file, 'utf8').trim();
   const handler = createMcpHandler(() => studioMcpServer(actions.execute), { responseMode: 'json', maxRequestBodySize: 9 * 1024 * 1024 });
   const nodeHandler = toNodeHandler(handler);
   function authenticated(req) {
+    if (!token) return false;
     const candidate = Buffer.from(String(req.headers.authorization || '').replace(/^Bearer /, ''));
     const expected = Buffer.from(token);
     return req.headers.authorization?.startsWith('Bearer ') && expected.length === candidate.length && timingSafeEqual(candidate, expected);
@@ -33,7 +34,7 @@ export function createMcpRoutes({ root, dataDir, config, actions, account }) {
         json(res, 200, { enabled: true, endpoint: (config.publicOrigin || `http://127.0.0.1:${config.port || 3400}`) + '/mcp', authentication: 'OAuth 2.1 + PKCE', toolCount: Object.keys(studioToolDefinitions).length, stdio: { command: process.execPath, args: [join(root, 'scripts/mcp-stdio.mjs')], ...(account?.role === 'member' ? { env: { SNOWFALL_DATA_DIR: dataDir } } : {}) }, note: 'Claude와 Codex에서 URL을 등록한 뒤 웹 계정으로 로그인하고 접근을 승인합니다. 연결 해제는 이 화면에서 할 수 있습니다.' }); return true;
       }
       // Token disclosure is an explicit same-origin UI action, never an MCP tool/resource.
-      if (url.pathname === '/api/mcp/token' && req.method === 'POST') { json(res, 200, { token }); return true; }
+      if (url.pathname === '/api/mcp/token' && req.method === 'POST') { json(res, token ? 200 : 401, token ? { token } : { error: 'MCP 인증에는 계정 로그인이 필요합니다.' }); return true; }
       if (url.pathname === '/api/studio/actions' && req.method === 'POST') {
         const body = await readJson(req); json(res, 200, await actions.execute(body.name, body.arguments)); return true;
       }

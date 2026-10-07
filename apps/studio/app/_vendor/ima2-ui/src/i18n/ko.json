@@ -456,10 +456,10 @@
     "offline": "오프라인",
     "remaining": "${remaining} 남음",
     "thisMonth": "이번 달 ${amount}",
-    "oauthFree": "GPT OAuth 연결 · 계정 사용량 적용",
+    "oauthFree": "GPT · Studio 연결 · 계정 사용량 적용",
     "apiDisabled": "API 키 사용 가능",
     "apiReady": "API 키 사용 가능",
-    "oauthMode": "GPT OAuth 모드"
+    "oauthMode": "GPT · Studio 모드"
   },
   "history": {
     "openGalleryAria": "갤러리 열기",
@@ -800,10 +800,10 @@
     "statusLineTitle": "상태",
     "authMethodTitle": "인증",
     "authActive": "사용 중",
-    "oauthNotReady": "GPT OAuth가 아직 준비되지 않았습니다.",
+    "oauthNotReady": "GPT · Studio가 아직 준비되지 않았습니다.",
     "codexLoginRequired": "Codex 로그인이 필요합니다.",
     "codexLoginHint": "터미널에서 `ima2 login`을 실행하거나, 설정 → Codex 계정 전환에서 로그인하세요.",
-    "oauthStarting": "GPT OAuth가 시작 중입니다. 몇 초 후 다시 시도하세요.",
+    "oauthStarting": "GPT · Studio가 시작 중입니다. 몇 초 후 다시 시도하세요.",
     "serverUnreachable": "서버에 연결할 수 없습니다. 백엔드가 실행 중인지 확인하세요.",
     "apiInvalid": "API 키가 없거나 유효하지 않습니다. 서버의 .env 파일에서 OPENAI_API_KEY를 확인하세요.",
     "grokOffline": "Grok 로그인이 필요합니다.",
@@ -1382,8 +1382,8 @@
       "naiEyebrow": "토큰",
       "naiBody": "영구 토큰을 사용하며, 아래에서 V5 Opus 배터리와 Anlas 잔량을 확인할 수 있습니다.",
       "primaryEyebrow": "현재 공급자",
-      "oauthTitle": "GPT OAuth",
-      "oauthBody": "GPT OAuth로 생성할 때 Codex 로그인 세션을 사용해요. 유효한 API 키가 있으면 API 키 모드로 바꿀 수 있어요.",
+      "oauthTitle": "GPT · Studio",
+      "oauthBody": "GPT · Studio로 생성할 때 Codex 로그인 세션을 사용해요. 유효한 API 키가 있으면 API 키 모드로 바꿀 수 있어요.",
       "apiSourceEnv": "OPENAI_API_KEY 감지됨",
       "apiSourceConfig": "config.json API 키 감지됨",
       "apiTitle": "OpenAI API 키",
@@ -1537,7 +1537,7 @@
     },
     "grokCompatibility": {
       "title": "Grok 호환성",
-      "body": "Grok 이미지 생성은 먼저 필수 웹 검색을 수행하고, 그 다음 텍스트와 첨부 이미지를 함께 보는 image-tool planner가 최종 이미지 프롬프트를 영어로 작성한 뒤 xAI Images API로 실행됩니다. 첨부 레퍼런스는 xAI 이미지 편집 경로로 유지되고, 크기는 aspect ratio/resolution으로 매핑됩니다. 출력 포맷·모더레이션·추론은 GPT OAuth/API 키 공급자에서만 사용됩니다."
+      "body": "Grok 이미지 생성은 먼저 필수 웹 검색을 수행하고, 그 다음 텍스트와 첨부 이미지를 함께 보는 image-tool planner가 최종 이미지 프롬프트를 영어로 작성한 뒤 xAI Images API로 실행됩니다. 첨부 레퍼런스는 xAI 이미지 편집 경로로 유지되고, 크기는 aspect ratio/resolution으로 매핑됩니다. 출력 포맷·모더레이션·추론은 GPT · Studio/API 키 공급자에서만 사용됩니다."
     },
     "grokPlanner": {
       "title": "Grok planner 모델",
@@ -1637,7 +1637,7 @@
     },
     "oauthImageCapabilityUnavailable": {
       "title": "현재 계정에서 이미지 도구를 사용할 수 없는 것 같아요",
-      "body": "GPT OAuth 로그인은 되어 있지만, 이 계정/모델 조합에서 이미지 생성 도구 권한이 없을 수 있어요. API-Key 모드나 다른 모델로 확인해 주세요.",
+      "body": "GPT · Studio 로그인은 되어 있지만, 이 계정/모델 조합에서 이미지 생성 도구 권한이 없을 수 있어요. API-Key 모드나 다른 모델로 확인해 주세요.",
       "cta": "확인"
     },
     "responsesStreamError": {
@@ -1657,7 +1657,7 @@
     },
     "authApiKeyInvalid": {
       "title": "API 키 인증 실패",
-      "body": "키가 없거나 잘못됐거나, 한도/조직 권한 문제가 있을 수 있어요. GPT OAuth로 전환하거나 설정된 API 키를 갱신해 주세요.",
+      "body": "키가 없거나 잘못됐거나, 한도/조직 권한 문제가 있을 수 있어요. GPT · Studio로 전환하거나 설정된 API 키를 갱신해 주세요.",
       "cta": "확인"
     },
     "networkFailed": {
@@ -1666,8 +1666,8 @@
       "cta": "새로고침"
     },
     "oauthUnavailable": {
-      "title": "GPT OAuth를 사용할 수 없어요",
-      "body": "GPT OAuth가 시작 중이거나 연결할 곳에 닿지 못했어요. 먼저 새로고침하고, 계속되면 `ima2 gpt status`와 `ima2 doctor`를 확인해 주세요.",
+      "title": "GPT · Studio를 사용할 수 없어요",
+      "body": "GPT · Studio가 시작 중이거나 연결할 곳에 닿지 못했어요. 먼저 새로고침하고, 계속되면 `ima2 gpt status`와 `ima2 doctor`를 확인해 주세요.",
       "cta": "새로고침"
     },
     "invalidRequest": {
@@ -1677,7 +1677,7 @@
     },
     "apikeyDisabled": {
       "title": "API-Key 모드를 사용할 수 없어요",
-      "body": "이 빌드는 API-Key 생성을 지원하지만 현재 요청에서 설정된 키를 사용할 수 없었습니다. GPT OAuth로 전환하거나 API 키를 갱신해 주세요.",
+      "body": "이 빌드는 API-Key 생성을 지원하지만 현재 요청에서 설정된 키를 사용할 수 없었습니다. GPT · Studio로 전환하거나 API 키를 갱신해 주세요.",
       "cta": "확인"
     },
     "agyGenerationFailed": {
@@ -1711,7 +1711,7 @@
     },
     "grokApiKeyMissing": {
       "title": "Grok API 키가 필요합니다",
-      "body": "설정 > 제공자에서 xAI API 키를 추가한 뒤 다시 시도하세요. 이 이미지 요청은 Grok OAuth 경로로 전환되지 않습니다.",
+      "body": "설정 > 제공자에서 xAI API 키를 추가한 뒤 다시 시도하세요. 이 이미지 요청은 Grok · Studio 경로로 전환되지 않습니다.",
       "cta": "제공자 설정 열기"
     },
     "naiApiKeyMissing": {
@@ -1857,7 +1857,7 @@
     "viaBackend": "{backend} 경유",
     "backends": {
       "auto": "자동",
-      "oauth": "GPT OAuth",
+      "oauth": "GPT · Studio",
       "api": "OpenAI API",
       "grok": "Grok",
       "grokApi": "Grok API"

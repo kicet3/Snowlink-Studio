@@ -456,10 +456,10 @@
     "offline": "Offline",
     "remaining": "${remaining} remaining",
     "thisMonth": "${amount} this month",
-    "oauthFree": "GPT OAuth · free via codex",
+    "oauthFree": "GPT · Studio · free via codex",
     "apiDisabled": "API key ready",
     "apiReady": "API key ready",
-    "oauthMode": "GPT OAuth mode"
+    "oauthMode": "GPT · Studio mode"
   },
   "history": {
     "openGalleryAria": "Open gallery",
@@ -800,10 +800,10 @@
     "statusLineTitle": "Status",
     "authMethodTitle": "Auth",
     "authActive": "Active",
-    "oauthNotReady": "GPT OAuth is not ready yet.",
+    "oauthNotReady": "GPT · Studio is not ready yet.",
     "codexLoginRequired": "Codex login required.",
     "codexLoginHint": "Run `ima2 login` in your terminal, or use Settings → Switch Codex account.",
-    "oauthStarting": "GPT OAuth is starting. Try again in a few seconds.",
+    "oauthStarting": "GPT · Studio is starting. Try again in a few seconds.",
     "serverUnreachable": "Cannot reach the server. Make sure the backend is running.",
     "apiInvalid": "API key is missing or invalid. Check OPENAI_API_KEY in the server's .env.",
     "grokOffline": "Grok login is required.",
@@ -1382,8 +1382,8 @@
       "naiEyebrow": "Token",
       "naiBody": "Uses a persistent token, with V5 Opus battery and Anlas meters shown below.",
       "primaryEyebrow": "Active provider",
-      "oauthTitle": "GPT OAuth",
-      "oauthBody": "GPT OAuth generation runs through your Codex OAuth session. You can switch to API-key mode when a valid key is configured.",
+      "oauthTitle": "GPT · Studio",
+      "oauthBody": "GPT · Studio generation runs through your Codex OAuth session. You can switch to API-key mode when a valid key is configured.",
       "apiSourceEnv": "OPENAI_API_KEY detected",
       "apiSourceConfig": "config.json API key detected",
       "apiTitle": "OpenAI API key",
@@ -1537,7 +1537,7 @@
     },
     "grokCompatibility": {
       "title": "Grok compatibility",
-      "body": "Grok image generation first runs mandatory web search, then sends text and attached images to a local image-tool planner that writes the final image prompt in English. Attached references route through xAI image editing; size is mapped to aspect ratio/resolution. Output format, moderation, and reasoning are only used by GPT OAuth and API key providers."
+      "body": "Grok image generation first runs mandatory web search, then sends text and attached images to a local image-tool planner that writes the final image prompt in English. Attached references route through xAI image editing; size is mapped to aspect ratio/resolution. Output format, moderation, and reasoning are only used by GPT · Studio and API key providers."
     },
     "grokPlanner": {
       "title": "Grok planner model",
@@ -1637,7 +1637,7 @@
     },
     "oauthImageCapabilityUnavailable": {
       "title": "This account may not have image-tool access",
-      "body": "GPT OAuth is connected, but this account/model combination may not be entitled to use image generation. Compare with API-key mode or another model.",
+      "body": "GPT · Studio is connected, but this account/model combination may not be entitled to use image generation. Compare with API-key mode or another model.",
       "cta": "OK"
     },
     "responsesStreamError": {
@@ -1657,7 +1657,7 @@
     },
     "authApiKeyInvalid": {
       "title": "API key authentication failed",
-      "body": "The key is missing, invalid, revoked, out of quota, or tied to the wrong org. Switch to GPT OAuth or update the configured API key.",
+      "body": "The key is missing, invalid, revoked, out of quota, or tied to the wrong org. Switch to GPT · Studio or update the configured API key.",
       "cta": "OK"
     },
     "networkFailed": {
@@ -1666,8 +1666,8 @@
       "cta": "Reload"
     },
     "oauthUnavailable": {
-      "title": "GPT OAuth unavailable",
-      "body": "GPT OAuth is starting or cannot reach its endpoint. Reload first; if it persists, run `ima2 gpt status` and `ima2 doctor`.",
+      "title": "GPT · Studio unavailable",
+      "body": "GPT · Studio is starting or cannot reach its endpoint. Reload first; if it persists, run `ima2 gpt status` and `ima2 doctor`.",
       "cta": "Reload"
     },
     "invalidRequest": {
@@ -1677,7 +1677,7 @@
     },
     "apikeyDisabled": {
       "title": "API-key mode is unavailable",
-      "body": "This build supports API-key generation, but the current request could not use a configured key. Switch to GPT OAuth or update the API key.",
+      "body": "This build supports API-key generation, but the current request could not use a configured key. Switch to GPT · Studio or update the API key.",
       "cta": "OK"
     },
     "agyGenerationFailed": {
@@ -1711,7 +1711,7 @@
     },
     "grokApiKeyMissing": {
       "title": "Grok API key required",
-      "body": "Add an xAI API key in Settings > Providers, then retry. This image request will not fall back to the Grok OAuth lane.",
+      "body": "Add an xAI API key in Settings > Providers, then retry. This image request will not fall back to the Grok · Studio lane.",
       "cta": "Open provider settings"
     },
     "naiApiKeyMissing": {
@@ -1857,7 +1857,7 @@
     "viaBackend": "via {backend}",
     "backends": {
       "auto": "Auto",
-      "oauth": "GPT OAuth",
+      "oauth": "GPT · Studio",
       "api": "OpenAI API",
       "grok": "Grok",
       "grokApi": "Grok API"

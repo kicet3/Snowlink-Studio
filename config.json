@@ -12,8 +12,12 @@
     "https://api.snowlink.team"
   ],
   "backendOnly": true,
+  "publicAccess": true,
   "ai": {
     "provider": "gpt",
+    "fixedProviders": true,
+    "imageProvider": "grok",
+    "imageModel": "grok-imagine-image-2.0",
     "gptModel": "gpt-6-luna",
     "grokModel": "grok-4.3",
     "grokTextModels": [

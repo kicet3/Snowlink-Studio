@@ -33,7 +33,7 @@ export function createMcpOAuth({ directory, auth, allowedOrigins, frontendOrigin
   const resource = req => origin(req) + '/mcp';
   function rate(req) { const key = req.socket.remoteAddress, now = Date.now(); for (const [id, item] of rates) if (item.until < now) rates.delete(id); const entry = rates.get(key) || { count: 0, until: now + 60000 }; if (++entry.count > 120) throw fail('temporarily_unavailable', 'OAuth 요청이 많습니다. 잠시 후 다시 시도해주세요.', 429); rates.set(key, entry); }
   function client(id, issuer) { const found = state.clients.find(c => c.client_id === id && c.issuer === issuer); if (!found) throw fail('invalid_client', 'OAuth 클라이언트를 다시 연결해주세요.'); return found; }
-  function validGrant(grant) { const account = grant && auth.getUser(grant.userId); return account && !grant.revoked && grant.passwordVersion === hash(account.password.hash) ? account : null; }
+  function validGrant(grant) { const account = grant && auth.getUser(grant.userId); return account?.password && account.role !== 'guest' && !grant.revoked && grant.passwordVersion === hash(account.password.hash) ? account : null; }
   function issue(grant) {
     const access = token(), refresh = token();
     state.access.push({ hash: hash(access), grantId: grant.id, expiresAt: Date.now() + ACCESS_SECONDS * 1000 });
@@ -84,7 +84,7 @@ export function createMcpOAuth({ directory, auth, allowedOrigins, frontendOrigin
           res.writeHead(302, { Location: frontendOrigin ? frontendOrigin + '/oauth/' + request.id : issuer + '/#oauth/' + request.id, 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' }); res.end(); return true;
         }
         if (path.startsWith('/api/oauth/')) {
-          const account = auth.user(req); if (!account) throw fail('login_required', '로그인이 필요합니다.', 401);
+          const account = auth.user(req); if (!account || account.role === 'guest') throw fail('login_required', 'MCP 연결을 승인하려면 계정으로 로그인해주세요.', 401);
           const match = /^\/api\/oauth\/requests\/([\w-]+)$/.exec(path);
           if (match && req.method === 'GET') {
             const request = pending(match[1], req);

@@ -40,7 +40,7 @@ async function listen(server, port) {
 }
 
 try {
-  const auth = createAuth(DATA);
+  const auth = createAuth(DATA, { publicAccess: config.publicAccess });
   const app = createApp({ root: ROOT, dataDir: DATA, config, allowedOrigins: origins(config), toolUrls, bootId, metaCredentials, googleCredentials, auth });
   await listen(app, config.port);
   const localAi = http.createServer(app.handleLocalAi);

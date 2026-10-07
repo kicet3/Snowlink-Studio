@@ -1,3 +1,4 @@
+import { useStudio } from "../../../../_components/StudioProvider";
 import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { AccountSettings } from "./AccountSettings";
@@ -52,6 +53,7 @@ function SettingsSectionBlock({ id, setRef, children }: SettingsSectionBlockProp
 }
 
 export function SettingsWorkspace() {
+  const { user } = useStudio();
   const { t } = useI18n();
   const active = useAppStore((s) => s.activeSettingsSection);
   const setActive = useAppStore((s) => s.setActiveSettingsSection);
@@ -133,6 +135,8 @@ export function SettingsWorkspace() {
     };
   }, []);
 
+  if (!user || user.role === "guest") return <main className="settings-workspace"><div className="settings-shell"><h2>설정은 로그인 후 사용할 수 있습니다</h2><p>제작 화면은 계속 사용할 수 있습니다.</p><a href="/login?next=%2Fsettings">계정 로그인 →</a><button type="button" onClick={closeSettings}>제작 화면으로 돌아가기</button></div></main>;
+
   return (
     <main className="settings-workspace" aria-labelledby="settings-title">
       <div className="settings-shell">
@@ -191,7 +195,7 @@ export function SettingsWorkspace() {
           <section ref={contentRef} className="settings-content" aria-label={t("settings.contentAria")}>
             <SettingsSectionBlock id="providers" setRef={setSectionRef}>
               <AccountSettings />
-              <McpProviderConnections />
+              <p><a href="/mcp">MCP 연결 안내 →</a></p>
               <ComfyWorkflowManager />
               <article className="settings-row">
                 <div className="settings-row__copy">

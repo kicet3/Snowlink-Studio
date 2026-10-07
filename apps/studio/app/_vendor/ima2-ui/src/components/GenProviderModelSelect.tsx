@@ -449,22 +449,6 @@ export function GenProviderModelSelect({ compact = false }: { compact?: boolean 
       className={`image-model-select image-model-select--sidebar gen-provider-model${compact ? " is-compact" : ""}`}
     >
       <Select
-        id="sidebar-generation-provider"
-        className="gen-provider-model__select gen-provider-model__select--provider"
-        groups={providerGroups}
-        value={providerValue}
-        onChange={onProviderChange}
-        ariaLabel={t("mcp.providerLabel")}
-        title={unavailableReason ?? t("mcp.providerLabel")}
-        // The closed control says which lane is selected, not why another one
-        // cannot run. State belongs in the open list, where it informs the
-        // choice; on the trigger it would just crowd a control that is already
-        // narrow enough to truncate.
-        triggerSub=""
-        portal
-      />
-
-      <Select
         id="sidebar-generation-model"
         className="gen-provider-model__select gen-provider-model__select--model"
         groups={modelGroups}

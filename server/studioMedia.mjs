@@ -119,7 +119,7 @@ export function createStudioMedia({ config, dataDir, workspace, videoTemplates, 
     const parents = session ? session.edges.filter(e => e.target === node.id).map(e => session.nodes.find(n => n.id === e.source)) : [];
     if (parents.some(p => !p?.data.imageUrl || p.data.studioKind === 'video' || p.data.status !== 'ready')) throw bad('연결된 앞 이미지 노드를 먼저 생성해주세요.', 409);
     const role = ai.settings.read().roles[kind];
-    const selection = input.selection || role;
+    const selection = config.ai.fixedProviders && input.selection?.provider !== role.provider ? role : input.selection || role;
     if (!selection?.model || !['gpt', 'grok'].includes(selection.provider) || kind === 'video' && selection.provider !== 'grok') throw bad('설정에서 이미지 또는 영상 모델을 선택해주세요.');
     const requestId = 'studio-' + randomUUID();
     const body = { async: true, requestId, prompt, model: selection.model, provider: selection.provider === 'gpt' ? 'oauth' : 'grok', sessionId: session?.id, clientNodeId: node?.id };

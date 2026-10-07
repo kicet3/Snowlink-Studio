@@ -36,6 +36,17 @@ async function refresh() {
 export function startStudioPreferences() {
   if (initialized) return;
   initialized = true;
+  // Restored graphs and browser preferences must use the same media lane.
+  let enforcing = false;
+  useAppStore.subscribe(state => {
+    if (enforcing || (state.provider === 'grok' && !state.mcpProvider && state.assetGenProvider === 'grok')) return;
+    enforcing = true;
+    try {
+      if (state.provider !== 'grok' || state.mcpProvider) state.setProvider('grok');
+      if (state.assetGenProvider !== 'grok') state.setAssetGenProvider('grok');
+    } finally { enforcing = false; }
+  });
+  useAppStore.getState().setProvider('grok');
   void refresh();
   document.addEventListener('ai-settings-updated', () => void refresh());
   window.addEventListener('focus', () => void refresh());

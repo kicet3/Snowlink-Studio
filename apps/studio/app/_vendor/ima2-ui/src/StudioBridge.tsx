@@ -42,6 +42,6 @@ export function StudioBridge() {
     <label>작업실 캐릭터 <select value={selected} onChange={e => setSelected(e.target.value)}><option value="">캐릭터 선택</option>{characters.filter(c => c.image).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
     <button disabled={!selected || busy} onClick={() => void addCharacter()}>시트 참조에 추가</button>
     <button disabled={!current?.filename || busy} onClick={() => void useResult()}>선택 결과를 캐릭터로 등록</button>
-    <a href="#settings">모델 · OAuth 설정</a>
+    <a href="/settings">AI 모델 설정</a>
   </div>;
 }

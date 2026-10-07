@@ -23,7 +23,7 @@ export async function verifyPassword(password, record) {
   return saved.length === key.length && timingSafeEqual(saved, key);
 }
 
-export function createAuth(directory) {
+export function createAuth(directory, { publicAccess = false } = {}) {
   mkdirSync(directory, { recursive: true, mode: 0o700 });
   const file = join(directory, 'accounts.json');
   let state = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : { version: 1, users: [], sessions: [] };
@@ -67,6 +67,7 @@ export function createAuth(directory) {
     if (!value) return null;
     const supplied = Buffer.from(value);
     return state.users.find(account => {
+      if (account.role === 'guest') return false;
       const path = join(dataDirectory(account), 'mcp-token'); if (!existsSync(path)) return false;
       const expected = Buffer.from(readFileSync(path, 'utf8').trim()); return supplied.length === expected.length && timingSafeEqual(supplied, expected);
     }) || null;
@@ -81,12 +82,23 @@ export function createAuth(directory) {
     async handle(req, res, url) {
       if (!url.pathname.startsWith('/api/auth/')) return false;
       const account = user(req);
-      if (url.pathname === '/api/auth/session' && req.method === 'GET') { json(res, 200, { user: account ? publicUser(account) : null, registration: true }); return true; }
+      if (url.pathname === '/api/auth/session' && req.method === 'GET') { json(res, 200, { user: account ? publicUser(account) : null, registration: true, publicAccess }); return true; }
       if (req.method !== 'POST') throw bad('POST 요청이 필요합니다.', 405);
       if (url.pathname === '/api/auth/logout') {
         const hash = digest(token(req)); state.sessions = state.sessions.filter(s => s.hash !== hash); persist(); res.setHeader('Set-Cookie', cookie(req, '', true)); json(res, 200, { ok: true }); return true;
       }
       const input = await readJson(req);
+      if (url.pathname === '/api/auth/guest' && publicAccess) {
+        if (account) { json(res, 200, { user: publicUser(account) }); return true; }
+        const now = Date.now(), key = 'guest:' + req.socket.remoteAddress;
+        const entry = attempts.get(key);
+        if (entry && entry.until > now && entry.count >= 120) throw bad('작업실 생성 요청이 많습니다. 잠시 후 다시 시도해주세요.', 429);
+        attempts.set(key, { count: entry?.until > now ? entry.count + 1 : 1, until: entry?.until > now ? entry.until : now + 60000 });
+        const id = randomUUID();
+        const guest = { id, username: 'guest-' + id, name: '방문자 작업실', role: 'guest', createdAt: new Date().toISOString() };
+        state.users.push(guest); session(req, res, guest);
+        json(res, 201, { user: publicUser(guest) }); return true;
+      }
       if (url.pathname === '/api/auth/register' || url.pathname === '/api/auth/login') {
         const login = username(input.username); rate(req, login); activeHashes++;
         try {
@@ -103,7 +115,7 @@ export function createAuth(directory) {
         return true;
       }
       if (url.pathname === '/api/auth/password') {
-        if (!account) throw bad('로그인이 필요합니다.', 401);
+        if (!account || account.role === 'guest') throw bad('로그인이 필요합니다.', 401);
         rate(req, account.username); activeHashes++;
         try {
           const previous = account.password;

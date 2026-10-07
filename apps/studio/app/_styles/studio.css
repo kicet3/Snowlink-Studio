@@ -113,8 +113,10 @@ body { min-height: 100dvh; display: flex; flex-direction: column; }
 
 .tool-workspace-panel { height: 100dvh; overflow: hidden; }
 .tool-workspace-frame { display: block; width: 100%; height: 100%; border: 0; background: var(--color-background); }
-.model-role { padding: var(--space-5) 0; border-bottom: 1px solid var(--color-border); display: grid; gap: var(--space-4); grid-template-columns: minmax(150px, 1fr) 1fr 1.4fr auto; align-items: end; }
+.model-role { padding: var(--space-5) 0; border-bottom: 1px solid var(--color-border); display: grid; gap: var(--space-4); grid-template-columns: minmax(150px, 1fr) 1.4fr auto; align-items: end; }
 .model-role:last-child { border-bottom: 0; }
 .model-role .field { min-width: 0; }
 .model-role .field select { width: 100%; }
+.mcp-command { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; background: var(--color-background); border: 1px solid var(--color-border); font-size: 12px; line-height: 1.8; }
+.mcp-guide .settings-card { min-width: 0; }
 @media (max-width: 760px) { .tool-workspace-panel { height: calc(100dvh - 65px); } .model-role { grid-template-columns: 1fr 1fr; } .model-role > div { grid-column: 1 / -1; } }

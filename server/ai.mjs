@@ -10,9 +10,9 @@ export function createAi(config, dataDir) {
   let active = 0;
   async function complete(messages, provider, role = 'chat', images = []) {
     const selection = settings.read().roles[role];
-    provider ||= selection.provider;
+    provider = config.ai.fixedProviders ? selection.provider : provider || selection.provider;
     const model = provider === selection.provider ? selection.model : provider === 'grok' ? config.ai.grokModel : config.ai.gptModel;
-    if (!['gpt', 'grok'].includes(provider)) throw Object.assign(new Error('GPT OAuth 또는 Grok OAuth를 선택해주세요.'), { status: 400 });
+    if (!['gpt', 'grok'].includes(provider)) throw Object.assign(new Error('사용할 AI 모델을 선택해주세요.'), { status: 400 });
     if (!Array.isArray(messages) || !messages.length || messages.length > 40 || messages.some(m => !['system', 'user', 'assistant'].includes(m.role) || typeof m.content !== 'string') || JSON.stringify(messages).length > 100000) {
       throw Object.assign(new Error('대화 입력이 너무 길거나 형식이 올바르지 않습니다.'), { status: 400 });
     }
@@ -23,7 +23,7 @@ export function createAi(config, dataDir) {
     catch (error) {
       if (error.status) throw error;
       const auth = /AUTH|SESSION/.test(error.code || '');
-      throw Object.assign(new Error(auth ? `${provider.toUpperCase()} OAuth 로그인이 필요합니다. 설정 · OAuth에서 로그인해주세요.` : `${provider.toUpperCase()} OAuth 응답을 받지 못했습니다. 잠시 후 다시 시도해주세요.`), { status: auth ? 401 : 502 });
+      throw Object.assign(new Error(auth ? '서버의 AI 연결을 확인해야 합니다. 운영자에게 문의해주세요.' : 'AI 응답을 받지 못했습니다. 잠시 후 다시 시도해주세요.'), { status: auth ? 503 : 502 });
     }
     finally { active--; }
   }
@@ -48,7 +48,7 @@ export function createAi(config, dataDir) {
       }, { signal });
     }
     const result = await response.json();
-    if (!response.ok) throw Object.assign(new Error(`${provider.toUpperCase()} OAuth 요청 실패 (${response.status}). 설정 · OAuth에서 로그인 상태를 확인해주세요.`), { status: response.status === 401 ? 401 : 502 });
+    if (!response.ok) throw Object.assign(new Error(`AI 요청 실패 (${response.status}). 잠시 후 다시 시도하거나 운영자에게 문의해주세요.`), { status: response.status === 401 ? 503 : 502 });
     const content = result.choices?.[0]?.message?.content;
     if (typeof content !== 'string' || !content.trim()) throw Object.assign(new Error('AI가 빈 응답을 반환했습니다.'), { status: 502 });
     return { content, model, provider };
@@ -63,6 +63,7 @@ export function createAi(config, dataDir) {
     return { selected, selectedModel, providers: { gpt: { ready: checks[0].status === 'fulfilled', model: config.ai.gptModel }, grok: { ready: checks[1].status === 'fulfilled', model: config.ai.grokModel } } };
   }
   return { complete, status, settings, catalog, select(provider) {
+    if (config.ai.fixedProviders && provider !== 'gpt') throw Object.assign(new Error('대화는 기본 AI 연결을 사용합니다.'), { status: 400 });
     const current = settings.read().roles.chat;
     const model = current.provider === provider ? current.model : provider === 'gpt' ? config.ai.gptModel : config.ai.grokModel;
     settings.save('chat', { provider, model });
