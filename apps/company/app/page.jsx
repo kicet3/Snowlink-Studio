@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Icon } from '../components/Icon';
 import { ProductShowcase } from '../components/ProductShowcase';
+import { ProductDetails } from '../components/ProductDetails';
 import VectorWordmark from '../components/VectorWordmark';
 import { companyConfig } from '../lib/config';
 
@@ -39,16 +40,24 @@ export default function CompanyPage() {
         <div className="company-product-heading"><div><h2 id="product-title">{c.service.name}<span className="product-period">.</span></h2><p>{c.service.description}</p></div><ServiceLink service={c.service} className="button primary">{c.service.button}</ServiceLink></div>
         <div className="company-capabilities">{c.features.map((feature, index) => <article key={feature.title}><div><span>0{index + 1} /</span><Icon name={feature.icon}/></div><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
         <ProductShowcase/>
+        <ProductDetails workflow={c.workflow} details={c.productDetails}/>
       </section>
       <section className="company-contact" id="contact" aria-labelledby="contact-title">
         <SectionLabel number="03">GET IN TOUCH</SectionLabel>
         <div className="company-contact-content"><h2 id="contact-title">{c.contactTitle}</h2><p>{c.contactDescription}</p><a className="company-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
       </section>
-      <section className="company-business" aria-labelledby="business-title">
-        <div><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><h2 id="business-title">{c.name}</h2><p>아이디어와 창작 도구를 연결합니다.</p></div>
-        <dl><div><dt>대표자</dt><dd>{c.representative}</dd></div><div><dt>사업자등록번호</dt><dd>{c.registration}</dd></div><div><dt>개업일</dt><dd>{c.openingDate}</dd></div><div><dt>사업자등록일</dt><dd>{c.registrationDate}</dd></div><div><dt>주소</dt><dd>{c.address}</dd></div><div><dt>문의 이메일</dt><dd><a href={`mailto:${c.email}`}>{c.email}</a></dd></div></dl>
-      </section>
     </main>
-    <footer className="company-footer"><span>© {c.brand}. All rights reserved.</span><span className="company-footer-note">INDEPENDENT IDEAS. CONNECTED.</span><a href="#company-main">맨 위로 ↑</a></footer>
+    <footer className="company-footer" aria-label="회사 정보">
+      <div className="company-footer-top">
+        <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
+        <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">스노우링크 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
+        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">snowlink-studio 소개</a><a href={c.service.url}>스튜디오 시작하기 <Icon name="external"/></a></nav>
+      </div>
+      <div className="company-footer-business">
+        <h2>{c.name}</h2>
+        <dl><div><dt>대표자</dt><dd>{c.representative}</dd></div><div><dt>사업자등록번호</dt><dd>{c.registration}</dd></div><div><dt>주소</dt><dd>{c.address}</dd></div><div><dt>개업일</dt><dd>{c.openingDate}</dd></div><div><dt>사업자등록일</dt><dd>{c.registrationDate}</dd></div><div><dt>문의 이메일</dt><dd><a href={`mailto:${c.email}`}>{c.email}</a></dd></div></dl>
+      </div>
+      <div className="company-footer-bottom"><small>© {c.foundingYear} {c.brand}. All rights reserved.</small><span className="company-footer-note">INDEPENDENT IDEAS. CONNECTED.</span><a href="#company-main">맨 위로 ↑</a></div>
+    </footer>
   </div>;
 }
