@@ -21,6 +21,9 @@ __pycache__/
 # Build output and tool caches. Keep source assets and package lockfiles.
 /dist/
 /build/
+.next/
+/out/
+next-env.d.ts
 /vendor/*/dist/
 .vite/
 .cache/
@@ -28,6 +31,10 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+*.egg-info/
+.coverage
+.coverage.*
+htmlcov/
 
 # Test coverage and browser-test artifacts.
 coverage/
@@ -54,3 +61,6 @@ blob-report/
 ._*
 Thumbs.db
 Desktop.ini
+
+# Vercel local project linkage and deployment artifacts
+.vercel/

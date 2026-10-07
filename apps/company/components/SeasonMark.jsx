@@ -1,0 +1,3 @@
+export function SeasonMark() {
+  return <svg className="season-mark" viewBox="0 0 130 76" fill="none" aria-hidden="true"><g className="season-snow" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M33 9v53M10 22l46 26M10 48l46-26M24 13l9 9 9-9M24 58l9-9 9 9M12 31l12-3-3-12m25 39 3-12 12-3M12 40l12 3-3 12m25-39 3 12 12 3"/></g><g className="season-leaf"><path d="M76 58C54 33 76 13 113 13c-2 32-10 54-37 45Z" fill="currentColor"/><path d="M69 69 101 26m-21 30-1-15m10 2 13-1" stroke="var(--color-surface)" strokeWidth="1.4" strokeLinecap="round"/></g><circle cx="116" cy="64" r="2" fill="var(--color-accent-border)"/></svg>;
+}

@@ -14,7 +14,7 @@ export async function ensureAccount() {
   if (session.user) { state.user = session.user; await clearPreviousAccount(session.user.id); mountAccount(); return; }
   document.body.classList.add('auth-locked');
   const screen = document.createElement('div'); screen.className = 'auth-screen';
-  document.body.insertBefore(screen, document.querySelector('#business-footer'));
+  document.body.prepend(screen);
   await new Promise(resolve => {
     let register = false;
     function paint(error = '') {
