@@ -9,7 +9,7 @@ export function generateMetadata() {
   return {
     title: `${companyConfig().name} · 회사 소개`,
     robots: { index: false, follow: false, noarchive: true, nosnippet: true, noimageindex: true },
-    icons: { icon: '/logo.svg' },
+    icons: { icon: '/brandmark.svg' },
   };
 }
 export default function Layout({ children }) {
