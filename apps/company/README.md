@@ -31,7 +31,7 @@ npm run dev
 
 ## 제품 화면
 
-`components/ProductShowcase.jsx`에서 Studio의 7개 주요 탭 캡처와 설명을 전환합니다. 이미지는 `public/screenshots/*.jpg`에 포함되므로 Studio 서버나 로그인 없이도 표시됩니다. 원본 확대 링크는 새 탭에서 열립니다.
+`components/ProductShowcase.jsx`에서 Studio의 6개 제작 탭 캡처와 설명을 전환합니다. 이미지는 `public/screenshots/*.jpg`에 포함되므로 Studio 서버나 로그인 없이도 표시됩니다. 원본 확대 링크는 새 탭에서 열립니다.
 
 캡처는 2026년 10월 7일 Studio의 실제 Next.js 화면을 소개용 예시 데이터로 열어 저장했습니다. 운영 계정, 개인 OAuth 정보, 실제 고객 콘텐츠를 사용하지 않았습니다. 화면을 갱신할 때도 예시 작업실에서 캡처하고, 계정 정보가 보이지 않는지 확인한 후 같은 파일명으로 교체하세요. 현재 캡처 크기는 1474 × 829입니다.
 

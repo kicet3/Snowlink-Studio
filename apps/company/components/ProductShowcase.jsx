@@ -10,7 +10,6 @@ const screens = [
   { id: 'trends', label: '트렌드 탐색', icon: 'radar', title: '새로운 이야기의 출발점', description: '여러 채널의 트렌드와 관심 주제를 살펴보고, 다음 콘텐츠에 활용할 소재를 발견합니다.' },
   { id: 'media', label: '이미지 · 영상 제작', icon: 'image', title: '상상한 장면을 눈앞에', description: '이미지와 영상의 생성 설정을 조정하고, 작업 결과를 갤러리와 노드 작업실에서 이어갑니다.' },
   { id: 'cuts', label: 'ShortGPT · 컷 편집', icon: 'film', title: '장면의 흐름을 다듬는 시간', description: '컷별 내레이션, 화면 연출, 길이를 편집하고 AI와 대화하면서 장면 구성을 수정합니다.' },
-  { id: 'settings', label: '설정 · OAuth', icon: 'settings', title: '제작에 필요한 연결을 한곳에', description: 'AI 계정과 Google · YouTube 연결, 작업별 모델, MCP 접근 설정을 관리합니다.' },
 ];
 
 export function ProductShowcase() {
@@ -27,7 +26,7 @@ export function ProductShowcase() {
       {screens.map((item, index) => <button key={item.id} type="button" aria-pressed={selected === index} aria-controls="company-screen" onClick={() => setSelected(index)}><Icon name={item.icon}/>{item.label}</button>)}
     </div>
     <figure id="company-screen" className="company-screen">
-      <div className="company-screen-bar"><span><i/><i/><i/></span><span>snowlink-studio</span><span>{String(selected + 1).padStart(2, '0')} / 07</span></div>
+      <div className="company-screen-bar"><span><i/><i/><i/></span><span>snowlink-studio</span><span>{String(selected + 1).padStart(2, '0')} / {String(screens.length).padStart(2, '0')}</span></div>
       <a className="company-screen-image" href={source} target="_blank" rel="noopener noreferrer" aria-label={`${screen.label} 화면 원본 크게 보기 (새 탭)`}>
         <img key={screen.id} src={source} width="1474" height="829" loading="lazy" alt={`snowlink-studio ${screen.label} 탭의 실제 화면 — ${screen.title}`}/>
       </a>
