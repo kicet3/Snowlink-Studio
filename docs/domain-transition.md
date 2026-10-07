@@ -1,4 +1,4 @@
-# snowfall studio 도메인 전환
+# Snowframe Studio 도메인 전환
 
 사용자가 확정한 주소와 공개 이메일입니다.
 
@@ -13,19 +13,21 @@
 
 - 회사 소개 루트 도메인은 Vercel에 연결됐으며 `www.snowfall.it.com`으로 이동합니다.
 - API는 Mac mini IP로 연결됐고 Nginx HTTPS 및 Let's Encrypt 인증서 발급을 완료했습니다. 기존 API 주소도 유지합니다.
-- `config.json`에 새 API 및 Studio origin을 추가했습니다.
-- Studio 서브도메인은 DNS 레코드와 Vercel 프로젝트 연결 확인을 기다립니다. 확인 전까지 회사 페이지의 서비스 버튼과 백엔드의 기본 프론트 주소는 기존 Studio 주소를 사용합니다.
+- Studio의 Cloudflare 권한 DNS 레코드와 Vercel HTTPS 연결을 확인했습니다. 일부 재귀 DNS에는 이전 NXDOMAIN 캐시가 남아 있을 수 있습니다.
+- `config.json`의 기본 API와 프론트 origin은 새 도메인으로 전환했으며 이전 주소는 호환용 origin으로 유지합니다.
+- 회사의 서비스 버튼은 `studio.snowfall.it.com`, Studio의 회사 소개 링크는 `snowfall.it.com`을 사용합니다.
+- 공개 회사·Studio 프론트는 AI를 포함한 모든 크롤러에 접근을 허용합니다. 계정별 데이터의 인증은 유지합니다.
 
-## Studio 전환 시 함께 변경할 값
+## Vercel 환경변수
 
-Vercel의 Studio 프로젝트(`apps/studio`)에 `studio.snowfall.it.com`을 추가하고 Vercel에서 안내하는 DNS 레코드를 등록합니다. 환경변수는 다음과 같습니다.
+Studio 프로젝트의 Root Directory는 `apps/studio`입니다. 아래 값은 코드의 운영 기본값과 같으며, Vercel에 예전 환경변수가 남아 있다면 함께 변경하고 재배포합니다.
 
 ```dotenv
 STUDIO_API_ORIGIN=https://api.snowfall.it.com
 NEXT_PUBLIC_COMPANY_SITE_URL=https://snowfall.it.com
 ```
 
-주소가 정상 응답하면 백엔드 `config.json`의 `publicOrigin`을 `https://api.snowfall.it.com`, `frontendOrigin`을 `https://studio.snowfall.it.com`으로 변경하고 기존 주소는 호환용 origin으로 유지합니다. 회사 페이지 `apps/company/lib/config.js`의 `service.url`도 새 Studio 주소로 바꾸고 재배포합니다.
+회사 페이지는 환경변수를 사용하지 않으며 `apps/company/lib/config.js`에 새 Studio 주소를 고정했습니다.
 
 Google OAuth 클라이언트의 승인된 리디렉션 URI에 `https://studio.snowfall.it.com/api/google/oauth/callback`을 등록합니다. 콜백은 로그인 쿠키가 있는 프론트를 거쳐 API로 전달됩니다. MCP 연결 주소는 `https://api.snowfall.it.com/mcp`이며 새 issuer 주소를 사용하는 연결은 다시 로그인합니다.
 

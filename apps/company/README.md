@@ -21,9 +21,9 @@ npm run dev
 3. 환경변수 입력 없이 Deploy를 실행합니다. 기존에 등록한 `COMPANY_*`, `SERVICE_*` 환경변수는 사용하지 않으므로 삭제해도 됩니다.
 4. 회사 정보나 서비스 주소를 변경하려면 `lib/config.js`를 수정하고 재배포합니다.
 
-서비스 버튼은 `https://studio.snowlink.team`으로 연결됩니다.
+서비스 버튼은 `https://studio.snowfall.it.com`으로 연결됩니다.
 
-제품명은 `snowfall studio`입니다. 회사명과 브랜드는 스노우링크(SnowLink)로 유지합니다. 사용자가 네임서버를 변경 중이며, 전환할 주소는 회사 소개 `snowfall.it.com`, Studio `studio.snowfall.it.com`, API `api.snowfall.it.com`입니다. DNS·HTTPS 연결 확인 후 `lib/config.js`의 서비스 URL을 새 Studio 주소로 변경합니다.
+제품명은 `Snowframe Studio`입니다. 회사명과 브랜드는 스노우링크(SnowLink)로 유지합니다. 회사 소개는 `snowfall.it.com`, Studio는 `studio.snowfall.it.com`, API는 `api.snowfall.it.com`을 사용합니다.
 
 ## 회사 페이지 디자인
 
@@ -39,7 +39,7 @@ npm run dev
 
 `components/ProductDetails.jsx`는 제작 흐름 4단계와 기획·캐릭터·시나리오·이미지/영상·컷 편집·MCP의 상세 설명을 표시합니다. 문구는 `lib/config.js`의 `workflow`, `productDetails`에서 관리합니다. 콘티 MP4는 무음 미리보기로 안내하며, 구현되지 않은 음성·음악·최종 영상 자동 합성을 제공한다고 설명하지 않습니다.
 
-캡처는 2026년 10월 7일 `snowfall studio` 제품명과 흑백 UI가 반영된 `https://studio.snowlink.team`에서 다시 촬영했습니다. 제작 보드, 캐릭터 시트, 시나리오, 트렌드 탐색, 이미지·영상 제작, 컷 편집의 6개 화면이며 설정·OAuth 소개 탭과 캡처는 포함하지 않습니다.
+캡처는 2026년 10월 7일 `Snowframe Studio` 제품명과 흑백 UI가 반영된 `https://studio.snowfall.it.com`에서 다시 촬영했습니다. 제작 보드, 캐릭터 시트, 시나리오, 트렌드 탐색, 이미지·영상 제작, 컷 편집의 6개 화면이며 설정·OAuth 소개 탭과 캡처는 포함하지 않습니다.
 
 소개용 계정의 예시 캐릭터·기획·컷·플롯을 사용하고, 트렌드는 촬영 당시 공개 수집 결과를 표시합니다. 실제 고객 콘텐츠와 개인 OAuth 정보는 포함하지 않습니다. 이미지는 보정 없이 브라우저 화면을 저장한 JPEG이며 크기는 1474 × 829입니다. 화면 갱신 시 같은 파일명으로 교체하고 `ProductShowcase.jsx`의 이미지 버전도 변경해 이전 캡처 캐시를 구분하세요.
 
@@ -47,6 +47,6 @@ npm run dev
 
 [루트 디렉터리 설정](https://vercel.com/docs/project-configuration/project-settings).
 
-## 검색 노출 제외
+## 공개 페이지 크롤링
 
-SEO description, keywords, canonical, Open Graph, Twitter 카드, 구조화 데이터와 sitemap을 생성하지 않습니다. HTML robots 메타 및 모든 응답의 `X-Robots-Tag`에 `noindex, nofollow, noarchive, nosnippet, noimageindex`를 지정하고 `robots.txt`는 모든 사용자 에이전트에 `Disallow: /`를 반환합니다. 이 지시문은 봇에 대한 요청이며 비공개 접근 제어를 대신하지 않습니다.
+SEO description, keywords, canonical, Open Graph, Twitter 카드, 구조화 데이터와 sitemap을 생성하지 않습니다. 공개 회사 페이지의 robots 메타와 `X-Robots-Tag` 차단을 제거했으며, `robots.txt`는 모든 사용자 에이전트에 `Allow: /`를 반환합니다. AI 크롤러도 공개 소개 페이지를 읽을 수 있습니다.

@@ -7,7 +7,7 @@ import { StudioProvider, useStudio } from './StudioProvider';
 import { Login } from './Login';
 import { Button } from './Primitives';
 import { Icon } from './Icon';
-import { PRODUCT_NAME } from '../_lib/branding';
+import { COMPANY_SITE_URL, PRODUCT_NAME } from '../_lib/branding';
 
 export const TABS = [
   ['board', '제작 보드', 'board'], ['characters', '캐릭터 시트', 'people'],
@@ -71,7 +71,7 @@ function Shell({ children }) {
           {TABS.map(([id, label, icon]) => <div key={id} style={{display:'contents'}}>{id === 'settings' && <div className="nav-divider"/>}<Link href={'/' + id} id={'tab-' + id} data-tab={id} aria-current={active === id ? 'page' : undefined} onClick={() => setMenuOpen(false)}><Icon name={icon}/><span>{label}</span>{id === 'board' && <span className="tab-count" id="production-count">{count}</span>}{['trends', 'ima2'].includes(id) && <span className={`connection-dot ${connections[id]?.online ? 'online' : ''}`} data-status={id} title={connections[id]?.online ? '서버 연결됨' : '서버 연결 확인 필요'}/>}</Link></div>)}
         </nav>
         <div className="sidebar-note seasonal-surface"><Icon name="spark"/><p>작은 영감이<br/>하나의 이야기로.</p><span className="eyebrow">IDEAS, CONNECTED.</span></div>
-        <div className="sidebar-footer"><span className="local-badge"><i/>{user.name || user.username}</span><button className="icon-button" id="guide-button" aria-label="작업실 사용 안내" onClick={() => openModal('하나의 작업실, 네 가지 흐름', <Guide/>)}>?</button><button className="text-button" onClick={logout}>로그아웃</button>{process.env.NEXT_PUBLIC_COMPANY_SITE_URL && <a className="text-button" href={process.env.NEXT_PUBLIC_COMPANY_SITE_URL}>회사 소개</a>}</div>
+        <div className="sidebar-footer"><span className="local-badge"><i/>{user.name || user.username}</span><button className="icon-button" id="guide-button" aria-label="작업실 사용 안내" onClick={() => openModal('하나의 작업실, 네 가지 흐름', <Guide/>)}>?</button><button className="text-button" onClick={logout}>로그아웃</button>{COMPANY_SITE_URL && <a className="text-button" href={COMPANY_SITE_URL}>회사 소개</a>}</div>
       </aside>
       <button className="nav-backdrop" id="nav-backdrop" aria-label="메뉴 닫기" hidden={!menuOpen} onClick={() => setMenuOpen(false)}/>
       <main id="workspace" tabIndex={-1} inert={menuOpen}><section id={'panel-' + active} role="region" aria-labelledby={active !== 'oauth' ? 'tab-' + active : undefined} aria-label={active === 'oauth' ? 'MCP 연결 승인' : undefined} className={'workspace-panel' + (active === 'ima2' ? ' media-workspace-panel' : '')}>{children}</section></main>

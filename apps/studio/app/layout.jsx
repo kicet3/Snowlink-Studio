@@ -15,7 +15,6 @@ import './_styles/wordmark.css';
 
 export const metadata = {
   title: `${PRODUCT_NAME} · 콘텐츠 작업실`,
-  robots: { index: false, follow: false, noimageindex: true, nosnippet: true },
   icons: { icon: '/logo.svg' },
 };
 export const viewport = { themeColor: '#080808', width: 'device-width', initialScale: 1 };

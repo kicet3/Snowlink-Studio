@@ -1,10 +1,10 @@
-# snowfall studio
+# Snowframe Studio
 
-Next.js Studio 프론트는 [`apps/studio`](apps/studio/README.md)에 있습니다. Vercel의 Root Directory를 `apps/studio`로 지정하며, 서비스 주소는 `studio.snowlink.team`, API 기본 주소는 `api.snowlink.team`입니다. 아래의 Node.js 실행 설명은 기존 백엔드 기준이며 FastAPI 전환과 통합 검증은 진행 중입니다.
+Next.js Studio 프론트는 [`apps/studio`](apps/studio/README.md)에 있습니다. Vercel의 Root Directory를 `apps/studio`로 지정하며, 서비스 주소는 `studio.snowfall.it.com`, API 기본 주소는 `api.snowfall.it.com`입니다. 아래의 Node.js 실행 설명은 기존 백엔드 기준이며 FastAPI 전환과 통합 검증은 진행 중입니다.
 
-제품 표시 이름은 `snowfall studio`입니다. 회사명은 스노우링크(SnowLink)입니다. 기존 접속 주소·프로젝트 디렉터리·데이터·로그인·MCP 연결은 그대로 사용합니다. 패키지 이름과 MCP 연결 별칭 `snowlink-studio`, `SNOWFALL_*` 환경변수, `snowfall://workflow` 등 기술 식별자는 호환성을 위해 유지합니다.
+제품 표시 이름은 `Snowframe Studio`입니다. 회사명은 스노우링크(SnowLink)입니다. 기존 접속 주소·프로젝트 디렉터리·데이터·로그인·MCP 연결은 그대로 사용합니다. 패키지 이름과 MCP 연결 별칭 `snowlink-studio`, `SNOWFALL_*` 환경변수, `snowfall://workflow` 등 기술 식별자는 호환성을 위해 유지합니다.
 
-새 도메인은 회사 소개 `snowfall.it.com`, Studio `studio.snowfall.it.com`, API `api.snowfall.it.com`입니다. 회사 소개와 API HTTPS 연결을 확인했으며 Studio 서브도메인의 DNS·Vercel 설정은 확인 중입니다. 기존 주소도 유지합니다. 회사 공개 이메일은 `admin@snowfall.it.com`입니다. [전환 상태와 설정 값](docs/domain-transition.md)을 참고하세요.
+새 도메인은 회사 소개 `snowfall.it.com`, Studio `studio.snowfall.it.com`, API `api.snowfall.it.com`입니다. 세 도메인의 HTTPS 연결을 확인했으며 기존 주소도 호환용으로 유지합니다. 회사 공개 이메일은 `admin@snowfall.it.com`입니다. [전환 상태와 설정 값](docs/domain-transition.md)을 참고하세요.
 
 캐릭터와 이야기를 중심으로 트렌드 탐색, 이미지·영상 제작, ShortGPT 컷 편집을 모은 작업실입니다. Node.js 22 이상과 공식 MCP SDK를 사용하며, 내재화한 React 제작 UI는 자체 의존성과 빌드 단계를 가집니다.
 
@@ -31,7 +31,7 @@ npm stop
 
 ## 회원 계정
 
-검색 노출용 description·keywords·Open Graph·구조화 데이터·사이트맵은 제공하지 않습니다. 작업실과 제작·트렌드 호환 주소 모두 `/robots.txt`에서 `User-agent: *`, `Disallow: /`를 반환하고, 모든 공개 HTTP 응답에 `X-Robots-Tag: noindex, nofollow, nosnippet, noimageindex`를 적용합니다. `robots.txt`는 이를 준수하는 봇에 대한 지침이며 실제 데이터 접근은 로그인과 Tailscale 접근 권한으로 제한합니다. 이미 검색된 URL의 즉시 삭제를 보장하지 않습니다. [robots.txt의 범위](https://developers.google.com/search/docs/crawling-indexing/robots/intro).
+검색 노출용 description·keywords·Open Graph·구조화 데이터·사이트맵은 제공하지 않습니다. 공개 회사 페이지와 Studio 프론트는 `/robots.txt`에서 `User-agent: *`, `Allow: /`를 반환하며 AI 크롤러의 접근을 허용합니다. 공개 프론트의 robots 메타와 `X-Robots-Tag` 차단도 제거했습니다. 계정별 작업실 데이터와 API는 인증·권한 검사 및 API 색인 제외를 유지합니다.
 
 첫 화면에서 회원가입하거나 로그인합니다. 비밀번호에는 사용자별 난수 salt를 붙인 후 scrypt를 적용하며 원문을 저장하지 않습니다. 로그인 쿠키는 HttpOnly·SameSite=Lax이고 HTTPS에서는 Secure를 적용합니다. 비밀번호 변경은 기존 로그인 세션과 MCP OAuth 승인을 무효화합니다.
 
@@ -41,25 +41,25 @@ npm stop
 
 ## MCP · Claude와 Codex
 
-**설정 · OAuth → MCP · Claude와 Codex 연결**에서 주소와 연결 명령을 복사할 수 있습니다. Streamable HTTP 주소는 `https://snowfall-macmini.tail447a11.ts.net:9450/mcp`입니다. 같은 Mac에서는 `http://127.0.0.1:3400/mcp`도 사용할 수 있습니다.
+**설정 · OAuth → MCP · Claude와 Codex 연결**에서 주소와 연결 명령을 복사할 수 있습니다. Streamable HTTP 주소는 `https://api.snowfall.it.com/mcp`입니다. 같은 Mac에서는 `http://127.0.0.1:3400/mcp`도 사용할 수 있습니다.
 
 Codex CLI:
 
 ```sh
-codex mcp add snowlink-studio --url https://snowfall-macmini.tail447a11.ts.net:9450/mcp
+codex mcp add snowlink-studio --url https://api.snowfall.it.com/mcp
 codex mcp login snowlink-studio
 ```
 
 Claude Code:
 
 ```sh
-claude mcp add --transport http snowlink-studio https://snowfall-macmini.tail447a11.ts.net:9450/mcp
+claude mcp add --transport http snowlink-studio https://api.snowfall.it.com/mcp
 claude mcp login snowlink-studio
 ```
 
 로그인 링크에서 **작업실 회원 계정**으로 로그인한 뒤 접근을 허용합니다. Google·GPT OAuth와 별개의 작업실 인증입니다. OAuth discovery, 동적 클라이언트 등록, Authorization Code + S256 PKCE, resource 검증, 일회성 코드, 갱신 토큰 회전과 폐기를 지원합니다. 액세스 토큰은 1시간, 갱신 토큰은 30일이며 서버에는 토큰 해시만 저장합니다. 설정의 **승인한 연결 → 연결 해제**로 권한을 철회합니다.
 
-Tailscale 주소는 해당 네트워크에 접근하는 로컬 Claude Code·Codex에서 사용합니다. Claude 웹 등 클라우드 커넥터로 사용하려면 외부에서 접근할 수 있는 HTTPS 배포와 `publicOrigin` 설정이 별도로 필요합니다. 공식 연결 방법: [Codex MCP](https://learn.chatgpt.com/docs/extend/mcp?surface=cli), [Claude Code MCP](https://code.claude.com/docs/en/mcp).
+공개 API 도메인은 HTTPS와 `publicOrigin`이 설정되어 있으며 Claude·Codex 연결에 사용할 수 있습니다. 공식 연결 방법: [Codex MCP](https://learn.chatgpt.com/docs/extend/mcp?surface=cli), [Claude Code MCP](https://code.claude.com/docs/en/mcp).
 
 대화 예시:
 
