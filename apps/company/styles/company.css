@@ -70,6 +70,26 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
 .company-product-summary { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; margin: -16px 0 42px; }
 .company-product-summary p { font-size: 14px; line-height: 1.95; color: var(--color-text-secondary); }
 .company-product-summary p+p { color: var(--color-text-muted); }
+.company-entry-points { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.company-entry-points>a { display: flex; flex-direction: column; padding: 26px; border: 1px solid var(--color-border); background: var(--color-surface); min-width: 0; }
+.company-entry-points>a:hover { border-color: var(--color-border-strong); background: #151515; }
+.company-entry-index { display: flex; align-items: center; justify-content: space-between; color: var(--color-text-muted); font: 10px var(--company-mono); }
+.company-entry-index .icon { width: 19px; height: 19px; }
+.company-entry-points h3 { margin-top: 26px; font-size: 21px; font-weight: 500; letter-spacing: -.04em; }
+.company-entry-points p { margin-top: 14px; font-size: 12px; line-height: 1.9; color: var(--color-text-muted); }
+.company-entry-link { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; margin-top: auto; font-size: 12px; }
+.company-entry-link .icon { width: 15px; height: 15px; }
+.company-preview-note { font-size: 11px; color: var(--color-text-muted); line-height: 1.9; margin-top: 18px; }
+.company-entry-points+.company-preview-note { margin-bottom: 42px; }
+.company-membership { margin-top: 75px; }
+.company-membership-plans { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-top: 32px; }
+.company-membership-plans article { padding: 30px; min-width: 0; }
+.company-membership-plans article:first-child { padding-left: 0; }
+.company-membership-plans article+article { border-left: 1px solid var(--color-border); }
+.company-membership-plans h4 { font-size: 32px; font-weight: 500; letter-spacing: -.04em; }
+.company-membership-plans p { font-size: 12px; line-height: 1.9; min-height: 46px; margin-top: 16px; color: var(--color-text-muted); }
+.company-membership-plans strong { display: block; font-size: 27px; font-weight: 500; margin-top: 24px; letter-spacing: -.04em; }
+.company-membership-plans ul { display: grid; gap: 11px; padding: 24px 0 0 15px; font-size: 12px; line-height: 1.8; color: var(--color-text-secondary); }
 .company-faq { margin-top: 80px; }
 .company-faq-list { margin-top: 32px; border-top: 1px solid var(--color-border); }
 .company-faq-list article { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; padding: 28px 0; border-bottom: 1px solid var(--color-border); scroll-margin-top: 28px; }
@@ -94,6 +114,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
 .company-screen-picker .icon { width: 15px; height: 15px; }
 .company-screen-picker button:hover { background: #191919; color: #eee; }
 .company-screen-picker button[aria-pressed=true] { color: #080808; background: #edede8; border-color: #edede8; }
+.company-screen-groups { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 20px; border-bottom: 1px solid var(--color-border); }
+.company-screen-groups button { padding: 0 0 13px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--color-text-muted); font: inherit; font-size: 12px; cursor: pointer; }
+.company-screen-groups button[aria-pressed=true] { color: var(--color-text); border-bottom-color: var(--color-text); }
 .company-screen { margin: 0; border: 1px solid #333; border-radius: 4px; overflow: hidden; background: #111; }
 .company-screen-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; font: 10px var(--company-mono); color: #aaa; border-bottom: 1px solid #333; }
 .company-screen-bar>span:first-child { display: flex; gap: 5px; }
@@ -205,6 +228,16 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
   .company-product-heading .button { margin-top: 24px; }
   .company-product-summary { grid-template-columns: 1fr; gap: 14px; margin: 0 0 28px; }
   .company-product-summary p { font-size: 12px; }
+  .company-entry-points { grid-template-columns: 1fr; gap: 12px; }
+  .company-entry-points>a { padding: 22px; }
+  .company-entry-points h3 { margin-top: 18px; font-size: 20px; }
+  .company-preview-note { font-size: 10px; }
+  .company-membership { margin-top: 48px; }
+  .company-membership-plans { grid-template-columns: 1fr; }
+  .company-membership-plans article { padding: 26px 0; }
+  .company-membership-plans article+article { border-left: 0; border-top: 1px solid var(--color-border); }
+  .company-membership-plans p { min-height: 0; }
+  .company-screen-groups { gap: 22px; }
   .company-faq { margin-top: 48px; }
   .company-faq-list article { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
   .company-faq-list h4 { font-size: 16px; }

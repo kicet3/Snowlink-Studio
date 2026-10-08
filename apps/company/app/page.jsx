@@ -23,13 +23,13 @@ export default function CompanyPage() {
     <a className="skip-link" href="#company-main">회사 소개로 건너뛰기</a>
     <header className="company-header">
       <a href="/" className="brand" aria-label={`${c.brand} 회사 소개`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a>
-      <nav aria-label="회사 안내"><a href="#about">회사 소개</a><a href="#product">제품</a><a href="#contact">문의</a><ServiceLink service={c.service} className="button primary">스튜디오 열기</ServiceLink></nav>
+      <nav aria-label="회사 안내"><a href="#about">회사 소개</a><a href="#product">제품</a><a href="#contact">문의</a><ServiceLink service={c.service} className="button primary">작품 둘러보기</ServiceLink></nav>
     </header>
     <main id="company-main">
       <section className="company-hero" aria-labelledby="hero-title">
         <div className="company-hero-intro">
           <div><p className="eyebrow"><span className="status-dot"/> A PLACE FOR YOUR STORIES</p><h1 id="hero-title"><Lines text={c.headline}/><span className="hero-period">.</span></h1></div>
-          <div className="company-hero-copy"><p><Lines text={c.introduction}/></p><ServiceLink service={c.service} className="company-text-link">창작 시작하기</ServiceLink></div>
+          <div className="company-hero-copy"><p><Lines text={c.introduction}/></p><ServiceLink service={c.service} className="company-text-link">Studio 둘러보기</ServiceLink></div>
         </div>
         <VectorWordmark text={c.brand}/>
       </section>
@@ -41,9 +41,17 @@ export default function CompanyPage() {
         <div className="company-section-heading"><SectionLabel number="02">OUR PRODUCT</SectionLabel><span>{c.service.caption}</span></div>
         <div className="company-product-heading"><div><h2 id="product-title">{c.service.name}<span className="product-period">.</span></h2><p>{c.service.description}</p></div><ServiceLink service={c.service} className="button primary">{c.service.button}</ServiceLink></div>
         <div className="company-product-summary"><p>{c.productSummary}</p><p>{c.productAudience}</p></div>
+        <nav className="company-entry-points" aria-label="Studio 시작 방법">{c.entryPoints.map((entry, index) => <a key={entry.path} href={`${c.service.url}${entry.path}`}><div className="company-entry-index"><span>0{index + 1} /</span><Icon name={entry.icon}/></div><h3>{entry.title}</h3><p>{entry.description}</p><span className="company-entry-link">{entry.label}<Icon name="arrow"/></span></a>)}</nav>
+        <p className="company-preview-note">{c.showcaseNotice}</p>
         <div className="company-capabilities">{c.features.map((feature, index) => <article key={feature.title}><div><span>0{index + 1} /</span><Icon name={feature.icon}/></div><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
         <ProductShowcase productName={c.service.name}/>
         <ProductDetails workflow={c.workflow} details={c.productDetails}/>
+        <section className="company-membership" id="membership" aria-labelledby="membership-title">
+          <div className="company-detail-heading"><p className="eyebrow">YOUR NEXT CHAPTER / MEMBERSHIP PREVIEW</p><h3 id="membership-title">{c.membership.title}</h3><p>{c.membership.description}</p></div>
+          <div className="company-membership-plans">{c.membership.plans.map(plan => <article key={plan.name}><h4>{plan.name}</h4><p>{plan.description}</p><strong>{plan.price}</strong><ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul></article>)}</div>
+          <p className="company-preview-note">{c.membership.notice}</p>
+          <a className="company-text-link" href={`${c.service.url}/membership`}>멤버십과 결제 흐름 미리보기<Icon name="arrow"/></a>
+        </section>
         <section className="company-faq" id="faq" aria-labelledby="faq-title">
           <div className="company-detail-heading"><p className="eyebrow">BEFORE YOU CREATE</p><h3 id="faq-title">Snowlink Studio, 궁금한 점을 모았습니다.</h3><p>제품 안내 기준일 <time dateTime={c.contentUpdated}>{c.contentUpdated}</time></p></div>
           <div className="company-faq-list">{c.faq.map(item => <article key={item.id} id={item.id}><h4><a href={`#${item.id}`}>{item.question}</a></h4><p>{item.answer}</p></article>)}</div>
@@ -59,7 +67,7 @@ export default function CompanyPage() {
       <div className="company-footer-top">
         <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
         <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">스노우링크 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
-        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a><a href={c.service.url}>스튜디오 시작하기 <Icon name="external"/></a></nav>
+        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>작품 둘러보기 <Icon name="external"/></a><a href={`${c.service.url}/board`}>내 제작 보드 <Icon name="external"/></a><a href="#membership">멤버십 미리보기</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a></nav>
       </div>
       <div className="company-footer-business">
         <h2>{c.name}</h2>

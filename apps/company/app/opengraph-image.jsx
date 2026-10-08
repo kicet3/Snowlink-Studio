@@ -8,7 +8,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const screenshot = await readFile(join(process.cwd(), 'public/screenshots/board.jpg'), 'base64');
+  const screenshot = await readFile(join(process.cwd(), 'public/screenshots/explore.jpg'), 'base64');
   const c = companyConfig();
   return new ImageResponse(
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: '#080808', color: '#f3f3ef', padding: '48px 54px' }}>
