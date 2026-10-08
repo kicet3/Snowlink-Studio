@@ -15,7 +15,7 @@ const screens = [
 export function ProductShowcase({ productName }) {
   const [selected, setSelected] = useState(0);
   const screen = screens[selected];
-  const source = `/screenshots/${screen.id}.jpg?v=20261007-snowfall-studio`;
+  const source = `/screenshots/${screen.id}.jpg?v=20261008-snowlink-studio`;
 
   return <section className="company-showcase" aria-labelledby="showcase-title">
     <div className="company-showcase-heading">
@@ -28,7 +28,7 @@ export function ProductShowcase({ productName }) {
     <figure id="company-screen" className="company-screen">
       <div className="company-screen-bar"><span><i/><i/><i/></span><span>{productName}</span><span>{String(selected + 1).padStart(2, '0')} / {String(screens.length).padStart(2, '0')}</span></div>
       <a className="company-screen-image" href={source} target="_blank" rel="noopener noreferrer" aria-label={`${screen.label} 화면 원본 크게 보기 (새 탭)`}>
-        <img key={screen.id} src={source} width="1474" height="829" loading="lazy" alt={`${productName} ${screen.label} 탭의 실제 화면 — ${screen.title}`}/>
+        <img key={screen.id} src={source} width="1474" height="795" loading="lazy" alt={`${productName} ${screen.label} 탭의 실제 화면 — ${screen.title}`}/>
       </a>
       <figcaption>
         <div aria-live="polite"><h4>{screen.title}</h4><p>{screen.description}</p></div>
