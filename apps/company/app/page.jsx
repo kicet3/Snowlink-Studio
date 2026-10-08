@@ -29,7 +29,7 @@ export default function CompanyPage() {
       <section className="company-hero" aria-labelledby="hero-title">
         <div className="company-hero-intro">
           <div><p className="eyebrow"><span className="status-dot"/> A PLACE FOR YOUR STORIES</p><h1 id="hero-title"><Lines text={c.headline}/><span className="hero-period">.</span></h1></div>
-          <div className="company-hero-copy"><p><Lines text={c.introduction}/></p><ServiceLink service={c.service} className="company-text-link">Studio 둘러보기</ServiceLink></div>
+          <div className="company-hero-copy"><p><Lines text={c.introduction}/></p><a className="company-text-link" href={`${c.service.url}/chat`}>캐릭터와 대화하기<Icon name="arrow"/></a></div>
         </div>
         <VectorWordmark text={c.brand}/>
       </section>
@@ -47,7 +47,7 @@ export default function CompanyPage() {
           <div className="company-detail-heading"><p className="eyebrow">DEVELOPMENT / CURRENT &amp; PLANNED</p><h3 id="claude-title">{c.claude.title}</h3></div>
           <div className="company-detail-grid">{c.claude.current.map(item => <article key={item.title}><h4>{item.title}</h4><p>{item.description}</p></article>)}</div>
           <p className="company-development-note">{c.claude.writing}</p>
-          <article className="company-development-plan"><h4>계획 · Claude API로 집필 연결</h4><p>{c.claude.planned}</p><p>{c.claude.evaluation}</p></article>
+          <article className="company-development-plan"><h4>계획 · Claude API로 집필과 대화 연결</h4><p>{c.claude.planned}</p><p>{c.claude.evaluation}</p></article>
           <a className="company-text-link" href={`${c.service.url}/guide#claude`}>현재 기능과 개발 계획 확인<Icon name="arrow"/></a>
         </section>
         <ProductShowcase productName={c.service.name} serviceUrl={c.service.url}/>

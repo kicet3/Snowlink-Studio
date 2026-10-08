@@ -15,6 +15,7 @@ import './_styles/wordmark.css';
 import './_styles/membership.css';
 import './_styles/explore.css';
 import './_styles/guide.css';
+import './_styles/persona-chat.css';
 
 export const metadata = {
   metadataBase: new URL('https://studio.snowlink.team'),

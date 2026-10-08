@@ -7,6 +7,7 @@ import { chatCharacter } from './characterStudio.mjs';
 import { saveImage } from './store.mjs';
 import { retrieveStoryContext } from './storyGraph.mjs';
 import { studioToolDefinitions } from './studioTools.mjs';
+import { createPersonaChat } from './personaChat.mjs';
 
 const bad = (message, status = 400) => Object.assign(new Error(message), { status });
 export const STUDIO_GUIDE = '영상 템플릿을 고르고 대화로 수정해 저장하세요. 캐릭터는 studio_character_chat → 설정 확인 → studio_character_generate → studio_job → studio_character_register 순서입니다. 시나리오는 전체 플롯 → 순서대로 회차 플롯 → 순서대로 상세 원고와 이야기 기억입니다. studio_story_context로 이전 사실과 떡밥 근거를 검색합니다. 완료된 회차는 studio_episode_nodes로 장면 노드로 바꿉니다. studio_graph_run은 이미지 부모부터 실행하고 studio_job으로 완료를 확인한 뒤 영상 노드를 실행합니다. 비용이 드는 생성은 사용자의 생성 요청 범위에서 실행하세요. 이미 접수한 요청은 재전송하지 말고 같은 작업 번호로 조회하세요. 수정에는 최신 revision/graphVersion이 필요합니다.';
@@ -14,6 +15,7 @@ export const STUDIO_GUIDE = '영상 템플릿을 고르고 대화로 수정해 �
 export function createStudioActions({ config, dataDir, store, ai, templates, ownership }) {
   const scenarios = createScenarioStore(dataDir), videoTemplates = createVideoTemplates(dataDir), jobs = createStudioJobs(dataDir);
   const writer = createScenarioWriter({ scenarios, ai, workspace: store, videoTemplates, jobs });
+  const persona = createPersonaChat({ dataDir, store, scenarios, ai });
   const media = createStudioMedia({ config, dataDir, workspace: store, videoTemplates, jobs, ai, ownership });
   function validSettings(values = {}) {
     if (values.videoTemplateId) videoTemplates.get(values.videoTemplateId);
@@ -61,6 +63,12 @@ export function createStudioActions({ config, dataDir, store, ai, templates, own
     },
     studio_video_template_chat: input => planVideoTemplate(ai, input),
     studio_character_chat: input => chatCharacter(ai, templates, dataDir, input),
+    studio_persona_catalog: () => persona.catalog(),
+    studio_persona_conversations: () => persona.list(),
+    studio_persona_conversation: input => persona.get(input),
+    studio_persona_start: input => persona.start(input),
+    studio_persona_send: input => persona.send(input),
+    studio_persona_remove: input => persona.remove(input),
     studio_upload_image: input => ({ image: saveImage(dataDir, input.data) }),
     studio_character_generate(input) {
       const template = templates.get(input.templateId);

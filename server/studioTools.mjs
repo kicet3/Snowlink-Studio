@@ -9,6 +9,12 @@ const graph = z.object({ title: z.string().max(160).optional(), nodes: z.array(z
 const def = (description, shape, readOnlyHint = false) => ({ description, inputSchema: z.object(shape), annotations: { readOnlyHint, destructiveHint: false, idempotentHint: readOnlyHint, openWorldHint: !readOnlyHint } });
 
 export const studioToolDefinitions = {
+  studio_persona_catalog: def('대화 가능한 공개 작품 캐릭터와 내 캐릭터, 연결된 작품의 완료 회차를 조회합니다. 시트 제작 도우미와 별개의 인물 역할 대화입니다.', {}, true),
+  studio_persona_conversations: def('현재 계정의 캐릭터 대화방 목록을 읽습니다. 다른 계정이나 방문자의 기록은 포함하지 않습니다.', {}, true),
+  studio_persona_conversation: def('저장한 캐릭터 대화 기록과 revision을 읽습니다.', { id }, true),
+  studio_persona_start: def('선택한 캐릭터와 새 대화방을 저장합니다. 생성 호출은 하지 않습니다. public은 공개 작품 1화 기본, workspace는 시나리오를 선택하면 완료한 throughEpisode까지의 원고·그래프를 시작 시점에 고정합니다. 원고를 수정하지 않습니다.', { source: z.enum(['public', 'workspace']), characterId: id, scenarioId: id.optional(), throughEpisode: z.number().int().min(0).max(50).optional() }),
+  studio_persona_send: def('캐릭터의 성격과 고정한 작품 맥락, 최근 대화로 실제 AI 답변을 생성하고 문답을 저장합니다. 비용 발생 가능. 최신 revision과 고유 requestId를 사용하고 네트워크 재시도에는 같은 requestId와 메시지를 재사용하세요. 전체 기록은 보관하나 모델은 최근 최대20개 메시지만 참고합니다. 원작이나 그래프를 변경하지 않습니다.', { id, revision, requestId: z.string().uuid(), message: z.string().trim().min(1).max(2000) }),
+  studio_persona_remove: { ...def('사용자가 요청한 대화방과 기록을 삭제합니다. 최신 revision 필요. 원고와 캐릭터는 보존합니다.', { id, revision }), annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: false } },
   studio_workspace: def('캐릭터·제작 보드·시나리오 목록과 사용 순서를 읽습니다. 변경이나 생성은 하지 않습니다.', {}, true),
   studio_templates: def('캐릭터 시트 또는 영상 템플릿을 조회/저장합니다. 기본 영상: animation, live-action. 기본 캐릭터: identity-sheet, anime-design. 기본 템플릿은 새 이름으로 복사합니다.', { kind: z.enum(['character', 'video']), operation: z.enum(['list', 'save']), template: template.optional(), id: id.optional(), updatedAt: z.string().optional() }),
   studio_video_template_chat: def('사용자와 대화하여 재사용할 애니메이션/실사 영화 스타일을 설계합니다. 반환된 template은 studio_templates로 저장해야 합니다.', { message: z.string().min(1).max(6000), template: template.optional() }),

@@ -2,11 +2,11 @@ import { companyConfig } from './config.js';
 
 const c = companyConfig();
 export const siteUrl = c.siteUrl;
-export const title = `${c.brand} | ${c.service.name} AI 콘텐츠 제작`;
-export const description = 'Snowlink Team이 개발·운영하는 연재 창작 작업실. Snowlink Team Studio에서 전체 플롯부터 회차별 소설을 쓰고, 인물·사건·복선의 이야기 기억과 캐릭터 시트를 이미지·영상 제작으로 연결하세요.';
+export const title = `${c.brand} | ${c.service.name} AI 창작·캐릭터챗`;
+export const description = '이야기를 만들고, 그 안의 캐릭터와 대화하세요. Snowlink Team Studio는 회차별 소설과 이야기 그래프, 창작 인물의 성격·세계관을 바탕으로 한 캐릭터챗을 연결하는 서비스입니다.';
 export const shareImage = {
   url: `${siteUrl}/opengraph-image`, width: 1200, height: 630,
-  alt: 'Snowlink Team Studio — AI 캐릭터 시트, 스토리와 영상 제작 작업실',
+  alt: 'Snowlink Team Studio — 이야기 창작과 캐릭터챗',
 };
 
 export const metadata = {

@@ -9,12 +9,12 @@ import { Icon } from './Icon';
 import { COMPANY_SITE_URL, PRODUCT_NAME } from '../_lib/branding';
 
 export const TABS = [
-  ['explore', '작품 둘러보기', 'radar'], ['guide', '사용 가이드', 'chat'], ['board', '내 제작 보드', 'board'], ['characters', '캐릭터 시트', 'people'],
+  ['explore', '작품 둘러보기', 'radar'], ['chat', '캐릭터챗', 'chat'], ['guide', '사용 가이드', 'chat'], ['board', '내 제작 보드', 'board'], ['characters', '캐릭터 시트', 'people'],
   ['scenarios', '시나리오 · 영상 스타일', 'film'], ['trends', '트렌드 탐색', 'radar'],
   ['ima2', '이미지 · 영상 제작', 'spark'], ['shortgpt', 'ShortGPT · 컷 편집', 'film'], ['mcp', 'MCP 연결 안내', 'external'], ['membership', '멤버십', 'cards'], ['settings', '설정', 'settings'], ['profile', '내 프로필', 'people'],
 ];
 const ROUTES = new Set([...TABS.map(([id]) => id), 'oauth', 'checkout', 'creators']);
-const PUBLIC_ROUTES = new Set(['explore', 'creators', 'membership', 'checkout', 'mcp', 'guide']);
+const PUBLIC_ROUTES = new Set(['explore', 'creators', 'membership', 'checkout', 'mcp', 'guide', 'chat']);
 const tabHref = id => id === 'explore' ? '/' : '/' + id;
 
 export function StudioShell({ children }) {
@@ -80,5 +80,5 @@ function Shell({ children }) {
   </>;
 }
 function Guide() {
-  return <div className="guide"><p><b>01 트렌드 탐색</b>에서 소재와 참고 링크를 발견하세요.</p><p><b>02 캐릭터 시트</b>에 외형·성격·이미지를 등록하세요.</p><p><b>03 제작 보드</b>에서 썰 영상, 카드뉴스, YouTube 기획을 만들고 캐릭터를 선택하세요.</p><p><b>04 이미지 · 영상 제작 / ShortGPT</b>에서 생성 작업과 컷 편집을 이어가세요.</p><div className="form-tip">Instagram·YouTube 자동 게시와 예약 업로드는 아직 연결되지 않았습니다. 기획 데이터 백업에는 이미지 파일이 포함되지 않으므로, 전체 백업 시 .data 폴더도 함께 보관하세요.</div></div>;
+  return <div className="guide"><p><b>캐릭터챗</b>에서 공개 작품 속 인물을 만나거나 내 캐릭터의 성격과 세계관으로 대화하세요. 기록은 작업실별로 저장됩니다.</p><p><b>01 트렌드 탐색</b>에서 소재와 참고 링크를 발견하세요.</p><p><b>02 캐릭터 시트</b>에 외형·성격·이미지를 등록하세요.</p><p><b>03 제작 보드</b>에서 썰 영상, 카드뉴스, YouTube 기획을 만들고 캐릭터를 선택하세요.</p><p><b>04 이미지 · 영상 제작 / ShortGPT</b>에서 생성 작업과 컷 편집을 이어가세요.</p><div className="form-tip">Instagram·YouTube 자동 게시와 예약 업로드는 아직 연결되지 않았습니다. 기획 데이터 백업에는 이미지 파일이 포함되지 않으므로, 전체 백업 시 .data 폴더도 함께 보관하세요.</div></div>;
 }
