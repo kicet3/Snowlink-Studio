@@ -70,10 +70,18 @@
 - Google OAuth callback 콘솔 Save는 별도 사용자 실행 승인 보류 상태를 유지한다. 이 기능의 방문자 흐름에는 새 OAuth 승인이 필요 없다.
 - 웹툰 회차 자동 제작, 특정 유명 IP 제공, 자동 SNS 게시를 새 기능으로 주장하지 않는다.
 
-## 신청서용 영문 초안 (각 500자 이내, 제출하지 않음)
+## 후속 포지셔닝 — 일상 속 작은 연결 (2026-10-09)
+
+- 사용자 요청에 따라 창작·캐릭터챗 기능 설명에 사회적 목적을 더했다. 핵심 기능 문구 “이야기를 만들고, 그 안의 캐릭터와 대화하세요”는 유지한다.
+- 회사 미션: “스노우링크는 소설·웹툰 속 창작 캐릭터와의 대화를 통해, 한국 사회에서 외로움을 느끼는 사람들이 일상에서 작은 연결감을 얻도록 돕고자 합니다.” 보조 문구: “이야기 속 대화로, 일상에 작은 연결을.”
+- 회사 히어로/소개/제품 요약/영문 소개, Studio 첫 화면/캐릭터챗 안내/가이드, 메타데이터·구조화 데이터·공개 AI 텍스트를 함께 맞췄다. 목적을 설명하며 효과 입증·의료 기능·고객 성과를 주장하지 않는다. 별도 경고나 동의창을 추가하지 않는다.
+- 문구만 변경했다. 기존 캐릭터챗 구현, 운영 모델 GPT(gpt-6-luna), Claude Code 개발·인증 MCP, 향후 Claude API·장기 맥락·prompt caching 계획의 구분은 유지한다. 기존 28개 기능 검증 및 유료 AI 대화는 반복하지 않는다.
+- 이번 검증: 회사·Studio Next.js 운영 빌드 성공, 기존 SEO/공개 텍스트 테스트 2개 통과. 회사/Studio의 현재 AI 설명·Claude 계획, 공개 텍스트와 영문 초안 일치 및 500자 제한을 확인했다. 공개 문구/링크·배포 확인 결과는 완료 보고에 구분해 기록한다. 다른 작업자의 WIP, 도메인·DNS·메일, OAuth 콘솔 Save 보류 상태와 신청 제출 상태는 변경하지 않는다.
+
+## 신청서용 영문 초안 (최신 포지셔닝, 각 500자 이내, 제출하지 않음)
 
 Product:
-Snowlink Team Studio lets creators write serial fiction and readers chat with original characters. It connects episode planning, a story graph, character sheets and image/video creation. Character chat uses personality, selected story context and recent messages, with saved histories. We build with Claude Code and provide authenticated MCP tools. Writing and chat currently use GPT; we plan to migrate to the Claude API.
+Snowlink Team Studio aims to offer moments of connection to people experiencing loneliness in Korea. Creators write stories and readers chat with original novel or webtoon characters using personality, selected story context and recent messages, with saved histories. We develop with Claude Code and offer authenticated MCP tools. Writing and chat currently use GPT; Claude API migration and prompt caching are planned.
 
 Support:
-We seek API credits and technical guidance to migrate episode writing and character dialogue from GPT to the Claude API. Credits would fund integration and evaluation of character consistency, story-graph extraction, long-context continuity, latency and cost. We also plan to evaluate prompt caching for prior manuscripts and expand our existing authenticated MCP tools.
+We seek Claude API credits and technical guidance for a story and character-chat service aimed at everyday connection for people experiencing loneliness in Korea. We plan to migrate dialogue and serial writing from GPT, evaluate character consistency, longer context, latency and cost, and test prompt caching for prior manuscripts. We also plan to expand our existing authenticated MCP tools.

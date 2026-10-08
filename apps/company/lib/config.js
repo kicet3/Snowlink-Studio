@@ -20,10 +20,10 @@ export function companyConfig() {
       description: '이야기를 만들고, 그 안의 캐릭터와 대화하세요.',
     },
     headline: '이야기를 만들고,\n그 안의 캐릭터와 대화하세요',
-    introduction: '읽는 이야기에서, 함께 대화하는 세계로.\nSnowlink Team Studio에서는 회차별 소설을 쓰고,\n인물의 성격과 세계관을 대화로 경험합니다.\n공개 작품의 캐릭터를 만나거나 직접 만들어보세요.',
+    introduction: '이야기 속 대화로, 일상에 작은 연결을.\n창작자는 인물과 이야기를 만들고,\n독자는 그 세계에 편안하게 말을 건넵니다.\n공개 작품의 캐릭터를 만나거나 직접 만들어보세요.',
     identity: 'Snowlink Team은 한국 서울의 사업자 스노우링크가 사용하는 브랜드입니다. 대표 이현대가 2026년 6월 30일 개업했으며, 창작·캐릭터챗 서비스 Snowlink Team Studio를 개발·운영합니다.',
-    productSummary: 'Snowlink Team Studio는 이야기를 만드는 창작자와 그 안의 인물을 만나고 싶은 독자를 연결하는 창작·캐릭터챗 서비스입니다. 전체 플롯부터 회차별 소설을 쓰고 인물·사건·복선을 구조화해 이어갑니다. 공개 작품의 캐릭터 또는 직접 만든 인물과 성격·세계관·선택한 회차의 맥락으로 대화하고, 같은 이야기를 이미지·영상 장면으로 확장합니다.',
-    englishSummary: 'Snowlink Team Studio helps creators write serial fiction and lets readers talk with original characters. Character chat uses personality, selected story context and recent conversation, with saved histories. Creators can connect completed episodes and their story graph; chats do not rewrite the canon. We develop with Claude Code and offer authenticated MCP tools. Writing and chat currently use GPT. Claude API migration, long-term memory evaluation and prompt caching are planned. Webtoon characters can be defined and chatted with; full webtoon production is not offered.',
+    productSummary: 'Snowlink Team Studio는 이야기를 만드는 창작자와 그 안의 인물을 만나고 싶은 독자를 위한 창작·캐릭터챗 서비스입니다. 창작자는 소설을 쓰고 인물의 성격과 세계관을 만들며, 독자는 선택한 작품 맥락을 바탕으로 캐릭터와 대화합니다. 일상의 이야기를 편안하게 건넬 수 있는 작은 연결을 지향합니다.',
+    englishSummary: 'Snowlink Team Studio aims to offer moments of connection to people experiencing loneliness in Korea. Creators write stories and readers chat with original novel or webtoon characters using personality, selected story context and recent messages, with saved histories. We develop with Claude Code and offer authenticated MCP tools. Writing and chat currently use GPT; Claude API migration and prompt caching are planned.',
     productAudience: '연재 소설을 쓰는 작가, 소설·웹툰용 인물을 설정하는 창작자, 이야기 속 인물과 대화하고 싶은 독자를 위한 공간입니다. 웹툰은 사용자가 만든 인물의 설정 대화 범위이며 웹툰 회차 자동 제작을 제공한다는 뜻은 아닙니다.',
     entryPoints: [
       { title: '이야기 속 인물에게 첫 인사', label: '캐릭터챗 바로 체험', path: '/chat', icon: 'chat', description: '월광우체국의 서린 등 공개 캐릭터를 고르고 대화하세요. 로그인 없이 방문자 작업실에서 기록을 이어갈 수 있습니다.' },
@@ -53,8 +53,8 @@ export function companyConfig() {
       { id: 'membership-preview', question: '멤버십은 어떤 등급인가요? 지금 결제되나요?', answer: 'Free·Creator·Pro 세 가지 구성안을 제공합니다. Free는 무료로 둘러보는 시작이며, Creator와 Pro의 가격은 모두 출시 예정입니다. 월간·연간 주기와 결제 수단을 선택해 완료 화면까지 미리 볼 수 있지만 카드·계좌 정보는 입력하지 않습니다. 실제 청구·구독 신청·계정 등급 변경은 발생하지 않으며, 가격과 정확한 이용 한도는 출시 시 안내합니다.' },
       { id: 'publishing', question: '카드뉴스 기획과 SNS 자동 게시도 지원하나요?', answer: '제작 보드에서 카드뉴스·썰 영상·YouTube 형식의 기획과 대본을 만들고 제작 자료를 연결할 수 있습니다. Instagram·YouTube 자동 게시와 예약 업로드는 현재 지원하지 않습니다. 지금은 기획, 이야기 작성, 캐릭터와 장면 제작, 컷 구성에 활용할 수 있습니다.' },
     ],
-    aboutTitle: '도구 사이의 번거로움을 줄이고,\n창작의 흐름을 이어갑니다.',
-    about: '새로운 작품에서 영감을 얻고, 캐릭터를 만들고, 이야기를 쓴 다음 장면으로 옮기는 일. 창작에는 여러 단계가 필요합니다. Snowlink Team은 작품을 발견하는 순간과 직접 만드는 시간을 연결해, 아이디어가 하나의 이야기로 이어지는 경험을 만듭니다.',
+    aboutTitle: '이야기 속 대화로,\n일상에 작은 연결을.',
+    about: '스노우링크는 소설·웹툰 속 창작 캐릭터와의 대화를 통해, 한국 사회에서 외로움을 느끼는 사람들이 일상에서 작은 연결감을 얻도록 돕고자 합니다. 창작자가 만든 성격과 세계관에 독자가 말을 건네고, 자신의 속도로 이야기를 이어갈 수 있는 경험을 만듭니다.',
     claude: {
       title: 'Claude 활용 현황과 다음 개발 단계',
       current: [

@@ -3,7 +3,7 @@ import { companyConfig } from './config.js';
 const c = companyConfig();
 export const siteUrl = c.siteUrl;
 export const title = `${c.brand} | ${c.service.name} AI 창작·캐릭터챗`;
-export const description = '이야기를 만들고, 그 안의 캐릭터와 대화하세요. Snowlink Team Studio는 회차별 소설과 이야기 그래프, 창작 인물의 성격·세계관을 바탕으로 한 캐릭터챗을 연결하는 서비스입니다.';
+export const description = '이야기를 만들고, 그 안의 캐릭터와 대화하세요. Snowlink Team은 한국 사회에서 외로움을 느끼는 사람들이 일상에 작은 연결감을 얻도록 돕고자, 이야기 창작과 인물의 성격·세계관을 담은 캐릭터챗을 만듭니다.';
 export const shareImage = {
   url: `${siteUrl}/opengraph-image`, width: 1200, height: 630,
   alt: 'Snowlink Team Studio — 이야기 창작과 캐릭터챗',
@@ -72,6 +72,7 @@ export function productText({ full = false } = {}) {
     `${c.productAudience}\n\n제품 안내 기준일: ${c.contentUpdated}`,
     c.showcaseDescription,
     `## 개발·운영사\n\n${c.identity}`,
+    `## 우리가 지향하는 연결\n\n${c.about}`,
     `## Claude 활용 현황과 개발 계획\n\n${c.claude.current.map(item => `${item.title}: ${item.description}`).join('\n\n')}\n\n${c.claude.writing}\n\n계획: ${c.claude.planned}\n\n${c.claude.evaluation}\n\n출처: ${siteUrl}/#claude`,
     `## Product summary in English\n\n${c.englishSummary}`,
     `[Studio 사용 가이드](${c.service.url}/guide): 준비할 자료, 제작 순서, 결과물과 제공 범위.`,

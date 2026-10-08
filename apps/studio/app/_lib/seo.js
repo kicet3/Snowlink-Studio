@@ -1,12 +1,12 @@
 export const STUDIO_URL = 'https://studio.snowlink.team';
 export const COMPANY_URL = 'https://www.snowlink.team';
 export const CONTENT_UPDATED = '2026-10-09';
-export const PRODUCT_DESCRIPTION = 'Snowlink Team Studio는 이야기를 만들고 그 안의 캐릭터와 대화하는 창작·캐릭터챗 서비스입니다. 회차별 소설과 이야기 그래프를 쌓고, 인물의 성격과 작품 맥락으로 대화하며 이미지·영상 장면까지 이어갑니다.';
+export const PRODUCT_DESCRIPTION = '이야기를 만들고, 그 안의 캐릭터와 대화하세요. Snowlink Team Studio는 창작 인물의 성격과 작품 맥락을 담은 대화로, 한국 사회에서 외로움을 느끼는 사람들이 일상에 작은 연결감을 얻도록 돕고자 합니다.';
 export const AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot', 'PerplexityBot', 'Perplexity-User', 'Google-Extended'];
 export const PUBLIC_PAGES = [
-  { path: '/chat', title: '캐릭터챗 · Snowlink Team Studio', description: '소설 속 인물과 대화하세요. 공개 작품의 캐릭터 또는 직접 만든 인물의 성격과 세계관, 선택한 회차의 맥락을 바탕으로 AI와 대화하고 기록을 이어갑니다.' },
-  { path: '/', title: 'Snowlink Team Studio | AI 캐릭터챗·소설·이미지·영상 제작', description: PRODUCT_DESCRIPTION },
-  { path: '/guide', title: 'AI 캐릭터·소설·영상 제작 사용법 · Snowlink Team Studio', description: '캐릭터 시트를 준비하고 전체 플롯부터 회차별 원고, 이미지·영상과 컷 편집까지 이어가는 Snowlink Team Studio 사용법입니다. 준비할 자료, 단계별 결과물과 현재 제공 범위를 확인하세요.' },
+  { path: '/chat', title: '캐릭터챗 · Snowlink Team Studio', description: '이야기 속 대화로, 일상에 작은 연결을. 공개 작품의 캐릭터 또는 직접 만든 인물에게 편안하게 말을 건네세요. 성격과 선택한 작품 맥락을 바탕으로 AI와 대화하고 기록을 이어갑니다.' },
+  { path: '/', title: 'Snowlink Team Studio | 이야기 창작·캐릭터챗', description: PRODUCT_DESCRIPTION },
+  { path: '/guide', title: '이야기 창작·캐릭터챗 사용 가이드 · Snowlink Team Studio', description: '창작 인물과 첫 대화를 나누고, 캐릭터 설정과 회차별 이야기를 만들어보세요. Snowlink Team Studio의 대화 기록, 작품 맥락, 집필·제작 순서와 현재 제공 범위를 안내합니다.' },
   { path: '/membership', title: '멤버십 미리보기 · Snowlink Team Studio', description: 'Snowlink Team Studio의 Free, Creator, Pro 멤버십 구성안을 비교하세요. 유료 등급은 출시 예정이며 실제 결제 없이 결제 화면을 미리 볼 수 있습니다.' },
   { path: '/mcp', title: 'MCP 연결 안내 · Snowlink Team Studio', description: 'Claude Code·Codex에 Snowlink Team Studio MCP를 연결하는 방법과 OAuth 인증을 안내합니다. 대화로 캐릭터 시트, 회차별 시나리오와 장면 노드를 만들고 웹에서 이어서 편집하세요.' },
 ];
