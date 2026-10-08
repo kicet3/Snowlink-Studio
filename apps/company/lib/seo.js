@@ -43,6 +43,7 @@ export function structuredData() {
         inLanguage: 'ko-KR', dateModified: c.contentUpdated,
         isPartOf: { '@id': `${siteUrl}/#website` },
         mainEntity: { '@id': `${siteUrl}/#product` },
+        hasPart: { '@id': `${siteUrl}/#faq` },
       },
       {
         '@type': 'WebApplication', '@id': `${siteUrl}/#product`,
@@ -52,6 +53,10 @@ export function structuredData() {
         mainEntityOfPage: { '@id': `${siteUrl}/#webpage` },
         image: shareImage.url, screenshot: ['explore', 'creators', 'novel', 'board', 'membership'].map(id => `${siteUrl}/screenshots/${id}.jpg`),
         featureList: [...c.features.map(feature => `${feature.title}: ${feature.description}`), `작품 탐색: ${c.showcaseNotice}`, `멤버십 미리보기: ${c.membership.notice}`],
+      },
+      {
+        '@type': 'FAQPage', '@id': `${siteUrl}/#faq`,
+        mainEntity: c.faq.map(item => ({ '@type': 'Question', '@id': `${siteUrl}/#${item.id}`, name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
       },
     ],
   };
@@ -64,6 +69,7 @@ export function productText({ full = false } = {}) {
     `> ${c.productSummary}`,
     `${c.productAudience}\n\n제품 안내 기준일: ${c.contentUpdated}`,
     c.showcaseNotice,
+    `[Studio 사용 가이드](${c.service.url}/guide): 준비할 자료, 제작 순서, 결과물과 제공 범위.`,
     `## 공식 페이지\n\n- [회사 및 제품 소개](${siteUrl}/): 운영사와 제품 기능\n- [상세 기능](${siteUrl}/#details-title): 탐색과 제작 단계별 설명\n- [자주 묻는 질문](${siteUrl}/#faq): 사용 범위와 이용 방법\n- [작품 둘러보기](${c.service.url}/): 기본 화면, 목업 작품 탐색\n- [내 제작 보드](${c.service.url}/board): 나의 콘텐츠 기획과 제작\n- [멤버십 미리보기](${c.service.url}/membership): Free·Creator·Pro 구성안과 결제 미리보기\n- [MCP 연결 안내](${c.service.url}/mcp): Claude Code·Codex 연결과 계정 인증\n- [전체 제품 안내 텍스트](${siteUrl}/llms-full.txt): 공개 본문의 텍스트 버전`,
     `## Studio 시작 방법\n\n${c.entryPoints.map(entry => `- [${entry.label}](${c.service.url}${entry.path}): ${entry.description}`).join('\n')}`,
   ];

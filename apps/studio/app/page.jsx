@@ -1,4 +1,7 @@
+// Public content is independent of account state; user state hydrates in the client.
+export const dynamic = 'force-static';
 import { Explore } from './_components/Explore';
-
-export const metadata = { title: '작품 둘러보기 · Snowlink Studio', description: '캐릭터와 연재 소설, 이미지 콘텐츠를 탐색하는 Snowlink Studio의 공개 쇼케이스 미리보기입니다.' };
-export default function Page() { return <Explore/>; }
+import { JsonLd } from './_components/JsonLd';
+import { publicMetadata, publicStructuredData } from './_lib/seo';
+export const metadata = publicMetadata('/');
+export default function Page() { return <><JsonLd data={publicStructuredData('/', { type: 'CollectionPage' })}/><Explore/></>; }

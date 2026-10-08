@@ -55,13 +55,13 @@ npm run dev
 
 ## SEO와 GEO
 
-공개 제품 소개를 검색·AI 검색에 제공하도록 서버에서 HTML을 미리 렌더링합니다. `lib/seo.js`에서 제품 중심 제목·설명, canonical, Open Graph/Twitter 카드, Organization·WebSite·WebPage·WebApplication JSON-LD를 관리합니다. canonical은 Vercel의 실제 대표 주소인 `https://www.snowlink.team/`입니다.
+공개 제품 소개를 검색·AI 검색에 제공하도록 서버에서 HTML을 미리 렌더링합니다. `lib/seo.js`에서 제품 중심 제목·설명, canonical, Open Graph/Twitter 카드, Organization·WebSite·WebPage·WebApplication·FAQPage JSON-LD를 관리합니다. canonical은 Vercel의 실제 대표 주소인 `https://www.snowlink.team/`입니다.
 
-- `/robots.txt`: 검색·AI 크롤러 모두 접근 허용, sitemap 주소 제공.
+- `/robots.txt`: 검색·AI 크롤러 모두 접근 허용, GPTBot·OAI-SearchBot·ChatGPT-User·ClaudeBot·Claude-SearchBot·Claude-User·PerplexityBot·Perplexity-User·Google-Extended 규칙 명시, sitemap 주소 제공.
 - `/sitemap.xml`: 색인 가능한 회사·제품 소개 페이지. `lastModified`는 `lib/config.js`의 실제 콘텐츠 수정일 `contentUpdated`를 사용합니다.
 - `/opengraph-image`: 기존 흑백 디자인과 새 작품 탐색 화면 캡처를 사용한 1200 × 630 PNG 공유 카드. 빌드 시 생성하며 외부 이미지 서버가 필요 없습니다.
 - `/llms.txt`, `/llms-full.txt`: 공개 본문과 동일한 설정에서 생성하는 제품 안내, 기능·FAQ·공식 출처 링크. 사용자 작업 자료나 API 비밀키는 포함하지 않습니다.
 
-제품 설명·FAQ를 변경할 때는 `lib/config.js`와 `contentUpdated`를 함께 갱신합니다. 같은 내용이 HTML·구조화 데이터·텍스트 안내에 반영됩니다. 가격·평점·리뷰 등 확인되지 않은 정보는 구조화 데이터에 넣지 않습니다. WebApplication은 제품 의미를 설명하는 용도이며 Google 앱 리치 결과 자격을 보장하지 않습니다.
+제품 설명·FAQ를 변경할 때는 `lib/config.js`와 `contentUpdated`를 함께 갱신합니다. 같은 내용이 HTML·FAQ 구조화 데이터·텍스트 안내에 반영됩니다. Studio의 공개 사용 가이드(`/guide`)로 연결하며, FAQ 구조화 데이터는 일반 SaaS의 Google FAQ 리치 결과를 보장하지 않습니다. 가격·평점·리뷰 등 확인되지 않은 정보는 구조화 데이터에 넣지 않습니다. WebApplication은 제품 의미를 설명하는 용도이며 Google 앱 리치 결과 자격을 보장하지 않습니다.
 
 `llms.txt`는 보조적인 공개 텍스트 안내이며 모든 AI 검색 서비스가 읽는 표준이나 노출 보장 수단은 아닙니다. [Google AI 검색 안내](https://developers.google.com/search/docs/appearance/ai-features)에 따라 실제 제품 설명, 크롤링 가능 HTML과 일치하는 구조화 데이터를 우선합니다. 배포 후 Google Search Console·Bing Webmaster Tools에서 사이트 소유권을 확인하고 sitemap을 제출할 수 있습니다. 소유권 인증 토큰은 실제 계정에서 발급한 값만 사용해야 합니다.

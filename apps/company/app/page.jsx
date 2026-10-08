@@ -67,7 +67,7 @@ export default function CompanyPage() {
       <div className="company-footer-top">
         <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
         <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">스노우링크 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
-        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>작품 둘러보기 <Icon name="external"/></a><a href={`${c.service.url}/board`}>내 제작 보드 <Icon name="external"/></a><a href="#membership">멤버십 미리보기</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a></nav>
+        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>작품 둘러보기 <Icon name="external"/></a><a href={`${c.service.url}/board`}>내 제작 보드 <Icon name="external"/></a><a href="#membership">멤버십 미리보기</a><a href={`${c.service.url}/guide`}>Studio 사용 가이드</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a></nav>
       </div>
       <div className="company-footer-business">
         <h2>{c.name}</h2>

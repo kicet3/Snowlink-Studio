@@ -16,6 +16,7 @@ export function Membership() {
   const [cycle, setCycle] = useState('monthly');
   return <div className="studio-page membership-page">
     <PageHeading eyebrow="YOUR NEXT CHAPTER" index="MEMBERSHIP" title={['작업의 크기에 맞는', '나만의 멤버십']} description="가벼운 시작부터 긴 시리즈 제작까지. Snowlink Studio에서 이어갈 다음 이야기를 준비하세요." ornament/>
+    <nav className="guide-breadcrumb" aria-label="현재 위치"><Link href="/">Snowlink Studio</Link><span aria-hidden="true">/</span><span aria-current="page">멤버십 미리보기</span></nav>
     <div className="membership-intro"><div><span className="membership-preview-tag">멤버십 미리보기</span><p>유료 멤버십은 준비 중입니다. 아래 혜택은 구성안이며, 가격과 정확한 이용 한도는 출시 시 안내합니다.</p></div><BillingCycle value={cycle} onChange={setCycle}/></div>
     <div className="membership-plans">{MEMBERSHIP_PLANS.map((plan, index) => <article className={`membership-plan${plan.recommended ? ' is-recommended' : ''}`} key={plan.id} aria-labelledby={`plan-${plan.id}`}>
       <div className="membership-plan-top"><span className="eyebrow">0{index + 1} / {plan.label}</span>{plan.recommended && <span className="membership-plan-badge">개인 창작자용</span>}</div>

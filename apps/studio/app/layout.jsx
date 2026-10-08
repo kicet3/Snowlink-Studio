@@ -1,5 +1,5 @@
 import { StudioShell } from './_components/StudioShell';
-import { PRODUCT_NAME } from './_lib/branding';
+import { pageMetadata } from './_lib/seo';
 import './_styles/tokens.css';
 import './_styles/base.css';
 import './_styles/components.css';
@@ -14,17 +14,16 @@ import './_styles/monochrome.css';
 import './_styles/wordmark.css';
 import './_styles/membership.css';
 import './_styles/explore.css';
+import './_styles/guide.css';
 
 export const metadata = {
   metadataBase: new URL('https://studio.snowlink.team'),
-  title: `${PRODUCT_NAME} · 콘텐츠 작업실`,
-  description: 'AI 캐릭터 시트, 회차별 소설·시나리오와 이미지·영상 제작을 연결하는 Snowlink Studio 작업실입니다.',
-  // Workspace pages contain session-specific UI. The public MCP guide opts in separately.
-  robots: { index: false, follow: true },
+  ...pageMetadata({ path: '/', title: 'Snowlink Studio · 콘텐츠 작업실' }),
+  applicationName: 'Snowlink Studio',
+  // Each public page explicitly opts into indexing. Account and workspace pages stay excluded.
   icons: { icon: '/logo.svg' },
 };
 export const viewport = { themeColor: '#080808', width: 'device-width', initialScale: 1 };
-export const dynamic = 'force-dynamic';
 
 export default function RootLayout({ children }) {
   return <html lang="ko"><body><StudioShell>{children}</StudioShell></body></html>;

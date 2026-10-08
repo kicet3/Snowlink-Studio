@@ -32,7 +32,7 @@ export function WorkGallery({ creatorId = '' }) {
 
 export function Explore() {
   return <div className="studio-page explore-page">
-    <div className="explore-page-heading"><div><p className="eyebrow">SNOWLINK STUDIO / EXPLORE</p><h1>이야기가 시작되는 곳<span>.</span></h1><p>캐릭터를 만나고, 이야기를 읽고, 다음 장면을 발견하세요.</p></div><Link className="button secondary" href="/board">내 작업실 열기<Icon name="arrow"/></Link></div>
+    <div className="explore-page-heading"><div><p className="eyebrow">SNOWLINK STUDIO / EXPLORE</p><h1>이야기가 시작되는 곳<span>.</span></h1><p>캐릭터를 만나고, 이야기를 읽고, 다음 장면을 발견하세요.</p><Link className="explore-guide-link" href="/guide">AI 캐릭터·소설·영상 제작 사용 가이드 →</Link></div><Link className="button secondary" href="/board">내 작업실 열기<Icon name="arrow"/></Link></div>
     <ShowcaseNotice/>
     <section className="explore-hero" aria-labelledby="featured-title"><Image src="/showcase/moon-post.png" alt="커다란 달 아래 언덕 도시의 지붕을 걷는 우편배달부 서린" fill sizes="(max-width: 760px) 100vw, 85vw" priority/><div className="explore-hero-shade"/><div className="explore-hero-copy"><p className="eyebrow">FEATURED STORY / 01</p><span className="explore-hero-tag">판타지 · 미스터리</span><h2 id="featured-title">잊힌 기억에도<br/>도착할 주소가 있다.</h2><p>수신인 없는 편지 한 통.<br/>서린의 마지막 배달이 시작됩니다.</p><Link className="button primary" href="/explore/moon-post-office">월광우체국 읽기<Icon name="arrow"/></Link><Link className="explore-featured-author" href="/creators/moon-writer">서월의 세계관 ↗</Link></div><span className="explore-hero-index">CHARACTER → STORY → SCENE</span></section>
     <WorkGallery/>

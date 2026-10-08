@@ -14,7 +14,7 @@ export const TABS = [
   ['ima2', '이미지 · 영상 제작', 'spark'], ['shortgpt', 'ShortGPT · 컷 편집', 'film'], ['mcp', 'MCP 연결 안내', 'external'], ['membership', '멤버십', 'cards'], ['settings', '설정', 'settings'], ['profile', '내 프로필', 'people'],
 ];
 const ROUTES = new Set([...TABS.map(([id]) => id), 'oauth', 'checkout', 'creators']);
-const PUBLIC_ROUTES = new Set(['explore', 'creators', 'membership', 'checkout', 'mcp']);
+const PUBLIC_ROUTES = new Set(['explore', 'creators', 'membership', 'checkout', 'mcp', 'guide']);
 const tabHref = id => id === 'explore' ? '/' : '/' + id;
 
 export function StudioShell({ children }) {
@@ -33,10 +33,8 @@ function Shell({ children }) {
     update(); mq.addEventListener('change', update); return () => mq.removeEventListener('change', update);
   }, []);
   useEffect(() => { document.body.classList.toggle('menu-open', menuOpen); return () => document.body.classList.remove('menu-open'); }, [menuOpen]);
-  useEffect(() => { setMenuOpen(false);
-    // Public/detail pages use their server metadata, including individual work titles.
-    if (!PUBLIC_ROUTES.has(requested)) document.title = `${requested === 'login' ? '계정 로그인' : TABS.find(t => t[0] === active)?.[1] || 'MCP 연결 승인'} · ${PRODUCT_NAME}`;
-  }, [active, requested]);
+  // Next metadata owns the title on every route, including nested and public pages.
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
   useEffect(() => {
     const legacyRoute = () => {
       const hash = location.hash.slice(1), tab = hash.split('/')[0];

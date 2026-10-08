@@ -1,3 +1,8 @@
+export const dynamic = 'force-dynamic';
+import { pageMetadata } from '../_lib/seo';
+
+export const metadata = pageMetadata({'path': '/profile', 'title': '내 프로필 · Snowlink Studio', 'description': 'Snowlink Studio 계정 정보와 개인 프로필을 관리합니다.'});
+
 import { Profile } from '../_components/Profile';
 import { RequireAccount } from '../_components/RequireAccount';
 

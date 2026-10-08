@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+import { pageMetadata } from '../../_lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -6,7 +8,9 @@ import { ShowcaseNotice, WorkGallery } from '../../_components/Explore';
 
 export async function generateMetadata({ params }) {
   const { handle } = await params;
-  return { title: `${getCreator(handle)?.name || '창작자'}의 작품 · Snowlink Studio` };
+  const creator = getCreator(handle);
+  if (!creator) notFound();
+  return pageMetadata({ path: `/creators/${encodeURIComponent(handle)}`, title: `${creator.name}의 예시 작품 · Snowlink Studio`, description: `${creator.bio} 캐릭터·소설·콘텐츠를 모은 가상 창작자 목업 페이지입니다.`, image: creator.image, imageAlt: `${creator.name}의 대표 예시 작품` });
 }
 
 export default async function Page({ params }) {

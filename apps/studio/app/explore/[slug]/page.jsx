@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+import { pageMetadata } from '../../_lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -8,7 +10,8 @@ import { NovelReader } from '../../_components/NovelReader';
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const work = getWork(slug);
-  return { title: `${work?.title || '작품을 찾을 수 없습니다'} · Snowlink Studio`, robots: { index: false, follow: true } };
+  if (!work) notFound();
+  return pageMetadata({ path: `/explore/${encodeURIComponent(slug)}`, title: `${work.title} · Snowlink Studio`, description: `${work.summary} 가상 창작자의 ${WORK_KINDS[work.kind]} 목업 작품입니다.`, image: work.image, imageAlt: work.imageAlt });
 }
 
 export default async function Page({ params }) {

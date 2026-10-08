@@ -75,15 +75,19 @@ npm run dev
 
 ## 공개 페이지 크롤링
 
-제품 SEO·GEO의 본문과 구조화 데이터는 별도 회사 사이트 `https://www.snowlink.team/`에서 제공합니다. Studio의 `/mcp`는 공개 연결 안내로 제목·설명·canonical·공유 카드를 제공하며 `/sitemap.xml`에 포함합니다. 작업실·로그인·설정·프로필·OAuth 페이지는 기본 `noindex, follow`로 개인 작업 화면이 검색 결과에 노출되지 않도록 합니다.
+회사 소개와 Studio의 공개 안내를 검색·AI 검색에서 이해할 수 있도록 구성합니다. Studio의 `/`, `/guide`, `/membership`, `/mcp`는 계정과 무관한 공개 내용을 빌드 시 미리 렌더링하고 색인을 허용합니다. 이 네 경로만 `/sitemap.xml`에 포함하며 실제 내용 수정일을 `lastModified`로 사용합니다. 개인 작업·로그인·설정·프로필·OAuth·결제와 가상 작품/창작자 상세는 `noindex, follow`를 유지합니다.
 
-`public/robots.txt`는 모든 봇에 `Allow: /`와 sitemap 주소를 제공합니다. `public/llms.txt`는 공식 제품 설명과 MCP 연결 안내로 연결합니다. 크롤링 허용은 인증 우회가 아니며 작업 데이터와 API는 방문자/계정 세션별 권한 검사를 유지합니다.
+`app/_lib/seo.js`에서 페이지별 제목·설명·canonical·Open Graph·Twitter 카드와 색인 정책을 관리합니다. 동적 작품·창작자에는 해당 이미지와 요약을 제공하며 없는 항목은 404로 처리합니다. `/explore`는 `/`로 308 이동합니다. 추적·결제 주기·로그인 복귀 쿼리는 canonical에 포함하지 않습니다. `/opengraph-image`는 이 앱의 예시 이미지로 생성하는 1200 × 630 PNG로 회사 앱 배포에 의존하지 않습니다.
+
+`app/robots.js`에서 모든 봇과 GPTBot·OAI-SearchBot·ChatGPT-User·ClaudeBot·Claude-SearchBot·Claude-User·PerplexityBot·Perplexity-User·Google-Extended를 명시적으로 허용합니다. 검색용과 학습용 봇의 목적은 다르며 허용 자체가 검색 노출을 보장하지는 않습니다. 크롤링 허용과 계정 인증은 별개입니다.
+
+`/guide`는 단계별 준비물·작업 방법·결과물·예시와 FAQ를 제공하며 `/llms.txt`, `/llms-full.txt`가 같은 공개 데이터에서 생성됩니다. JSON-LD는 운영사·웹사이트·웹앱·페이지·경로와 실제 표시한 FAQ를 설명합니다. 허구의 평점·가격·실사용자 실적은 추가하지 않습니다. [검증 방법](../../docs/seo-geo.md).
 
 ## 공개 탐색과 멤버십 미리보기
 
 - `/`가 기본 작품 탐색 화면입니다. `/board`는 내 제작 보드로 유지합니다. 검색·종류 필터·정렬, `/explore/[slug]` 작품 상세, 소설 회차 읽기, `/creators/[handle]` 창작자별 작품 목록을 제공합니다.
 - `app/_lib/showcase-data.json`의 가상 창작자 3명, 캐릭터 3개, 소설 3개/6개 회차, 이미지 콘텐츠 3개를 사용합니다. `public/showcase/*.png`는 image_gen으로 생성한 원본이며 프롬프트는 같은 폴더 README에 있습니다. Next Image로 전달 크기를 최적화합니다.
-- 실제 사용자의 비공개 작품을 조회하거나 자동 공개하지 않습니다. 실제 공개 게시 API와 운영 DB 연동 전까지는 목업입니다. 이 페이지들은 검색엔진에 실제 작품으로 오인되지 않도록 기본 noindex를 유지합니다.
+- 실제 사용자의 비공개 작품을 조회하거나 자동 공개하지 않습니다. 실제 공개 게시 API와 운영 DB 연동 전까지는 목업입니다. 탐색 첫 화면은 색인을 허용하고 목업임을 표시합니다. 개별 예시 작품과 가상 창작자 상세는 검색엔진에 실제 작품으로 오인되지 않도록 noindex를 유지합니다.
 - `/membership`은 Free·Creator·Pro 구성안입니다. 유료 가격은 모두 **출시 예정**입니다. `/checkout?plan=creator&cycle=monthly`에서 플랜·월간/연간·결제 수단 선택과 완료 화면을 미리 확인합니다.
 - 카드/계좌 번호를 수집하지 않고 결제 API·PG·구독 저장을 호출하지 않습니다. 화면 상태만 바뀌며 새로고침하면 초기 상태로 돌아갑니다. 등급별 기능 제한이나 실제 권한 변경도 적용하지 않습니다.
 - 탐색·작품·창작자·멤버십·결제 미리보기는 세션 로딩이나 API 장애와 관계없이 열립니다. 기존 설정·프로필 인증은 유지합니다.

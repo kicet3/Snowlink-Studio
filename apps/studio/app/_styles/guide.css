@@ -1,0 +1,17 @@
+.public-guide { max-width: 1100px; }
+.guide-breadcrumb, .guide-related { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--color-text-secondary); }
+.guide-breadcrumb { margin-bottom: 36px; }
+.public-guide h1 { font-size: clamp(28px,4vw,46px); font-weight: 500; line-height: 1.3; letter-spacing: -.04em; margin: 20px 0; }
+.public-guide header>p:not(.eyebrow), .guide-step p { font-size: 14px; line-height: 1.9; color: var(--color-text-secondary); }
+.public-guide header .guide-byline { margin-top: 22px; font-size: 11px; color: var(--color-text-muted); }
+.guide-toc { display: grid; gap: 13px; padding: 25px; margin: 35px 0; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 13px; }
+.guide-toc a:hover, .guide-related a:hover { text-decoration: underline; }
+.guide-step { padding: 35px 0; border-top: 1px solid var(--color-border); scroll-margin-top: 30px; }
+.guide-step h2 { font-size: 25px; letter-spacing: -.03em; font-weight: 500; line-height: 1.5; margin-bottom: 25px; }
+.guide-step dl>div { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 12px 0; font-size: 14px; line-height: 1.9; }
+.guide-step dt { color: var(--color-text-muted); }.guide-step dd { margin: 0; }
+.guide-example { padding: 20px; margin: 20px 0; border-left: 2px solid var(--color-border-strong); background: var(--color-surface); }
+.guide-answer { margin-top: 26px; }.guide-answer h3 { font-weight: 500; font-size: 17px; margin-bottom: 12px; }
+.guide-related { border-top: 1px solid var(--color-border); padding-top: 30px; line-height: 1.9; }
+.explore-guide-link { display: inline-block; font-size: 12px; margin-top: 14px; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 760px) { .guide-step dl>div { grid-template-columns: 1fr; gap: 4px; }.guide-step h2 { font-size: 22px; }.guide-toc { padding: 18px; }.guide-related { flex-direction: column; } }
