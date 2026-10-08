@@ -48,7 +48,7 @@ export function CharacterChat({ initialCharacter, initialSource, initialConversa
     return () => { alive = false; };
   }, [user?.id, initialConversation]);
   useEffect(() => { if (log.current) log.current.scrollTop = log.current.scrollHeight; }, [conversation?.messages.length, busy]);
-  function choose(c) { setSelected(keyOf(c)); setScenarioId(''); setEpisode(1); setConversation(null); setError(''); setDraft(''); pending.current = null; setConfirmDelete(false); address(); }
+  function choose(c) { setSelected(keyOf(c)); setScenarioId(''); setEpisode(1); setConversation(null); if (ready) setError(''); setDraft(''); pending.current = null; setConfirmDelete(false); address(); }
   async function run(fn) {
     if (operation.current) return;
     operation.current = true; setBusy(true); setError('');
@@ -105,14 +105,14 @@ export function CharacterChat({ initialCharacter, initialSource, initialConversa
       <section className="persona-history" aria-labelledby="history-title"><h2 id="history-title">이어서 대화하기</h2>{conversations.length ? conversations.map(c => <button type="button" key={c.id} disabled={busy} aria-current={conversation?.id === c.id ? 'true' : undefined} onClick={() => open(c.id)}><strong>{c.name}</strong><span>{c.workTitle || '캐릭터 설정'} · {Math.floor(c.messageCount / 2)}번의 문답</span><small>{new Date(c.updatedAt).toLocaleDateString('ko-KR')}</small></button>) : <p className="small muted">첫 대화를 시작하면 여기에 기록이 남습니다.</p>}</section>
     </aside><section className="persona-room" aria-label="캐릭터 대화">
       {error && <div className="persona-error" role="alert"><p>{error}</p><Button variant="secondary" disabled={busy || !user} onClick={reload}>대화 다시 불러오기</Button></div>}
-      {!conversation ? <div className="persona-setup">{character ? <><p className="eyebrow">{character.source === 'public' ? character.work.title : 'YOUR CHARACTER'}</p><h2>{character.name}와 대화하기</h2><p>{character.description}</p>{character.href && <Link className="text-button" href={character.href}>프로필과 원작 읽기 →</Link>}
+      {!conversation ? <div className="persona-setup">{character ? <><p className="eyebrow">{character.source === 'public' ? character.work.title : 'YOUR CHARACTER'}</p><h2>{character.name}에게 말 걸기</h2><p>{character.description}</p>{character.href && <Link className="text-button" href={character.href}>프로필과 원작 읽기 →</Link>}
         {character.source === 'workspace' && <Field label="참고할 작품" value={scenarioId} onChange={id => { setScenarioId(id); setEpisode(character.works?.find(s => s.id === id)?.episodes[0] || 1); }} options={[{ value: '', label: '캐릭터 설정만 사용' }, ...(character.works || []).filter(s => s.episodes.length).map(s => ({ value: s.id, label: s.title }))]}/>}
         {linkedWork && <Field label="어디까지의 이야기를 참고할까요?" value={episode} onChange={setEpisode} options={linkedWork.episodes.map(n => ({ value: n, label: `${n}화까지` }))}/>}
         <p className="small muted">{linkedWork ? '선택한 회차까지의 원고 맥락을 대화 시작 시 저장합니다. 캐릭터 프로필에 적힌 설정은 함께 참고합니다.' : '시나리오에 이 캐릭터를 출연자로 연결하고 원고·이야기 기억을 완성하면 작품도 선택할 수 있습니다.'}</p>
-        <Button disabled={locked || !character.description.trim()} onClick={start}>{busy ? '준비 중…' : `${character.name}와 새 대화 시작`}</Button></> : <><h2>캐릭터를 선택해주세요</h2><p>이 작업실에 없는 캐릭터입니다. 목록에서 다른 인물을 선택하거나 직접 만들어보세요.</p></>}
+        <Button disabled={locked || !character.description.trim()} onClick={start}>{busy ? '준비 중…' : `${character.name} · 새 대화 시작`}</Button></> : <><h2>캐릭터를 선택해주세요</h2><p>이 작업실에 없는 캐릭터입니다. 목록에서 다른 인물을 선택하거나 직접 만들어보세요.</p></>}
       </div> : <>
         <header className="persona-room-header"><div><p className="eyebrow">AI CHARACTER CHAT</p><h2>{conversation.name}</h2><p>{conversation.workTitle ? `${conversation.workTitle} · ${conversation.throughEpisode}화까지` : '캐릭터 설정으로 대화'} · 기록 자동 저장</p></div><Button variant="quiet-button" disabled={busy} onClick={() => { setConversation(null); setDraft(''); pending.current = null; setConfirmDelete(false); address(); }}>새 대화</Button></header>
-        <div className="persona-log" ref={log} role="log" aria-label={`${conversation.name}와의 대화`} aria-live="polite" aria-relevant="additions text" aria-busy={busy}>
+        <div className="persona-log" ref={log} role="log" aria-label={`${conversation.name} 대화 기록`} aria-live="polite" aria-relevant="additions text" aria-busy={busy}>
           {!conversation.messages.length && <div className="persona-welcome"><h3>첫 인사를 건네보세요.</h3><p>설정 문서를 만드는 도우미가 아닌, {conversation.name}의 관점으로 대화합니다.</p>{starters.map(message => <button key={message} type="button" disabled={busy} onClick={() => { setDraft(message); input.current?.focus(); }}>{message}</button>)}</div>}
           {conversation.messages.map(m => <article className={`persona-message persona-message-${m.role}`} key={m.id}><strong>{m.role === 'user' ? '나' : conversation.name}</strong><p>{m.content}</p></article>)}
           {busy && <p className="persona-thinking" role="status">답변을 준비하고 있습니다…</p>}

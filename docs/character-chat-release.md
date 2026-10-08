@@ -31,7 +31,26 @@
 
 ## 배포 상태
 
-코드 검증과 운영 API 검증 완료. 이 문서 최초 커밋 시점에는 main 자동 배포 대기. Git 상태와 공개 페이지 반영 확인 후 아래 후속 기록에 실제 커밋/접속 결과를 남긴다. 배포 전 UI 공개 완료로 간주하지 않는다.
+기능 커밋 `5d416ad`를 main에 푸시했고 GitHub Vercel 상태에서 `snowlink-team`, `snowlink-team-studio` 모두 success를 확인했다. 기존 자동 Production 배포 경로를 사용했으며 Vercel/Cloudflare 콘솔은 변경하지 않았다.
+
+- 회사 배포: https://vercel.com/linkers-projects-eaaa7ebb/snowlink-team/45ixincNGdsS9DNV1Q3ofYdyQfsB
+- Studio 배포: https://vercel.com/linkers-projects-eaaa7ebb/snowlink-team-studio/F3DnSRqK5GbXnSsYu7suDL3M8Jyo
+- `https://snowlink.team` → `https://www.snowlink.team/` 308 유지.
+- 회사, Studio 루트, `/chat`, `/guide`, 공개 소설 상세, API 세션 조회 HTTPS 200.
+- 회사/Studio의 title·canonical·캐릭터챗 CTA 확인. 위 HTML에서 Netium/네티움/옛 도메인 문자열 없음.
+- 양쪽 `llms.txt`, `llms-full.txt`, Open Graph PNG, sitemap 모두 200. Studio sitemap에 `/chat`, 공개 텍스트에 현재 기능과 Claude API 계획 포함.
+- 브라우저 검증 후 이름 뒤 잘못된 조사(예: 서린와)를 중립적인 “서린에게 말 걸기 / 서린 · 새 대화 시작”으로 수정하고, 초기 API 연결 실패 시 캐릭터를 바꿔도 오류와 재시도 버튼을 유지하도록 보완했다. 보완 후 Studio 운영 빌드도 통과. 최종 후속 커밋/배포 상태는 터미널 완료 보고와 Git 이력에서 확인한다.
+
+### 실제 브라우저 검증 환경과 결과
+
+이 터미널에 연결된 Chrome 확장 브라우저의 별도 검증 탭에서 공개 운영 URL을 사용했다. 로컬 담당자의 제목만 갱신되고 회색으로 나온 별도 브라우저 결과는 UI 검증 근거에 포함하지 않았다. 모바일은 실제 기기 실험이 아니라 390×844 viewport 검증이다.
+
+- 로그인 없는 방문자 상태에서 공개 캐릭터 선택과 새 대화 시작, 입력·전송·대기 상태와 실제 답변 표시 확인.
+- 서린 첫 인사 후 이름과 배달 동행 약속을 다시 묻는 후속 질문에 답변. 실제 마지막 응답에 이름이 포함되는지 확인했다.
+- 브라우저 새로고침 후 4개 메시지(2문답) 복원과 저장 목록 진입 확인.
+- 모바일에서 “나만의 캐릭터 만들기”로 이름·성격·말투만 저장하고 새 대화. 실제 답변이 설정의 나침반을 참조함을 확인. 이미지 없이 등록 가능.
+- Studio 390px viewport에서 문서 폭=scrollWidth=390, 데스크톱 문서 폭=scrollWidth=1474. 회사 390px에서도 가로 넘침 없음. 임시 viewport는 원래대로 복원했다.
+- 브라우저 QA에서 만든 인물/문답은 해당 방문자 작업실의 검증 기록이며 공개 작품이나 실제 고객 실적이 아니다. 대화 본문을 이 문서에 싣지 않는다.
 
 ## 로컬 브라우저 담당자 재현 절차
 
