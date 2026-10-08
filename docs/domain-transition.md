@@ -1,11 +1,13 @@
-# Snowlink Studio 운영 주소
+# 네티움 스튜디오 운영 주소
 
 | 용도 | 주소 |
 | --- | --- |
 | 회사 소개 | `https://snowlink.team` |
 | Studio | `https://studio.snowlink.team` |
 | API · MCP | `https://api.snowlink.team` |
-| 공개 이메일 | `admin@snowlink.team` |
+| 공개 이메일 | `admin@netiumpartners.com` |
+
+회사 연결 예정 도메인은 `netiumpartners.com`입니다. 공개 이메일은 먼저 `admin@netiumpartners.com`으로 변경했으며, 웹·API 접속 주소와 OAuth 콜백은 도메인 연결 완료 후 전환합니다. 메일 수신을 위한 메일 계정과 DNS 설정은 사이트의 공개 주소 변경과 별개입니다.
 
 ## 반영 상태 · 2026-10-08
 
