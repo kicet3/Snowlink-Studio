@@ -59,6 +59,16 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
 .company-about h2 { font-size: clamp(27px, 2.7vw, 40px); font-weight: 400; line-height: 1.55; letter-spacing: -.055em; }
 .company-about-bottom { display: flex; justify-content: space-between; align-items: end; gap: 35px; margin-top: 32px; }
 .company-about-bottom>p { max-width: 535px; font-size: 14px; line-height: 2; color: var(--color-text-muted); }
+.company-identity { margin-top: 24px; max-width: 720px; font-size: 14px; line-height: 1.9; color: var(--color-text-secondary); }
+.company-english { margin-top: 24px; font-size: 13px; line-height: 1.9; color: var(--color-text-secondary); }
+.company-english summary { cursor: pointer; padding: 10px 0; text-decoration: underline; text-underline-offset: 4px; }
+.company-english summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+.company-english p { max-width: 720px; padding: 12px 0; }
+.company-development { margin-top: 64px; scroll-margin-top: 28px; }
+.company-development-note, .company-development-plan p { font-size: 13px; line-height: 1.95; color: var(--color-text-secondary); }
+.company-development-plan { margin-top: 24px; padding: 24px; border: 1px solid var(--color-border-strong); background: var(--color-surface); }
+.company-development-plan h4 { font-size: 18px; font-weight: 500; margin-bottom: 14px; }
+.company-development-plan p+p { margin-top: 14px; }
 .company-flow-note { font-family: var(--company-mono); font-size: 9px; color: var(--color-text-muted); white-space: nowrap; padding-bottom: 6px; }
 .company-flow-note>span { padding: 0 8px; color: #eee; }
 .company-product { padding: 80px 0 95px; border-top: 1px solid var(--color-border); }

@@ -18,7 +18,9 @@ const screens = [
   { id: 'checkout', group: 'membership', label: '결제 미리보기', icon: 'check', title: '구독 전에, 결제 흐름을 미리 확인', description: '선택한 등급과 월간·연간 주기, 결제 수단을 확인하고 완료 화면까지 살펴봅니다. 결제 정보를 수집하거나 실제 청구·구독 신청을 진행하지 않습니다.' },
 ];
 
-export function ProductShowcase({ productName }) {
+const livePaths = { explore: '/', creators: '/creators/moon-writer', novel: '/explore/moon-post-office', board: '/board', characters: '/characters', scenarios: '/scenarios', trends: '/trends', media: '/ima2', cuts: '/shortgpt', membership: '/membership', checkout: '/checkout' };
+
+export function ProductShowcase({ productName, serviceUrl }) {
   const [selected, setSelected] = useState(0);
   const screen = screens[selected];
   const activeGroup = screen.group || 'create';
@@ -40,9 +42,9 @@ export function ProductShowcase({ productName }) {
       </a>
       <figcaption>
         <div aria-live="polite"><h4>{screen.title}</h4><p>{screen.description}</p></div>
-        <a href={source} target="_blank" rel="noopener noreferrer">원본 크게 보기 <Icon name="external"/><span className="sr-only"> (새 탭)</span></a>
+        <a href={`${serviceUrl}${livePaths[screen.id]}`}>{screen.label} 직접 열어보기 <Icon name="arrow"/></a>
       </figcaption>
     </figure>
-    <p className="company-screen-note">현재 Studio를 직접 캡처한 화면입니다. 멤버십·결제는 출시 전 미리보기이며 계정과 연결 상태에 따라 화면이 달라질 수 있습니다.</p>
+    <p className="company-screen-note">2026년 10월 8일 촬영한 기능 화면 기록입니다. 촬영 당시 제품명과 메뉴가 포함되어 있으며, 최신 UI는 각 화면의 “직접 열어보기”에서 확인할 수 있습니다. 멤버십·결제는 출시 전 미리보기입니다.</p>
   </section>;
 }

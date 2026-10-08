@@ -3,7 +3,7 @@ import { companyConfig } from './config.js';
 const c = companyConfig();
 export const siteUrl = c.siteUrl;
 export const title = `${c.brand} | ${c.service.name} AI 콘텐츠 제작`;
-export const description = '캐릭터·소설·이미지 작품을 둘러보고 나만의 창작을 시작하세요. Snowlink Team Studio는 작품 탐색부터 캐릭터 시트, 회차별 원고, 이미지·영상 생성과 컷 편집을 연결합니다. 멤버십은 출시 전 미리보기로 만나보세요.';
+export const description = 'Snowlink Team이 개발·운영하는 연재 창작 작업실. Snowlink Team Studio에서 전체 플롯부터 회차별 소설을 쓰고, 인물·사건·복선의 이야기 기억과 캐릭터 시트를 이미지·영상 제작으로 연결하세요.';
 export const shareImage = {
   url: `${siteUrl}/opengraph-image`, width: 1200, height: 630,
   alt: 'Snowlink Team Studio — AI 캐릭터 시트, 스토리와 영상 제작 작업실',
@@ -71,6 +71,9 @@ export function productText({ full = false } = {}) {
     `> ${c.productSummary}`,
     `${c.productAudience}\n\n제품 안내 기준일: ${c.contentUpdated}`,
     c.showcaseDescription,
+    `## 개발·운영사\n\n${c.identity}`,
+    `## Claude 활용 현황과 개발 계획\n\n${c.claude.current.map(item => `${item.title}: ${item.description}`).join('\n\n')}\n\n${c.claude.writing}\n\n계획: ${c.claude.planned}\n\n${c.claude.evaluation}\n\n출처: ${siteUrl}/#claude`,
+    `## Product summary in English\n\n${c.englishSummary}`,
     `[Studio 사용 가이드](${c.service.url}/guide): 준비할 자료, 제작 순서, 결과물과 제공 범위.`,
     `## 공식 페이지\n\n- [회사 및 제품 소개](${siteUrl}/): 운영사와 제품 기능\n- [상세 기능](${siteUrl}/#details-title): 탐색과 제작 단계별 설명\n- [자주 묻는 질문](${siteUrl}/#faq): 사용 범위와 이용 방법\n- [작품 둘러보기](${c.service.url}/): 기본 화면, 작품 탐색\n- [내 제작 보드](${c.service.url}/board): 나의 콘텐츠 기획과 제작\n- [멤버십 미리보기](${c.service.url}/membership): Free·Creator·Pro 구성안과 결제 미리보기\n- [MCP 연결 안내](${c.service.url}/mcp): Claude Code·Codex 연결과 계정 인증\n- [전체 제품 안내 텍스트](${siteUrl}/llms-full.txt): 공개 본문의 텍스트 버전`,
     `## Studio 시작 방법\n\n${c.entryPoints.map(entry => `- [${entry.label}](${c.service.url}${entry.path}): ${entry.description}`).join('\n')}`,

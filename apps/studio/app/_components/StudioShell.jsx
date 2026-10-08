@@ -9,7 +9,7 @@ import { Icon } from './Icon';
 import { COMPANY_SITE_URL, PRODUCT_NAME } from '../_lib/branding';
 
 export const TABS = [
-  ['explore', '작품 둘러보기', 'radar'], ['board', '내 제작 보드', 'board'], ['characters', '캐릭터 시트', 'people'],
+  ['explore', '작품 둘러보기', 'radar'], ['guide', '사용 가이드', 'chat'], ['board', '내 제작 보드', 'board'], ['characters', '캐릭터 시트', 'people'],
   ['scenarios', '시나리오 · 영상 스타일', 'film'], ['trends', '트렌드 탐색', 'radar'],
   ['ima2', '이미지 · 영상 제작', 'spark'], ['shortgpt', 'ShortGPT · 컷 편집', 'film'], ['mcp', 'MCP 연결 안내', 'external'], ['membership', '멤버십', 'cards'], ['settings', '설정', 'settings'], ['profile', '내 프로필', 'people'],
 ];

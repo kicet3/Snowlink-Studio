@@ -23,7 +23,7 @@ npm run dev
 
 서비스 버튼은 `https://studio.snowlink.team`으로 연결됩니다.
 
-제품명은 `Snowlink Team Studio`입니다. 공개 브랜드는 `Snowlink Team`(스노우링크 팀), 법적 사업자명은 `스노우링크(SnowLink)`입니다. 회사 소개는 `www.snowlink.team`, Studio는 `studio.snowlink.team`, API는 `api.snowlink.team`을 사용합니다.
+제품명은 `Snowlink Team Studio`입니다. 공개 브랜드는 `Snowlink Team`(스노우링크 팀), 법적 사업자명은 `스노우링크`입니다. 회사 소개는 `www.snowlink.team`, Studio는 `studio.snowlink.team`, API는 `api.snowlink.team`을 사용합니다.
 
 ## 회사 페이지 디자인
 
@@ -41,7 +41,7 @@ npm run dev
 - 내 작품 만들기: 제작 보드, 캐릭터 시트, 시나리오·영상 스타일, 트렌드, 이미지·영상, 컷 편집.
 - 멤버십 살펴보기: Free·Creator·Pro 구성안과 결제 미리보기.
 
-`components/ProductDetails.jsx`는 제작 흐름 4단계와 탐색·창작자/원고 읽기·기획·캐릭터·시나리오·이미지/영상·컷 편집·MCP의 상세 설명을 표시합니다. 문구는 `lib/config.js`의 `workflow`, `productDetails`에서 관리합니다. 제품 시작 링크는 작품 탐색(`/`), 내 제작 보드(`/board`), 멤버십(`/membership`)으로 구분합니다. 콘티 MP4는 무음 미리보기로 안내하며, 구현되지 않은 음성·음악·최종 영상 자동 합성을 제공한다고 설명하지 않습니다.
+`components/ProductDetails.jsx`는 제작 흐름 4단계와 탐색·창작자/원고 읽기·기획·캐릭터·시나리오·이미지/영상·컷 편집·MCP의 상세 설명을 표시합니다. 문구는 `lib/config.js`의 `workflow`, `productDetails`에서 관리합니다. 제품 시작 링크는 공개 소설(`/explore/moon-post-office`), 회차 집필 가이드(`/guide#story`), MCP 연결(`/mcp`)으로 이어집니다. 캡처 설명에는 해당 기능을 실제 Studio에서 여는 링크를 제공하고, 이미지가 촬영 당시의 UI·제품명을 담은 기록임을 안내합니다. 콘티 MP4는 무음 미리보기로 안내하며, 구현되지 않은 음성·음악·최종 영상 자동 합성을 제공한다고 설명하지 않습니다.
 
 본문·FAQ·멤버십 설명·AI용 텍스트 모두 `lib/config.js`를 사용합니다. 작품 탐색은 작품과 사용 방법을 중심으로 소개하며 목업·예시 창작자 문구는 공개하지 않습니다. 유료 멤버십은 출시 전 구성안임을 표시합니다. 유료 가격은 **출시 예정**으로만 안내하며 실제 결제, 구독 활성화, 기능별 한도 적용을 주장하지 않습니다. 회사 앱의 독립 배포를 위해 Studio 앱의 소스나 의존성을 직접 가져오지 않습니다.
 
@@ -65,3 +65,9 @@ npm run dev
 제품 설명·FAQ를 변경할 때는 `lib/config.js`와 `contentUpdated`를 함께 갱신합니다. 같은 내용이 HTML·FAQ 구조화 데이터·텍스트 안내에 반영됩니다. Studio의 공개 사용 가이드(`/guide`)로 연결하며, FAQ 구조화 데이터는 일반 SaaS의 Google FAQ 리치 결과를 보장하지 않습니다. 가격·평점·리뷰 등 확인되지 않은 정보는 구조화 데이터에 넣지 않습니다. WebApplication은 제품 의미를 설명하는 용도이며 Google 앱 리치 결과 자격을 보장하지 않습니다.
 
 `llms.txt`는 보조적인 공개 텍스트 안내이며 모든 AI 검색 서비스가 읽는 표준이나 노출 보장 수단은 아닙니다. [Google AI 검색 안내](https://developers.google.com/search/docs/appearance/ai-features)에 따라 실제 제품 설명, 크롤링 가능 HTML과 일치하는 구조화 데이터를 우선합니다. 배포 후 Google Search Console·Bing Webmaster Tools에서 사이트 소유권을 확인하고 sitemap을 제출할 수 있습니다. 소유권 인증 토큰은 실제 계정에서 발급한 값만 사용해야 합니다.
+
+## 공개 제품 설명
+
+첫 화면은 연재 작가가 인물·사건·복선을 다음 회차에 연결하는 문제와 제품의 집필 흐름을 설명합니다. 법적 사업자명 `스노우링크`, 공개 브랜드 `Snowlink Team`, 제품 `Snowlink Team Studio`의 관계를 회사 소개 본문과 구조화 데이터에 구분합니다. 영어 제품 요약은 펼쳐 읽을 수 있습니다.
+
+`#claude`에는 현재 Claude Code 개발 활용·OAuth MCP 연결과 향후 Claude API 집필·구조화 추출·prompt caching 도입 및 연속성·지연·비용 평가 계획을 나눠 표시합니다. 지원 선정·제휴나 Claude API 제품 운영 실적을 주장하지 않습니다. 같은 설명은 `llms.txt`, `llms-full.txt`에도 포함됩니다.

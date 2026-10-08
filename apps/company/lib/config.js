@@ -1,14 +1,14 @@
 // All public company details, page copy and the service URL are fixed here.
 export function companyConfig() {
   return {
-    name: '스노우링크(SnowLink)',
+    name: '스노우링크',
     brand: 'Snowlink Team',
     registration: '335-17-02746',
     foundingYear: 2026,
     openingDate: '2026년 6월 30일',
     registrationDate: '2026년 6월 30일',
     representative: '이현대',
-    address: '관악구 조원로 8길 10',
+    address: '서울특별시 관악구 조원로 8길 10',
     email: 'ceo@snowlink.team',
     siteUrl: 'https://www.snowlink.team',
     contentUpdated: '2026-10-08',
@@ -19,14 +19,16 @@ export function companyConfig() {
       caption: 'AI 콘텐츠 제작 작업실',
       description: '캐릭터에서 이야기로, 이야기에서 장면으로.',
     },
-    headline: '작은 영감을,\n완성된 이야기로',
-    introduction: '새로운 이야기를 만나고, 나의 작품을 시작하세요.\nSnowlink Team Studio는 작품 탐색부터 캐릭터·소설,\n이미지·영상 제작까지 하나의 흐름으로 연결합니다.',
-    productSummary: 'Snowlink Team Studio는 작품을 둘러보는 탐색 공간과 나만의 AI 콘텐츠 작업실을 연결하는 웹 서비스입니다. 캐릭터와 소설, 장면 이미지를 살펴본 뒤 내 제작 보드에서 캐릭터 시트, 회차별 원고, 이미지·영상 생성과 컷 편집을 이어갈 수 있습니다.',
+    headline: '이전 이야기를 기억하며,\n다음 회차를 씁니다',
+    introduction: '연재가 길어질수록 인물 설정과 앞선 사건,\n아직 풀지 않은 복선을 다시 찾는 일이 늘어납니다.\nSnowlink Team Studio는 이 맥락을 집필에 연결하고,\n완성한 이야기를 이미지와 영상 장면으로 옮깁니다.',
+    identity: 'Snowlink Team은 한국 서울의 사업자 스노우링크가 사용하는 브랜드입니다. 대표 이현대가 2026년 6월 30일 개업했으며, 연재 창작 작업실 Snowlink Team Studio를 개발·운영합니다.',
+    productSummary: 'Snowlink Team Studio는 연재 작가와 시리즈 제작자를 위한 AI 창작 작업실입니다. 전체 플롯부터 회차별 원고까지 순서대로 작성하고, 인물·사건·관계·복선을 원고 근거와 함께 저장해 다음 회차에 가져옵니다. 같은 캐릭터와 이야기를 이미지·영상 장면, 컷 구성으로 이어갑니다.',
+    englishSummary: 'Snowlink Team Studio is a serial-fiction workspace developed and operated by Snowlink Team in Seoul, South Korea. Writers plan episodes, keep character and plot context, and turn stories into images and video. The product is developed with Claude Code and offers authenticated MCP access for creators. Its current writing workflow uses GPT; migration to the Claude API and prompt caching are planned. Public works and the product guide are accessible without signing in.',
     productAudience: '연재 소설과 시리즈를 쓰는 작가, 캐릭터를 반복 활용하는 크리에이터, 애니메이션·실사 스타일의 영상 콘텐츠를 기획하는 제작자를 위한 작업실입니다.',
     entryPoints: [
-      { title: '이야기를 발견하기', label: '작품 둘러보기', path: '/', icon: 'radar', description: '캐릭터·소설·콘텐츠를 검색하고, 창작자별 작품과 같은 세계관의 이야기를 살펴봅니다.' },
-      { title: '내 작품 시작하기', label: '내 제작 보드', path: '/board', icon: 'board', description: '소재와 캐릭터를 기획에 연결하고, 원고 작성부터 장면 제작까지 내 작업을 이어갑니다.' },
-      { title: '다음 작업 준비하기', label: '멤버십 미리보기', path: '/membership', icon: 'cards', description: 'Free·Creator·Pro 구성안을 비교합니다. 유료 등급은 출시 예정이며 실제 결제는 진행되지 않습니다.' },
+      { title: '회차와 캐릭터 살펴보기', label: '월광우체국 읽기', path: '/explore/moon-post-office', icon: 'cards', description: '공개 작품의 회차를 읽고 연결된 캐릭터와 장면을 확인합니다. 로그인 없이 열 수 있습니다.' },
+      { title: '집필 흐름 확인하기', label: '회차 집필 가이드', path: '/guide#story', icon: 'board', description: '플롯, 글자 수 설정, 원고와 이야기 기억을 만드는 순서를 확인하고 시나리오 작업실로 이동합니다.' },
+      { title: 'AI 대화에 작업실 연결하기', label: 'MCP 연결 방법', path: '/mcp', icon: 'chat', description: 'Claude Code·Codex에서 캐릭터, 시나리오와 장면 노드를 다룹니다. 내 자료를 사용하는 연결에는 계정 인증이 필요합니다.' },
     ],
     showcaseDescription: '캐릭터·소설·이미지 콘텐츠를 탐색하고 창작자의 작품과 같은 세계관의 이야기를 함께 살펴봅니다.',
     membership: {
@@ -51,6 +53,16 @@ export function companyConfig() {
     ],
     aboutTitle: '도구 사이의 번거로움을 줄이고,\n창작의 흐름을 이어갑니다.',
     about: '새로운 작품에서 영감을 얻고, 캐릭터를 만들고, 이야기를 쓴 다음 장면으로 옮기는 일. 창작에는 여러 단계가 필요합니다. Snowlink Team은 작품을 발견하는 순간과 직접 만드는 시간을 연결해, 아이디어가 하나의 이야기로 이어지는 경험을 만듭니다.',
+    claude: {
+      title: 'Claude 활용 현황과 다음 개발 단계',
+      current: [
+        { title: '현재 · Claude Code로 개발', description: '제품 코드 작성과 개선에 Claude Code를 활용합니다. 창작 기능의 모델 연동과 웹 제품 개발을 이어가고 있습니다.' },
+        { title: '현재 · MCP로 창작 작업 연결', description: '창작자는 OAuth로 인증한 MCP 연결을 통해 Claude Code·Codex에서 캐릭터 시트, 회차별 시나리오, 장면 노드 작업을 요청할 수 있습니다.' },
+      ],
+      writing: '현재 제품의 회차 집필은 기존 구독 계정에 연결된 GPT 흐름을 사용합니다. Claude Code 개발 활용과 MCP 연결은 Claude API가 제품 원고를 생성한다는 의미와 구분합니다.',
+      planned: '다음 단계는 Claude API를 회차 집필, 인물·사건·복선의 구조화 추출, 캐릭터 설정 대화와 이미지·영상용 장면 프롬프트 작성에 통합하는 것입니다. 이전 원고의 prompt caching과 기존 MCP 기능 확대도 계획하고 있습니다.',
+      evaluation: '통합 과정에서 앞 회차와의 설정 충돌, 복선 회수 근거, 회차별 분량 준수, 응답 지연과 비용을 평가합니다. Claude API 전환과 캐싱은 아직 제공 중인 기능이 아닙니다.',
+    },
     contactTitle: '함께 만들 이야기가 있나요?',
     contactDescription: '제품과 사업 관련 문의를 기다립니다.',
     features: [

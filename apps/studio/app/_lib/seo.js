@@ -1,7 +1,7 @@
 export const STUDIO_URL = 'https://studio.snowlink.team';
 export const COMPANY_URL = 'https://www.snowlink.team';
 export const CONTENT_UPDATED = '2026-10-08';
-export const PRODUCT_DESCRIPTION = 'Snowlink Team Studio는 캐릭터 시트, 회차별 소설·시나리오, 이미지·영상 생성과 컷 편집을 연결하는 AI 콘텐츠 제작 작업실입니다. 다양한 작품을 둘러보고 나만의 제작을 시작하세요.';
+export const PRODUCT_DESCRIPTION = 'Snowlink Team Studio는 연재 작가와 시리즈 제작자를 위한 AI 창작 작업실입니다. 회차별 소설과 인물·사건·복선의 이야기 기억을 쌓고, 캐릭터 시트와 이미지·영상 장면으로 이어가세요.';
 export const AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot', 'PerplexityBot', 'Perplexity-User', 'Google-Extended'];
 export const PUBLIC_PAGES = [
   { path: '/', title: 'Snowlink Team Studio | AI 캐릭터·소설·이미지·영상 제작', description: PRODUCT_DESCRIPTION },
@@ -32,7 +32,7 @@ export function publicStructuredData(path, { faq = [], type = 'WebPage' } = {}) 
   const page = PUBLIC_PAGES.find(item => item.path === path);
   const url = new URL(path, STUDIO_URL).href;
   return { '@context': 'https://schema.org', '@graph': [
-    { '@type': 'Organization', '@id': `${COMPANY_URL}/#organization`, name: 'Snowlink Team', alternateName: '스노우링크 팀', legalName: '스노우링크(SnowLink)', url: `${COMPANY_URL}/`, logo: `${STUDIO_URL}/logo.svg` },
+    { '@type': 'Organization', '@id': `${COMPANY_URL}/#organization`, name: 'Snowlink Team', alternateName: '스노우링크 팀', legalName: '스노우링크', url: `${COMPANY_URL}/`, logo: `${STUDIO_URL}/logo.svg` },
     { '@type': 'WebSite', '@id': `${STUDIO_URL}/#website`, name: 'Snowlink Team Studio', url: `${STUDIO_URL}/`, inLanguage: 'ko-KR', publisher: { '@id': `${COMPANY_URL}/#organization` } },
     { '@type': 'WebApplication', '@id': `${COMPANY_URL}/#product`, name: 'Snowlink Team Studio', url: `${STUDIO_URL}/`, description: PRODUCT_DESCRIPTION, applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', publisher: { '@id': `${COMPANY_URL}/#organization` } },
     { '@type': type, '@id': `${url}#webpage`, url, name: page.title, description: page.description, inLanguage: 'ko-KR', dateModified: CONTENT_UPDATED, isPartOf: { '@id': `${STUDIO_URL}/#website` }, about: { '@id': `${COMPANY_URL}/#product` }, ...(path === '/' ? {} : { breadcrumb: { '@id': `${url}#breadcrumb` } }), ...(faq.length ? { hasPart: { '@id': `${url}#faq` } } : {}) },

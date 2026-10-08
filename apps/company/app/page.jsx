@@ -25,7 +25,7 @@ export default function CompanyPage() {
       <a href="/" className="brand" aria-label={`${c.brand} 회사 소개`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a>
       <nav aria-label="회사 안내"><a href="#about">회사 소개</a><a href="#product">제품</a><a href="#contact">문의</a><ServiceLink service={c.service} className="button primary">작품 둘러보기</ServiceLink></nav>
     </header>
-    <main id="company-main">
+    <main id="company-main" tabIndex={-1}>
       <section className="company-hero" aria-labelledby="hero-title">
         <div className="company-hero-intro">
           <div><p className="eyebrow"><span className="status-dot"/> A PLACE FOR YOUR STORIES</p><h1 id="hero-title"><Lines text={c.headline}/><span className="hero-period">.</span></h1></div>
@@ -35,7 +35,7 @@ export default function CompanyPage() {
       </section>
       <section className="company-about" id="about" aria-labelledby="about-title">
         <SectionLabel number="01">WHY SNOWLINK TEAM</SectionLabel>
-        <div className="company-about-content"><h2 id="about-title"><Lines text={c.aboutTitle}/></h2><div className="company-about-bottom"><p>{c.about}</p><span className="company-flow-note" aria-hidden="true">IDEA <span>↗</span> STORY <span>↗</span> SCENE</span></div></div>
+        <div className="company-about-content"><h2 id="about-title"><Lines text={c.aboutTitle}/></h2><p className="company-identity">{c.identity}</p><div className="company-about-bottom"><p>{c.about}</p><span className="company-flow-note" aria-hidden="true">IDEA <span>↗</span> STORY <span>↗</span> SCENE</span></div><details className="company-english"><summary lang="en">Product summary in English</summary><p lang="en">{c.englishSummary}</p></details></div>
       </section>
       <section className="company-product" id="product" aria-labelledby="product-title">
         <div className="company-section-heading"><SectionLabel number="02">OUR PRODUCT</SectionLabel><span>{c.service.caption}</span></div>
@@ -43,7 +43,14 @@ export default function CompanyPage() {
         <div className="company-product-summary"><p>{c.productSummary}</p><p>{c.productAudience}</p></div>
         <nav className="company-entry-points" aria-label="Studio 시작 방법">{c.entryPoints.map((entry, index) => <a key={entry.path} href={`${c.service.url}${entry.path}`}><div className="company-entry-index"><span>0{index + 1} /</span><Icon name={entry.icon}/></div><h3>{entry.title}</h3><p>{entry.description}</p><span className="company-entry-link">{entry.label}<Icon name="arrow"/></span></a>)}</nav>
         <div className="company-capabilities">{c.features.map((feature, index) => <article key={feature.title}><div><span>0{index + 1} /</span><Icon name={feature.icon}/></div><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
-        <ProductShowcase productName={c.service.name}/>
+        <section className="company-development" id="claude" aria-labelledby="claude-title">
+          <div className="company-detail-heading"><p className="eyebrow">DEVELOPMENT / CURRENT &amp; PLANNED</p><h3 id="claude-title">{c.claude.title}</h3></div>
+          <div className="company-detail-grid">{c.claude.current.map(item => <article key={item.title}><h4>{item.title}</h4><p>{item.description}</p></article>)}</div>
+          <p className="company-development-note">{c.claude.writing}</p>
+          <article className="company-development-plan"><h4>계획 · Claude API로 집필 연결</h4><p>{c.claude.planned}</p><p>{c.claude.evaluation}</p></article>
+          <a className="company-text-link" href={`${c.service.url}/guide#claude`}>현재 기능과 개발 계획 확인<Icon name="arrow"/></a>
+        </section>
+        <ProductShowcase productName={c.service.name} serviceUrl={c.service.url}/>
         <ProductDetails workflow={c.workflow} details={c.productDetails}/>
         <section className="company-membership" id="membership" aria-labelledby="membership-title">
           <div className="company-detail-heading"><p className="eyebrow">YOUR NEXT CHAPTER / MEMBERSHIP PREVIEW</p><h3 id="membership-title">{c.membership.title}</h3><p>{c.membership.description}</p></div>
@@ -65,7 +72,7 @@ export default function CompanyPage() {
     <footer className="company-footer" aria-label="회사 정보">
       <div className="company-footer-top">
         <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
-        <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">Snowlink Team 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
+        <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">Snowlink Team 소개</a><a href="#claude">Claude 활용과 개발 계획</a><a href="#contact">사업 및 제품 문의</a></nav>
         <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>작품 둘러보기 <Icon name="external"/></a><a href={`${c.service.url}/board`}>내 제작 보드 <Icon name="external"/></a><a href="#membership">멤버십 미리보기</a><a href={`${c.service.url}/guide`}>Studio 사용 가이드</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a></nav>
       </div>
       <div className="company-footer-business">
