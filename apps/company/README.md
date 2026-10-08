@@ -21,9 +21,9 @@ npm run dev
 3. 환경변수 입력 없이 Deploy를 실행합니다. 기존에 등록한 `COMPANY_*`, `SERVICE_*` 환경변수는 사용하지 않으므로 삭제해도 됩니다.
 4. 회사 정보나 서비스 주소를 변경하려면 `lib/config.js`를 수정하고 재배포합니다.
 
-서비스 버튼은 `https://studio.snowlink.team`으로 연결됩니다.
+서비스 버튼은 `https://studio.netiumpartners.com`으로 연결됩니다.
 
-제품명은 `네티움 스튜디오`입니다. 회사명과 브랜드는 `네티움 파트너스`입니다. 회사 소개는 `snowlink.team`, Studio는 `studio.snowlink.team`, API는 `api.snowlink.team`을 사용합니다.
+제품명은 `네티움 스튜디오`입니다. 회사명과 브랜드는 `네티움 파트너스`입니다. 회사 소개는 `netiumpartners.com`, Studio는 `studio.netiumpartners.com`, API는 `api.netiumpartners.com`을 사용합니다.
 
 ## 회사 페이지 디자인
 
@@ -55,7 +55,7 @@ npm run dev
 
 ## SEO와 GEO
 
-공개 제품 소개를 검색·AI 검색에 제공하도록 서버에서 HTML을 미리 렌더링합니다. `lib/seo.js`에서 제품 중심 제목·설명, canonical, Open Graph/Twitter 카드, Organization·WebSite·WebPage·WebApplication·FAQPage JSON-LD를 관리합니다. canonical은 Vercel의 실제 대표 주소인 `https://www.snowlink.team/`입니다.
+공개 제품 소개를 검색·AI 검색에 제공하도록 서버에서 HTML을 미리 렌더링합니다. `lib/seo.js`에서 제품 중심 제목·설명, canonical, Open Graph/Twitter 카드, Organization·WebSite·WebPage·WebApplication·FAQPage JSON-LD를 관리합니다. canonical은 Vercel의 실제 대표 주소인 `https://www.netiumpartners.com/`입니다.
 
 - `/robots.txt`: 검색·AI 크롤러 모두 접근 허용, GPTBot·OAI-SearchBot·ChatGPT-User·ClaudeBot·Claude-SearchBot·Claude-User·PerplexityBot·Perplexity-User·Google-Extended 규칙 명시, sitemap 주소 제공.
 - `/sitemap.xml`: 색인 가능한 회사·제품 소개 페이지. `lastModified`는 `lib/config.js`의 실제 콘텐츠 수정일 `contentUpdated`를 사용합니다.

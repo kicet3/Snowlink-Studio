@@ -1,5 +1,5 @@
-export const STUDIO_URL = 'https://studio.snowlink.team';
-export const COMPANY_URL = 'https://www.snowlink.team';
+export const STUDIO_URL = 'https://studio.netiumpartners.com';
+export const COMPANY_URL = 'https://www.netiumpartners.com';
 export const CONTENT_UPDATED = '2026-10-08';
 export const PRODUCT_DESCRIPTION = '네티움 스튜디오는 캐릭터 시트, 회차별 소설·시나리오, 이미지·영상 생성과 컷 편집을 연결하는 AI 콘텐츠 제작 작업실입니다. 다양한 작품을 둘러보고 나만의 제작을 시작하세요.';
 export const AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot', 'PerplexityBot', 'Perplexity-User', 'Google-Extended'];

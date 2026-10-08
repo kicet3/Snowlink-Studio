@@ -5,8 +5,8 @@ import assert from 'node:assert/strict';
 import { PUBLIC_PAGES, AI_CRAWLERS } from '../apps/studio/app/_lib/seo.js';
 
 const local = process.argv.includes('--local');
-const company = 'https://www.snowlink.team';
-const studio = 'https://studio.snowlink.team';
+const company = 'https://www.netiumpartners.com';
+const studio = 'https://studio.netiumpartners.com';
 let assertions = 0;
 function check(value, message) { assert(value, message); assertions++; }
 async function read(origin, path, index = true) {

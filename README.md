@@ -1,10 +1,10 @@
 # 네티움 스튜디오
 
-Next.js Studio 프론트는 [`apps/studio`](apps/studio/README.md)에 있습니다. Vercel의 Root Directory를 `apps/studio`로 지정하며, 서비스 주소는 `studio.snowlink.team`, API 기본 주소는 `api.snowlink.team`입니다. 아래의 Node.js 실행 설명은 기존 백엔드 기준이며 FastAPI 전환과 통합 검증은 진행 중입니다.
+Next.js Studio 프론트는 [`apps/studio`](apps/studio/README.md)에 있습니다. Vercel의 Root Directory를 `apps/studio`로 지정하며, 서비스 주소는 `studio.netiumpartners.com`, API 기본 주소는 `api.netiumpartners.com`입니다. 아래의 Node.js 실행 설명은 기존 백엔드 기준이며 FastAPI 전환과 통합 검증은 진행 중입니다.
 
 제품 표시 이름은 `네티움 스튜디오`입니다. 회사명은 네티움 파트너스입니다. 기존 접속 주소·프로젝트 디렉터리·데이터·로그인·MCP 연결은 그대로 사용합니다. 패키지 이름과 MCP 연결 별칭 `snowlink-studio`, `SNOWFALL_*` 환경변수, `snowfall://workflow` 등 기술 식별자는 호환성을 위해 유지합니다.
 
-운영 주소는 회사 소개 `snowlink.team`, Studio `studio.snowlink.team`, API `api.snowlink.team`입니다. 회사 공개 이메일은 `admin@netiumpartners.com`입니다. Vercel 도메인·환경변수와 [전환 상태](docs/domain-transition.md)를 함께 확인하세요.
+운영 주소는 회사 소개 `netiumpartners.com`, Studio `studio.netiumpartners.com`, API `api.netiumpartners.com`입니다. 회사 공개 이메일은 `admin@netiumpartners.com`입니다. Vercel 도메인·환경변수와 [전환 상태](docs/domain-transition.md)를 함께 확인하세요.
 
 캐릭터와 이야기를 중심으로 트렌드 탐색, 이미지·영상 제작, ShortGPT 컷 편집을 모은 작업실입니다. Node.js 22 이상과 공식 MCP SDK를 사용하며, 내재화한 React 제작 UI는 자체 의존성과 빌드 단계를 가집니다.
 
@@ -41,19 +41,19 @@ npm stop
 
 ## MCP · Claude와 Codex
 
-**MCP 연결 안내 (`/mcp`)**에서 주소와 연결 명령을 복사할 수 있습니다. Streamable HTTP 주소는 `https://api.snowlink.team/mcp`입니다. 같은 Mac에서는 `http://127.0.0.1:3400/mcp`도 사용할 수 있습니다.
+**MCP 연결 안내 (`/mcp`)**에서 주소와 연결 명령을 복사할 수 있습니다. Streamable HTTP 주소는 `https://api.netiumpartners.com/mcp`입니다. 같은 Mac에서는 `http://127.0.0.1:3400/mcp`도 사용할 수 있습니다.
 
 Codex CLI:
 
 ```sh
-codex mcp add snowlink-studio --url https://api.snowlink.team/mcp
+codex mcp add snowlink-studio --url https://api.netiumpartners.com/mcp
 codex mcp login snowlink-studio
 ```
 
 Claude Code:
 
 ```sh
-claude mcp add --transport http snowlink-studio https://api.snowlink.team/mcp
+claude mcp add --transport http snowlink-studio https://api.netiumpartners.com/mcp
 claude mcp login snowlink-studio
 ```
 

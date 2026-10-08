@@ -16,7 +16,7 @@
 | FAQ·구조화 데이터 | 회사 사이트 운영사/제품 정보 중심 | 본문과 동일한 회사 FAQ, Studio 페이지·운영사·웹앱·경로·가이드 FAQ |
 | 공개 텍스트 | Studio 링크 목록 | 실제 사용 가이드의 준비물·작업·결과물·FAQ를 같은 원본에서 생성 |
 
-회사 대표 URL은 `https://www.snowlink.team/`, Studio 대표 URL은 `https://studio.snowlink.team/`이다. 회사 본문에서 Studio 사용 가이드를 연결하고 Studio에서 회사의 제품·운영사 정보로 연결한다. 개인 작업·인증·설정·프로필·결제 미리보기와 가상 작품/창작자 상세는 `noindex, follow`이며 사이트맵에 넣지 않는다. noindex는 접근 통제가 아니며 기존 세션/계정 권한 검사를 변경하지 않는다.
+회사 대표 URL은 `https://www.netiumpartners.com/`, Studio 대표 URL은 `https://studio.netiumpartners.com/`이다. 회사 본문에서 Studio 사용 가이드를 연결하고 Studio에서 회사의 제품·운영사 정보로 연결한다. 개인 작업·인증·설정·프로필·결제 미리보기와 가상 작품/창작자 상세는 `noindex, follow`이며 사이트맵에 넣지 않는다. noindex는 접근 통제가 아니며 기존 세션/계정 권한 검사를 변경하지 않는다.
 
 ## 참고 사이트에서 채택한 점
 

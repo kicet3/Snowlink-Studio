@@ -10,10 +10,10 @@ export function companyConfig() {
     representative: '이현대',
     address: '관악구 조원로 8길 10',
     email: 'admin@netiumpartners.com',
-    siteUrl: 'https://www.snowlink.team',
+    siteUrl: 'https://www.netiumpartners.com',
     contentUpdated: '2026-10-08',
     service: {
-      url: 'https://studio.snowlink.team',
+      url: 'https://studio.netiumpartners.com',
       name: '네티움 스튜디오',
       button: '네티움 스튜디오 둘러보기',
       caption: 'AI 콘텐츠 제작 작업실',

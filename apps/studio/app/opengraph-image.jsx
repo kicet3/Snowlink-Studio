@@ -15,7 +15,7 @@ export default async function Image() {
       <span style={{ fontSize: 17, color: '#b7b7b2', letterSpacing: 2 }}>A PLACE FOR YOUR STORIES</span>
       <span style={{ fontSize: 78, fontWeight: 700, letterSpacing: -4, marginTop: 35 }}>네티움</span><span style={{ fontSize: 78, fontWeight: 700, letterSpacing: -4 }}>스튜디오.</span>
       <span style={{ fontSize: 21, color: '#b7b7b2', marginTop: 30 }}>Characters. Stories. Scenes.</span>
-      <span style={{ fontSize: 18, marginTop: 52 }}>studio.snowlink.team</span>
+      <span style={{ fontSize: 18, marginTop: 52 }}>studio.netiumpartners.com</span>
     </div>
     <div style={{ display: 'flex', width: 650, padding: '35px 35px 35px 0' }}><img src={`data:image/png;base64,${artwork}`} alt="" width={615} height={560} style={{ objectFit: 'cover', objectPosition: '65% center', borderRadius: 8 }}/></div>
   </div>, { ...size, fonts: [{ name: 'Nanum Gothic', data: font, weight: 700, style: 'normal' }] });

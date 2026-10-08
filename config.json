@@ -1,15 +1,17 @@
 {
   "port": 3400,
-  "publicOrigin": "https://api.snowlink.team",
-  "frontendOrigin": "https://studio.snowlink.team",
+  "publicOrigin": "https://api.netiumpartners.com",
+  "frontendOrigin": "https://studio.netiumpartners.com",
   "frontendOrigins": [
     "http://localhost:3410",
     "http://127.0.0.1:3410",
-    "https://studio.snowfall.it.com"
+    "https://studio.snowfall.it.com",
+    "https://studio.snowlink.team"
   ],
   "additionalOrigins": [
     "https://snowfall-macmini.tail447a11.ts.net:9450",
-    "https://api.snowfall.it.com"
+    "https://api.snowfall.it.com",
+    "https://api.snowlink.team"
   ],
   "backendOnly": true,
   "publicAccess": true,
