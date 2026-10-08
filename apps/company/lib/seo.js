@@ -14,6 +14,8 @@ export const metadata = {
   title,
   description,
   applicationName: c.service.name,
+  // Public ownership token issued by Search Console; keep it after verification.
+  verification: { google: 'WWxgi8V7nRehj6Buk0diT3OqAMcIt-NXruyrw8weTYA' },
   alternates: { canonical: '/', types: { 'text/plain': `${siteUrl}/llms-full.txt` } },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 } },
   openGraph: { type: 'website', locale: 'ko_KR', url: siteUrl, siteName: c.brand, title, description, images: [shareImage] },

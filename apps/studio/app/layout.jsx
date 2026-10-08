@@ -20,6 +20,8 @@ export const metadata = {
   metadataBase: new URL('https://studio.snowlink.team'),
   ...pageMetadata({ path: '/', title: 'Snowlink Studio · 콘텐츠 작업실' }),
   applicationName: 'Snowlink Studio',
+  // Public ownership token issued by Search Console; keep it after verification.
+  verification: { google: 'WWxgi8V7nRehj6Buk0diT3OqAMcIt-NXruyrw8weTYA' },
   // Each public page explicitly opts into indexing. Account and workspace pages stay excluded.
   icons: { icon: '/logo.svg' },
 };

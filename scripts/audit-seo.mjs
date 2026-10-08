@@ -71,7 +71,7 @@ if (!local) {
   for (const path of ['/?utm_source=audit', '/checkout?plan=pro&cycle=yearly']) {
     const html = await read(studio, path, !path.startsWith('/checkout'));
     const canonical = [...html.matchAll(/<link\b[^>]*>/g)].map(match => attrs(match[0])).find(link => link.rel === 'canonical')?.href;
-    check(canonical === studio + path.split('?')[0], `${path}: query-free canonical`);
+    check(new URL(canonical).href === new URL(studio + path.split('?')[0]).href, `${path}: query-free canonical`);
   }
   const redirect = await fetch(studio + '/explore', { redirect: 'manual', signal: AbortSignal.timeout(25000) });
   check(redirect.status === 308 && new URL(redirect.headers.get('location'), studio).href === studio + '/', 'legacy explore redirects permanently');
