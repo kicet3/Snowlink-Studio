@@ -3,7 +3,7 @@
 | 서비스 | 소스 / 실행 | 주소 |
 | --- | --- | --- |
 | Studio 프론트 | Vercel Root Directory `apps/studio` | `https://studio.snowlink.team` |
-| 회사 소개 프론트 | 별도 Vercel 프로젝트, Root Directory `apps/company` | 회사 소개 배포 도메인 |
+| 회사 소개 프론트 | 별도 Vercel 프로젝트, Root Directory `apps/company` | `https://snowlink.team` |
 | API | Mac mini `127.0.0.1:3400` → Nginx | `https://api.snowlink.team` |
 
 두 프론트는 각각의 `package.json`, lockfile, Next.js 설정과 소스만으로 빌드합니다. Studio에 회사 소개 화면을 포함하지 않으며 `NEXT_PUBLIC_COMPANY_SITE_URL`로 외부 소개 사이트를 연결합니다. 회사 소개의 제품 버튼은 `https://studio.snowlink.team`으로 연결합니다.

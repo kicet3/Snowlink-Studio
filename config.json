@@ -1,15 +1,15 @@
 {
   "port": 3400,
-  "publicOrigin": "https://api.snowfall.it.com",
-  "frontendOrigin": "https://studio.snowfall.it.com",
+  "publicOrigin": "https://api.snowlink.team",
+  "frontendOrigin": "https://studio.snowlink.team",
   "frontendOrigins": [
     "http://localhost:3410",
     "http://127.0.0.1:3410",
-    "https://studio.snowlink.team"
+    "https://studio.snowfall.it.com"
   ],
   "additionalOrigins": [
     "https://snowfall-macmini.tail447a11.ts.net:9450",
-    "https://api.snowlink.team"
+    "https://api.snowfall.it.com"
   ],
   "backendOnly": true,
   "publicAccess": true,

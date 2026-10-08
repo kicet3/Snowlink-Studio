@@ -5,7 +5,7 @@ import { api } from '../_lib/api';
 import { useStudio } from './StudioProvider';
 import { Button, Field, PageHeading } from './Primitives';
 
-const ENDPOINT = 'https://api.snowfall.it.com/mcp';
+const ENDPOINT = 'https://api.snowlink.team/mcp';
 export function McpGuide() {
   const { user, toast } = useStudio();
   const signedIn = !!user && user.role !== 'guest';
