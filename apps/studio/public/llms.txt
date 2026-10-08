@@ -1,0 +1,11 @@
+# Snowlink Studio
+
+> 캐릭터 시트, 회차별 소설·시나리오, 이미지·영상 생성과 컷 편집을 연결하는 AI 콘텐츠 제작 작업실입니다. 운영사는 스노우링크(SnowLink)입니다.
+
+제품 소개와 기능의 공식 설명은 회사 사이트에서 제공합니다. 작업실의 자료는 방문자 또는 로그인한 계정의 세션에 속하며, MCP 사용에는 계정 로그인과 연결 승인이 필요합니다.
+
+## 공개 제품 안내
+
+- [회사 및 제품 소개](https://www.snowlink.team/): 제품 개요, 기능과 회사 정보
+- [제품 안내 텍스트](https://www.snowlink.team/llms-full.txt): 현재 제공 기능, 제작 흐름과 FAQ
+- [MCP 연결 방법](https://studio.snowlink.team/mcp): Claude Code·Codex 연결과 OAuth 인증 안내

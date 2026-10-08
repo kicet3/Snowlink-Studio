@@ -75,7 +75,20 @@ npm run dev
 
 ## 공개 페이지 크롤링
 
-SEO description, canonical, Open Graph, 구조화 데이터와 sitemap을 생성하지 않습니다. 공개 프론트의 robots 메타 및 `X-Robots-Tag` 차단은 제거했으며 `public/robots.txt`는 모든 봇에 `Allow: /`를 반환합니다. 로그인 전 화면은 AI 크롤러도 읽을 수 있지만, 작업 데이터와 API는 방문자/계정 세션별 권한 검사를 유지합니다.
+제품 SEO·GEO의 본문과 구조화 데이터는 별도 회사 사이트 `https://www.snowlink.team/`에서 제공합니다. Studio의 `/mcp`는 공개 연결 안내로 제목·설명·canonical·공유 카드를 제공하며 `/sitemap.xml`에 포함합니다. 작업실·로그인·설정·프로필·OAuth 페이지는 기본 `noindex, follow`로 개인 작업 화면이 검색 결과에 노출되지 않도록 합니다.
+
+`public/robots.txt`는 모든 봇에 `Allow: /`와 sitemap 주소를 제공합니다. `public/llms.txt`는 공식 제품 설명과 MCP 연결 안내로 연결합니다. 크롤링 허용은 인증 우회가 아니며 작업 데이터와 API는 방문자/계정 세션별 권한 검사를 유지합니다.
+
+## 공개 탐색과 멤버십 미리보기
+
+- `/`가 기본 작품 탐색 화면입니다. `/board`는 내 제작 보드로 유지합니다. 검색·종류 필터·정렬, `/explore/[slug]` 작품 상세, 소설 회차 읽기, `/creators/[handle]` 창작자별 작품 목록을 제공합니다.
+- `app/_lib/showcase-data.json`의 가상 창작자 3명, 캐릭터 3개, 소설 3개/6개 회차, 이미지 콘텐츠 3개를 사용합니다. `public/showcase/*.png`는 image_gen으로 생성한 원본이며 프롬프트는 같은 폴더 README에 있습니다. Next Image로 전달 크기를 최적화합니다.
+- 실제 사용자의 비공개 작품을 조회하거나 자동 공개하지 않습니다. 실제 공개 게시 API와 운영 DB 연동 전까지는 목업입니다. 이 페이지들은 검색엔진에 실제 작품으로 오인되지 않도록 기본 noindex를 유지합니다.
+- `/membership`은 Free·Creator·Pro 구성안입니다. 유료 가격은 모두 **출시 예정**입니다. `/checkout?plan=creator&cycle=monthly`에서 플랜·월간/연간·결제 수단 선택과 완료 화면을 미리 확인합니다.
+- 카드/계좌 번호를 수집하지 않고 결제 API·PG·구독 저장을 호출하지 않습니다. 화면 상태만 바뀌며 새로고침하면 초기 상태로 돌아갑니다. 등급별 기능 제한이나 실제 권한 변경도 적용하지 않습니다.
+- 탐색·작품·창작자·멤버십·결제 미리보기는 세션 로딩이나 API 장애와 관계없이 열립니다. 기존 설정·프로필 인증은 유지합니다.
+
+DB 관계 설계와 실행 가능한 PostgreSQL DDL·목업 시드는 [`../../database/README.md`](../../database/README.md)를 참고하세요. 운영 저장소 이전은 실행하지 않았습니다.
 
 ## 접근 및 기본 AI
 

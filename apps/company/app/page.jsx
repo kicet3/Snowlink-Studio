@@ -4,6 +4,7 @@ import { ProductShowcase } from '../components/ProductShowcase';
 import { ProductDetails } from '../components/ProductDetails';
 import VectorWordmark from '../components/VectorWordmark';
 import { companyConfig } from '../lib/config';
+import { structuredData } from '../lib/seo';
 
 function Lines({ text }) {
   return text.split('\n').map((line, i) => <Fragment key={i}>{i > 0 && <br/>}{line}</Fragment>);
@@ -18,6 +19,7 @@ function SectionLabel({ number, children }) {
 export default function CompanyPage() {
   const c = companyConfig();
   return <div className="company-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData()).replace(/</g, '\\u003c') }}/>
     <a className="skip-link" href="#company-main">회사 소개로 건너뛰기</a>
     <header className="company-header">
       <a href="/" className="brand" aria-label={`${c.brand} 회사 소개`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a>
@@ -38,9 +40,15 @@ export default function CompanyPage() {
       <section className="company-product" id="product" aria-labelledby="product-title">
         <div className="company-section-heading"><SectionLabel number="02">OUR PRODUCT</SectionLabel><span>{c.service.caption}</span></div>
         <div className="company-product-heading"><div><h2 id="product-title">{c.service.name}<span className="product-period">.</span></h2><p>{c.service.description}</p></div><ServiceLink service={c.service} className="button primary">{c.service.button}</ServiceLink></div>
+        <div className="company-product-summary"><p>{c.productSummary}</p><p>{c.productAudience}</p></div>
         <div className="company-capabilities">{c.features.map((feature, index) => <article key={feature.title}><div><span>0{index + 1} /</span><Icon name={feature.icon}/></div><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
         <ProductShowcase productName={c.service.name}/>
         <ProductDetails workflow={c.workflow} details={c.productDetails}/>
+        <section className="company-faq" id="faq" aria-labelledby="faq-title">
+          <div className="company-detail-heading"><p className="eyebrow">BEFORE YOU CREATE</p><h3 id="faq-title">Snowlink Studio, 궁금한 점을 모았습니다.</h3><p>제품 안내 기준일 <time dateTime={c.contentUpdated}>{c.contentUpdated}</time></p></div>
+          <div className="company-faq-list">{c.faq.map(item => <article key={item.id} id={item.id}><h4><a href={`#${item.id}`}>{item.question}</a></h4><p>{item.answer}</p></article>)}</div>
+          <a className="company-text-link" href={`${c.service.url}/mcp`}>Claude Code·Codex MCP 연결 방법<Icon name="arrow"/></a>
+        </section>
       </section>
       <section className="company-contact" id="contact" aria-labelledby="contact-title">
         <SectionLabel number="03">GET IN TOUCH</SectionLabel>
@@ -51,7 +59,7 @@ export default function CompanyPage() {
       <div className="company-footer-top">
         <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
         <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">스노우링크 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
-        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>스튜디오 시작하기 <Icon name="external"/></a></nav>
+        <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a><a href={c.service.url}>스튜디오 시작하기 <Icon name="external"/></a></nav>
       </div>
       <div className="company-footer-business">
         <h2>{c.name}</h2>

@@ -218,4 +218,4 @@ npm test
 
 ## 회사 소개 사이트
 
-회사 소개는 메인 제품과 분리된 Next.js 앱 [`apps/company`](apps/company/README.md)입니다. Vercel Root Directory를 `apps/company`로 지정해 환경변수 설정 없이 독립 배포합니다. 회사 정보·개업일·사업자등록일·이메일·서비스 이동 버튼 주소와 소개 문구는 [`lib/config.js`](apps/company/lib/config.js)에 고정되어 있습니다. SEO를 제외하고 검색 수집·색인을 차단하며, 메인 제품에는 사업자 정보 푸터를 표시하지 않습니다.
+회사 소개는 메인 제품과 분리된 Next.js 앱 [`apps/company`](apps/company/README.md)입니다. Vercel Root Directory를 `apps/company`로 지정해 환경변수 설정 없이 독립 배포합니다. 회사 정보·개업일·사업자등록일·이메일·서비스 이동 버튼 주소와 소개 문구는 [`lib/config.js`](apps/company/lib/config.js)에 고정되어 있습니다. 공개 제품 소개에 SEO·GEO 메타데이터, 공유 이미지, 구조화 데이터, sitemap과 AI용 텍스트 안내를 제공합니다. 검색·AI 크롤링은 허용하며 Studio의 개인 작업 화면은 `noindex`로 구분합니다. 메인 제품에는 사업자 정보 푸터를 표시하지 않습니다.
