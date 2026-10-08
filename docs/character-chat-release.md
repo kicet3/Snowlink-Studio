@@ -78,10 +78,10 @@
 - 문구만 변경했다. 기존 캐릭터챗 구현, 운영 모델 GPT(gpt-6-luna), Claude Code 개발·인증 MCP, 향후 Claude API·장기 맥락·prompt caching 계획의 구분은 유지한다. 기존 28개 기능 검증 및 유료 AI 대화는 반복하지 않는다.
 - 이번 검증: 회사·Studio Next.js 운영 빌드 성공, 기존 SEO/공개 텍스트 테스트 2개 통과. 회사/Studio의 현재 AI 설명·Claude 계획, 공개 텍스트와 영문 초안 일치 및 500자 제한을 확인했다. 공개 문구/링크·배포 확인 결과는 완료 보고에 구분해 기록한다. 다른 작업자의 WIP, 도메인·DNS·메일, OAuth 콘솔 Save 보류 상태와 신청 제출 상태는 변경하지 않는다.
 
-## 신청서용 영문 초안 (최신 포지셔닝, 각 500자 이내, 제출하지 않음)
+## 설명·지원 자료 완성 — 문제에서 Claude 평가 계획까지 (2026-10-09)
 
-Product:
-Snowlink Team Studio aims to offer moments of connection to people experiencing loneliness in Korea. Creators write stories and readers chat with original novel or webtoon characters using personality, selected story context and recent messages, with saved histories. We develop with Claude Code and offer authenticated MCP tools. Writing and chat currently use GPT; Claude API migration and prompt caching are planned.
-
-Support:
-We seek Claude API credits and technical guidance for a story and character-chat service aimed at everyday connection for people experiencing loneliness in Korea. We plan to migrate dialogue and serial writing from GPT, evaluate character consistency, longer context, latency and cost, and test prompt caching for prior manuscripts. We also plan to expand our existing authenticated MCP tools.
+- 회사 제품 소개와 Studio 가이드에 문제 → 현재 체험과 /chat CTA → 현재 GPT/Claude Code·인증 MCP → Claude API 대화·집필/구조화 추출/대화 요약/prompt caching/MCP 확장 계획 → 평가 항목/크레딧·기술지원 목적을 연결했다.
+- 고정된 허구 시나리오에서 캐릭터 일관성, 대화 연속성, 사용자 평가 대화 품질, 응답 지연, 토큰 비용을 평가하는 계획으로 표현한다. 현재 기록 저장과 최근 대화 참조를 향후 요약 기반 연속성과 구분한다.
+- 채팅 입력 기능은 바꾸지 않고 설명 링크만 추가했다. 기존 기능 테스트·유료 AI 실대화를 반복하지 않는다. 신규 결제/모델 통합/OAuth 변경/신청 제출은 없다.
+- 한·영 상세 설명, 근거, 평가·지원 목적, 최신 Product/Support 원문과 글자수는 [startup-application-brief.md](startup-application-brief.md)에 모았다. 이 문서가 후속 지원 자료의 기준이다.
+- 사전 검증: 회사·Studio Next.js 운영 빌드 성공, 기존 SEO·공개 텍스트 테스트 2개 통과. 두 앱의 문제/현재 체험/계획/평가/지원 설명과 llms 공개 텍스트가 일치하고, 영문 초안이 각각 481자/443자로 제한을 충족함을 확인했다. 공개 배포의 본문·CTA·모바일 가독성은 배포 후 확인해 완료 보고에 기록한다.

@@ -23,8 +23,18 @@ export function companyConfig() {
     introduction: '이야기 속 대화로, 일상에 작은 연결을.\n창작자는 인물과 이야기를 만들고,\n독자는 그 세계에 편안하게 말을 건넵니다.\n공개 작품의 캐릭터를 만나거나 직접 만들어보세요.',
     identity: 'Snowlink Team은 한국 서울의 사업자 스노우링크가 사용하는 브랜드입니다. 대표 이현대가 2026년 6월 30일 개업했으며, 창작·캐릭터챗 서비스 Snowlink Team Studio를 개발·운영합니다.',
     productSummary: 'Snowlink Team Studio는 이야기를 만드는 창작자와 그 안의 인물을 만나고 싶은 독자를 위한 창작·캐릭터챗 서비스입니다. 창작자는 소설을 쓰고 인물의 성격과 세계관을 만들며, 독자는 선택한 작품 맥락을 바탕으로 캐릭터와 대화합니다. 일상의 이야기를 편안하게 건넬 수 있는 작은 연결을 지향합니다.',
-    englishSummary: 'Snowlink Team Studio aims to offer moments of connection to people experiencing loneliness in Korea. Creators write stories and readers chat with original novel or webtoon characters using personality, selected story context and recent messages, with saved histories. We develop with Claude Code and offer authenticated MCP tools. Writing and chat currently use GPT; Claude API migration and prompt caching are planned.',
+    englishSummary: "Snowlink Team Studio aims to offer everyday connection to people experiencing loneliness in Korea through conversations with original novel and webtoon characters. Our live GPT-based product uses character traits, story context and saved chats. We plan to integrate Claude API dialogue, extract character and world details from manuscripts, and summarize prior conversations to preserve continuity. Claude Code and authenticated MCP tools already support development and workflows.",
     productAudience: '연재 소설을 쓰는 작가, 소설·웹툰용 인물을 설정하는 창작자, 이야기 속 인물과 대화하고 싶은 독자를 위한 공간입니다. 웹툰은 사용자가 만든 인물의 설정 대화 범위이며 웹툰 회차 자동 제작을 제공한다는 뜻은 아닙니다.',
+    productStory: {
+      "title": "말을 건네고 싶은 순간에서 시작합니다",
+      "problem": "외로움을 느끼는 순간, 감정이나 하루의 이야기를 부담 없이 나눌 대화 경험을 찾기 어려울 때가 있습니다. 스노우링크는 한국 사회의 이런 일상에 주목하고, 편안하게 첫마디를 건넬 수 있는 창작 캐릭터와의 대화를 만들고자 합니다.",
+      "experience": "창작자는 소설을 쓰고 소설·웹툰용 인물의 성격과 세계관을 만듭니다. 독자는 그 인물을 선택해 작품 속 질문부터 오늘의 이야기까지 자신의 속도로 대화합니다. 지금 Studio에서 공개 캐릭터를 만나거나 나만의 인물을 만들어 시작할 수 있습니다.",
+      "steps": [
+        "서린·아린·도윤 중 한 인물을 고르거나, 이미지 없이 이름과 성격만으로 내 캐릭터를 만드세요.",
+        "참고할 작품과 회차를 선택하고 첫 인사를 건네세요. AI가 인물의 성격과 이야기 맥락으로 답합니다.",
+        "저장한 대화방을 다시 열어 다음 이야기를 이어가세요. 대화는 원작이나 이야기 그래프를 자동으로 바꾸지 않습니다."
+      ]
+    },
     entryPoints: [
       { title: '이야기 속 인물에게 첫 인사', label: '캐릭터챗 바로 체험', path: '/chat', icon: 'chat', description: '월광우체국의 서린 등 공개 캐릭터를 고르고 대화하세요. 로그인 없이 방문자 작업실에서 기록을 이어갈 수 있습니다.' },
       { title: '집필 흐름 확인하기', label: '회차 집필 가이드', path: '/guide#story', icon: 'board', description: '플롯, 글자 수 설정, 원고와 이야기 기억을 만드는 순서를 확인하고 시나리오 작업실로 이동합니다.' },
@@ -59,11 +69,52 @@ export function companyConfig() {
       title: 'Claude 활용 현황과 다음 개발 단계',
       current: [
         { title: '현재 · Claude Code로 개발', description: '제품 코드 작성과 개선에 Claude Code를 활용합니다. 창작 기능의 모델 연동과 웹 제품 개발을 이어가고 있습니다.' },
-        { title: '현재 · MCP로 창작 작업 연결', description: '창작자는 OAuth로 인증한 MCP 연결을 통해 Claude Code·Codex에서 캐릭터 시트, 회차별 시나리오, 장면 노드 작업을 요청할 수 있습니다.' },
+        { title: '현재 · MCP로 창작 작업 연결', description: '창작자는 OAuth로 인증한 MCP 연결을 통해 Claude Code·Codex에서 캐릭터 대화·시트, 회차별 시나리오, 장면 노드 작업을 요청할 수 있습니다.' },
       ],
       writing: '현재 제품의 회차 집필과 캐릭터챗은 기존 구독 계정에 연결된 GPT 흐름을 사용합니다. Claude Code 개발 활용과 MCP 연결은 Claude API가 제품 원고를 생성한다는 의미와 구분합니다.',
-      planned: '다음 단계는 Claude API를 회차 집필, 인물·사건·복선의 구조화 추출, 캐릭터 역할 대화·설정 대화와 이미지·영상용 장면 프롬프트 작성에 통합하는 것입니다. 이전 원고의 prompt caching과 기존 MCP 기능 확대도 계획하고 있습니다.',
-      evaluation: '통합 과정에서 앞 회차와의 설정 충돌, 복선 회수 근거, 회차별 분량 준수, 응답 지연과 비용을 평가합니다. Claude API 전환과 캐싱은 아직 제공 중인 기능이 아닙니다.',
+      planned: "Claude API를 인물의 성격·작품 세계관·선택한 이야기 맥락을 반영하는 캐릭터 대화와 연재 집필에 통합할 계획입니다. 원고의 정보를 구조화하고 이전 대화의 핵심을 요약해, 대화를 이어가는 방식을 평가하려 합니다.",
+      planSteps: [
+        {
+          "title": "성격과 작품 맥락을 반영하는 대화·집필",
+          "description": "현재 GPT 기반 대화와 회차 집필에 Claude API를 통합하고, 같은 인물 설정과 작품 맥락으로 응답하는 흐름을 연결할 계획입니다."
+        },
+        {
+          "title": "원고에서 인물과 세계관 정보 추출",
+          "description": "원고의 캐릭터·관계·사건·세계관 정보를 구조화해, 선택한 회차까지 필요한 맥락을 준비하고 근거와 함께 확인하는 방식을 평가할 계획입니다."
+        },
+        {
+          "title": "이전 대화의 핵심 정보 요약",
+          "description": "이름·약속·중요한 사건을 요약해 다음 대화에 전달하는 방식을 평가할 계획입니다. 현재의 기록 저장과 최근 메시지 참조에서 발전시키려는 단계이며, 요약의 누락이나 잘못된 기억도 함께 점검합니다."
+        },
+        {
+          "title": "원고 재사용과 MCP 연결 확장",
+          "description": "이전 원고에 prompt caching을 적용하는 실험과 기존 인증 MCP 도구의 확장을 계획합니다. 대화와 집필에 반복해서 쓰는 맥락의 지연·토큰 비용을 확인하며 통합을 다듬습니다."
+        }
+      ],
+      evaluation: "평가는 고정된 허구 인물·작품·대화 시나리오로 시작할 계획입니다. 같은 조건에서 결과를 비교하고, 사용자 체험 평가를 더해 발견한 문제를 수정한 뒤 다시 확인합니다. 아래 항목은 앞으로 측정할 기준입니다.",
+      metrics: [
+        {
+          "name": "캐릭터 일관성",
+          "description": "성격·말투·세계관과 응답 사이의 충돌 여부"
+        },
+        {
+          "name": "대화 연속성",
+          "description": "이전 이름·약속·사건의 유지와 요약의 누락·오류"
+        },
+        {
+          "name": "사용자 평가 대화 품질",
+          "description": "체험자가 평가하는 대화의 자연스러움과 상황 적합성"
+        },
+        {
+          "name": "응답 지연",
+          "description": "메시지를 보낸 뒤 답변을 받기까지 기다리는 시간"
+        },
+        {
+          "name": "토큰 비용",
+          "description": "요청별 입력·출력과 캐시 사용에 따른 토큰 비용"
+        }
+      ],
+      support: "API 크레딧과 기술지원은 GPT에서 Claude API로 대화·집필을 통합하고 문제를 해결하는 데 활용하고자 합니다. 원고 정보 추출, 대화 요약, prompt caching과 MCP 확장을 고정된 허구 시나리오에서 평가하며, 대화의 일관성·품질·지연·비용을 근거로 점진적으로 개선할 계획입니다.",
     },
     contactTitle: '함께 만들 이야기가 있나요?',
     contactDescription: '제품과 사업 관련 문의를 기다립니다.',

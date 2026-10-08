@@ -93,7 +93,7 @@ export function CharacterChat({ initialCharacter, initialSource, initialConversa
   }); }
   const locked = busy || !ready;
   return <div className="studio-page persona-page">
-    <header className="persona-intro"><p className="eyebrow">STORY → CHARACTER → CONVERSATION</p><h1>이야기 속 인물과,<br/>오늘의 대화를.</h1><p>이야기 속 대화로, 일상에 작은 연결을.<br/>공개 작품의 캐릭터를 만나거나 나만의 인물에게 편안하게 말을 건네보세요.<br/>성격과 세계관, 선택한 회차의 맥락을 바탕으로 AI가 인물을 연기합니다.</p><div className="persona-links"><Link href="/guide#chat">캐릭터챗 사용법 →</Link><Link href="/scenarios">내 이야기 쓰기 →</Link><Link href="/characters">시트 제작 도우미 →</Link></div></header>
+    <header className="persona-intro"><p className="eyebrow">STORY → CHARACTER → CONVERSATION</p><h1>이야기 속 인물과,<br/>오늘의 대화를.</h1><p>이야기 속 대화로, 일상에 작은 연결을.<br/>공개 작품의 캐릭터를 만나거나 나만의 인물에게 편안하게 말을 건네보세요.<br/>성격과 세계관, 선택한 회차의 맥락을 바탕으로 AI가 인물을 연기합니다.</p><div className="persona-links"><Link href="/guide#chat">캐릭터챗 사용법 →</Link><Link href="/guide#experience">이 대화가 지향하는 경험 →</Link><Link href="/scenarios">내 이야기 쓰기 →</Link><Link href="/characters">시트 제작 도우미 →</Link></div></header>
     {sessionLoading && <p role="status">방문자 작업실을 연결하고 있습니다…</p>}
     {sessionError && <div role="alert">{sessionError} <Button variant="secondary" onClick={loadSession}>연결 다시 시도</Button></div>}
     <div className="persona-layout"><aside className="persona-library" aria-label="캐릭터와 대화 기록">

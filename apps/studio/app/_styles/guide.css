@@ -22,3 +22,8 @@
 .guide-related { border-top: 1px solid var(--color-border); padding-top: 30px; line-height: 1.9; }
 .explore-guide-link { display: inline-block; font-size: 12px; margin-top: 14px; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 760px) { .guide-step dl>div { grid-template-columns: 1fr; gap: 4px; }.guide-step h2 { font-size: 22px; }.guide-toc { padding: 18px; }.guide-related { flex-direction: column; } }
+
+.guide-experience-steps, .guide-plan-steps { padding-left: 22px; margin: 24px 0; font-size: 14px; line-height: 1.9; color: var(--color-text-secondary); }
+.guide-experience-steps li+li { margin-top: 12px; }
+.guide-plan-steps li { padding: 0 0 18px 8px; }
+.guide-answer h4 { font-size: 16px; font-weight: 500; color: var(--color-text); line-height: 1.7; margin: 14px 0 8px; }

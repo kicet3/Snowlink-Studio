@@ -301,3 +301,17 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
   .vector-wordmark canvas, .vector-wordmark .wordmark-coordinate { display: none; }
   .vector-wordmark[data-ready=true] .wordmark-fallback { visibility: visible; }
 }
+
+/* Product purpose and current-to-planned development narrative. */
+.company-story { scroll-margin-top: 28px; margin: 42px 0; }
+.company-experience-steps { margin: 22px 0; padding-left: 20px; color: var(--color-text-secondary); font-size: 14px; line-height: 1.9; }
+.company-experience-steps li+li { margin-top: 12px; }
+.company-story .company-text-link { margin-top: 10px; }
+.company-development { margin-bottom: 42px; }
+.company-plan-steps { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; margin-top: 28px; }
+.company-plan-steps article { border-top: 1px solid var(--color-border); padding-top: 20px; min-width: 0; }
+.company-development-plan h5 { font-size: 16px; font-weight: 500; line-height: 1.6; margin: 12px 0; }
+.company-evaluation { margin: 26px 0; }
+.company-evaluation>div { display: grid; grid-template-columns: 190px 1fr; gap: 22px; border-top: 1px solid var(--color-border); padding: 14px 0; font-size: 14px; line-height: 1.8; }
+.company-evaluation dt { color: var(--color-text); }.company-evaluation dd { margin: 0; color: var(--color-text-secondary); }
+@media(max-width:760px) { .company-plan-steps { grid-template-columns:1fr; gap:20px; }.company-evaluation>div { grid-template-columns:1fr; gap:6px; }.company-story .company-detail-grid article>p { font-size:14px; }.company-development-plan { padding:20px; } }
