@@ -4,14 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCreator, getWork, WORK_KINDS } from '../../_lib/showcase';
-import { ShowcaseNotice, WorkCard } from '../../_components/Explore';
+import { WorkCard } from '../../_components/Explore';
 import { NovelReader } from '../../_components/NovelReader';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const work = getWork(slug);
   if (!work) notFound();
-  return pageMetadata({ path: `/explore/${encodeURIComponent(slug)}`, title: `${work.title} · Snowlink Studio`, description: `${work.summary} 가상 창작자의 ${WORK_KINDS[work.kind]} 목업 작품입니다.`, image: work.image, imageAlt: work.imageAlt });
+  return pageMetadata({ path: `/explore/${encodeURIComponent(slug)}`, title: `${work.title} · Snowlink Studio`, description: work.summary, image: work.image, imageAlt: work.imageAlt });
 }
 
 export default async function Page({ params }) {
@@ -20,8 +20,8 @@ export default async function Page({ params }) {
   if (!work) notFound();
   const creator = getCreator(work.creatorId);
   const related = work.relatedIds.map(getWork).filter(Boolean);
-  return <div className="studio-page work-detail-page"><Link className="checkout-back" href="/">← 작품 둘러보기</Link><ShowcaseNotice/>
-    <div className="work-detail-heading"><div><p className="eyebrow">{WORK_KINDS[work.kind]} / SHOWCASE</p><h1>{work.title}</h1><p>{work.summary}</p><div className="work-tags">{work.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><Link className="work-detail-author" href={`/creators/${creator.id}`}><span className="creator-initial">{creator.initial}</span><span>{creator.name}<small>창작자의 다른 작품 보기 ↗</small></span></Link></div>
+  return <div className="studio-page work-detail-page"><Link className="checkout-back" href="/">← 작품 둘러보기</Link>
+    <div className="work-detail-heading"><div><p className="eyebrow">{WORK_KINDS[work.kind]}</p><h1>{work.title}</h1><p>{work.summary}</p><div className="work-tags">{work.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><Link className="work-detail-author" href={`/creators/${creator.id}`}><span className="creator-initial">{creator.initial}</span><span>{creator.name}<small>창작자의 다른 작품 보기 ↗</small></span></Link></div>
     <Image className="work-detail-image" src={work.image} alt={work.imageAlt} width={1536} height={1024} sizes="(max-width: 760px) 100vw, 85vw" priority/>
     {work.chapters && <NovelReader title={work.title} chapters={work.chapters}/>}
     {work.details && <section className="character-profile" aria-labelledby="character-profile-title"><h2 id="character-profile-title">캐릭터 프로필</h2><dl>{work.details.map(detail => <div key={detail.label}><dt>{detail.label}</dt><dd>{detail.value}</dd></div>)}</dl></section>}

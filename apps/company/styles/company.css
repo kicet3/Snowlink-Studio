@@ -70,7 +70,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
 .company-product-summary { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; margin: -16px 0 42px; }
 .company-product-summary p { font-size: 14px; line-height: 1.95; color: var(--color-text-secondary); }
 .company-product-summary p+p { color: var(--color-text-muted); }
-.company-entry-points { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.company-entry-points { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-bottom: 42px; }
 .company-entry-points>a { display: flex; flex-direction: column; padding: 26px; border: 1px solid var(--color-border); background: var(--color-surface); min-width: 0; }
 .company-entry-points>a:hover { border-color: var(--color-border-strong); background: #151515; }
 .company-entry-index { display: flex; align-items: center; justify-content: space-between; color: var(--color-text-muted); font: 10px var(--company-mono); }
@@ -79,8 +79,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
 .company-entry-points p { margin-top: 14px; font-size: 12px; line-height: 1.9; color: var(--color-text-muted); }
 .company-entry-link { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; margin-top: auto; font-size: 12px; }
 .company-entry-link .icon { width: 15px; height: 15px; }
-.company-preview-note { font-size: 11px; color: var(--color-text-muted); line-height: 1.9; margin-top: 18px; }
-.company-entry-points+.company-preview-note { margin-bottom: 42px; }
 .company-membership { margin-top: 75px; }
 .company-membership-plans { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-top: 32px; }
 .company-membership-plans article { padding: 30px; min-width: 0; }
@@ -231,7 +229,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 28px; }
   .company-entry-points { grid-template-columns: 1fr; gap: 12px; }
   .company-entry-points>a { padding: 22px; }
   .company-entry-points h3 { margin-top: 18px; font-size: 20px; }
-  .company-preview-note { font-size: 10px; }
   .company-membership { margin-top: 48px; }
   .company-membership-plans { grid-template-columns: 1fr; }
   .company-membership-plans article { padding: 26px 0; }

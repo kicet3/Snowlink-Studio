@@ -5,8 +5,8 @@ import { Icon } from './Icon';
 
 const groups = [{ id: 'explore', label: '발견하고 읽기' }, { id: 'create', label: '내 작품 만들기' }, { id: 'membership', label: '멤버십 살펴보기' }];
 const screens = [
-  { id: 'explore', group: 'explore', label: '작품 둘러보기', icon: 'radar', title: '새로운 Studio의 시작, 작품 탐색', description: '기본 화면에서 캐릭터·소설·이미지 콘텐츠를 검색하고 종류별로 살펴봅니다. 현재는 가상 창작자의 목업 작품을 제공합니다.' },
-  { id: 'creators', group: 'explore', label: '창작자별 작품', icon: 'people', title: '한 창작자가 만든 세계를 따라', description: '창작자의 캐릭터와 소설, 장면 이미지를 한곳에서 살펴보고 작품 상세로 이동합니다. 화면은 예시 창작자 서월의 목업입니다.' },
+  { id: 'explore', group: 'explore', label: '작품 둘러보기', icon: 'radar', title: '새로운 Studio의 시작, 작품 탐색', description: '기본 화면에서 캐릭터·소설·이미지 콘텐츠를 검색하고 종류별로 살펴봅니다.' },
+  { id: 'creators', group: 'explore', label: '창작자별 작품', icon: 'people', title: '한 창작자가 만든 세계를 따라', description: '창작자의 캐릭터와 소설, 장면 이미지를 한곳에서 살펴보고 작품 상세로 이동합니다.' },
   { id: 'novel', group: 'explore', label: '소설 회차 읽기', icon: 'cards', title: '캐릭터를 만났다면, 이야기를 읽을 시간', description: '회차를 고르거나 이전·다음 화로 이동하며 원고를 읽습니다. 같은 세계관의 캐릭터와 장면 콘텐츠도 이어서 확인할 수 있습니다.' },
   { id: 'board', label: '제작 보드', icon: 'board', title: '아이디어부터 완성까지, 한눈에', description: '콘텐츠를 제작 단계별로 정리하고, 이야기와 출연 캐릭터를 하나의 기획에 연결합니다.' },
   { id: 'characters', label: '캐릭터 시트', icon: 'people', title: '다음 장면에서도, 같은 캐릭터', description: '사진이나 새로운 설정에서 시작해 AI와 캐릭터를 만들고, 시트와 프롬프트 템플릿을 관리합니다.' },
@@ -43,6 +43,6 @@ export function ProductShowcase({ productName }) {
         <a href={source} target="_blank" rel="noopener noreferrer">원본 크게 보기 <Icon name="external"/><span className="sr-only"> (새 탭)</span></a>
       </figcaption>
     </figure>
-    <p className="company-screen-note">현재 Studio를 직접 캡처한 화면입니다. 작품 탐색은 가상 창작자의 목업, 제작 화면은 소개용 계정의 예시 데이터입니다. 멤버십·결제는 출시 전 미리보기이며 계정과 연결 상태에 따라 화면이 달라질 수 있습니다.</p>
+    <p className="company-screen-note">현재 Studio를 직접 캡처한 화면입니다. 멤버십·결제는 출시 전 미리보기이며 계정과 연결 상태에 따라 화면이 달라질 수 있습니다.</p>
   </section>;
 }

@@ -28,5 +28,4 @@ test('guide structured answers and public text match visible facts without inven
   for (const item of GUIDE_FAQ) assert(publicText({ full: true }).includes(item.answer));
   assert(!JSON.stringify(structured).includes('"offers"'));
   assert(!JSON.stringify(structured).includes('aggregateRating'));
-  assert(publicText({ full: true }).includes('실제 사용자 게시물이 아닙니다'));
 });

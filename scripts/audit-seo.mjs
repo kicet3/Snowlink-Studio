@@ -57,7 +57,7 @@ for (const origin of [company, studio]) {
   check(!/login|checkout|oauth|profile|settings/.test(sitemap), `${origin}: no private sitemap entries`);
   for (const path of ['/llms.txt', '/llms-full.txt']) {
     const body = await read(origin, path);
-    check(body.includes('Snowlink Studio') && body.includes('출시 예정') && body.includes('목업'), `${origin}${path}: current product scope`);
+    check(body.includes('Snowlink Studio') && body.includes('출시 예정') && body.includes('캐릭터') && body.includes('소설'), `${origin}${path}: current product scope`);
   }
   if (!local) {
     const image = await fetch(origin + '/opengraph-image', { signal: AbortSignal.timeout(25000) });

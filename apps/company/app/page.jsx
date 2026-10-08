@@ -42,7 +42,6 @@ export default function CompanyPage() {
         <div className="company-product-heading"><div><h2 id="product-title">{c.service.name}<span className="product-period">.</span></h2><p>{c.service.description}</p></div><ServiceLink service={c.service} className="button primary">{c.service.button}</ServiceLink></div>
         <div className="company-product-summary"><p>{c.productSummary}</p><p>{c.productAudience}</p></div>
         <nav className="company-entry-points" aria-label="Studio 시작 방법">{c.entryPoints.map((entry, index) => <a key={entry.path} href={`${c.service.url}${entry.path}`}><div className="company-entry-index"><span>0{index + 1} /</span><Icon name={entry.icon}/></div><h3>{entry.title}</h3><p>{entry.description}</p><span className="company-entry-link">{entry.label}<Icon name="arrow"/></span></a>)}</nav>
-        <p className="company-preview-note">{c.showcaseNotice}</p>
         <div className="company-capabilities">{c.features.map((feature, index) => <article key={feature.title}><div><span>0{index + 1} /</span><Icon name={feature.icon}/></div><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
         <ProductShowcase productName={c.service.name}/>
         <ProductDetails workflow={c.workflow} details={c.productDetails}/>
