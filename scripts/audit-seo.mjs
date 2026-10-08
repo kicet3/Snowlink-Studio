@@ -57,7 +57,7 @@ for (const origin of [company, studio]) {
   check(!/login|checkout|oauth|profile|settings/.test(sitemap), `${origin}: no private sitemap entries`);
   for (const path of ['/llms.txt', '/llms-full.txt']) {
     const body = await read(origin, path);
-    check(body.includes('Snowlink Studio') && body.includes('출시 예정') && body.includes('캐릭터') && body.includes('소설'), `${origin}${path}: current product scope`);
+    check(body.includes('네티움 스튜디오') && body.includes('출시 예정') && body.includes('캐릭터') && body.includes('소설'), `${origin}${path}: current product scope`);
   }
   if (!local) {
     const image = await fetch(origin + '/opengraph-image', { signal: AbortSignal.timeout(25000) });
@@ -81,7 +81,7 @@ if (!local) {
   }
   for (const origin of [company, studio]) for (const userAgent of ['OAI-SearchBot', 'Claude-SearchBot']) {
     const response = await fetch(origin, { headers: { 'User-Agent': userAgent }, signal: AbortSignal.timeout(25000) });
-    check(response.status === 200 && (await response.text()).includes('Snowlink Studio'), `${origin}: public HTML accessible to ${userAgent}`);
+    check(response.status === 200 && (await response.text()).includes('네티움 스튜디오'), `${origin}: public HTML accessible to ${userAgent}`);
   }
 }
 console.log(`PASS: ${assertions} technical assertions (${local ? 'built HTML' : 'deployed HTML'}). This is not a Lighthouse or GEO score.`);

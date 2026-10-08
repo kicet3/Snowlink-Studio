@@ -31,7 +31,7 @@ async function refresh() {
     const video = Boolean(useAppStore.getState().videoModelSelected);
     applyDefaults(!video);
     applyDefaults(video);
-  } catch (error) { console.warn('[Snowlink Studio] 기본 모델을 불러오지 못했습니다.', error); }
+  } catch (error) { console.warn('[네티움 스튜디오] 기본 모델을 불러오지 못했습니다.', error); }
 }
 export function startStudioPreferences() {
   if (initialized) return;

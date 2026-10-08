@@ -34,7 +34,7 @@ export default function CompanyPage() {
         <VectorWordmark text={c.brand}/>
       </section>
       <section className="company-about" id="about" aria-labelledby="about-title">
-        <SectionLabel number="01">WHY SNOWLINK</SectionLabel>
+        <SectionLabel number="01">WHY NETIUM</SectionLabel>
         <div className="company-about-content"><h2 id="about-title"><Lines text={c.aboutTitle}/></h2><div className="company-about-bottom"><p>{c.about}</p><span className="company-flow-note" aria-hidden="true">IDEA <span>↗</span> STORY <span>↗</span> SCENE</span></div></div>
       </section>
       <section className="company-product" id="product" aria-labelledby="product-title">
@@ -52,7 +52,7 @@ export default function CompanyPage() {
           <a className="company-text-link" href={`${c.service.url}/membership`}>멤버십과 결제 흐름 미리보기<Icon name="arrow"/></a>
         </section>
         <section className="company-faq" id="faq" aria-labelledby="faq-title">
-          <div className="company-detail-heading"><p className="eyebrow">BEFORE YOU CREATE</p><h3 id="faq-title">Snowlink Studio, 궁금한 점을 모았습니다.</h3><p>제품 안내 기준일 <time dateTime={c.contentUpdated}>{c.contentUpdated}</time></p></div>
+          <div className="company-detail-heading"><p className="eyebrow">BEFORE YOU CREATE</p><h3 id="faq-title">네티움 스튜디오, 궁금한 점을 모았습니다.</h3><p>제품 안내 기준일 <time dateTime={c.contentUpdated}>{c.contentUpdated}</time></p></div>
           <div className="company-faq-list">{c.faq.map(item => <article key={item.id} id={item.id}><h4><a href={`#${item.id}`}>{item.question}</a></h4><p>{item.answer}</p></article>)}</div>
           <a className="company-text-link" href={`${c.service.url}/mcp`}>Claude Code·Codex MCP 연결 방법<Icon name="arrow"/></a>
         </section>
@@ -65,7 +65,7 @@ export default function CompanyPage() {
     <footer className="company-footer" aria-label="회사 정보">
       <div className="company-footer-top">
         <div className="company-footer-brand"><a className="brand" href="/" aria-label={`${c.brand} 처음으로`}><img src="/brandmark.svg" alt=""/><span>{c.brand}</span></a><p>아이디어와 창작 도구를 연결합니다.<br/>만들고 싶은 이야기에 더 오래 집중할 수 있도록.</p><a className="company-footer-email" href={`mailto:${c.email}`}>{c.email}<Icon name="external"/></a></div>
-        <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">스노우링크 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
+        <nav aria-label="하단 회사 안내"><h2>회사</h2><a href="#about">네티움 파트너스 소개</a><a href="#contact">사업 및 제품 문의</a></nav>
         <nav aria-label="하단 제품 안내"><h2>제품</h2><a href="#product">{c.service.name} 소개</a><a href={c.service.url}>작품 둘러보기 <Icon name="external"/></a><a href={`${c.service.url}/board`}>내 제작 보드 <Icon name="external"/></a><a href="#membership">멤버십 미리보기</a><a href={`${c.service.url}/guide`}>Studio 사용 가이드</a><a href="#faq">자주 묻는 질문</a><a href="/llms-full.txt">제품 정보 (텍스트)</a></nav>
       </div>
       <div className="company-footer-business">

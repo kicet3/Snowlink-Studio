@@ -1,8 +1,8 @@
-# Snowlink Studio
+# 네티움 스튜디오
 
 Next.js Studio 프론트는 [`apps/studio`](apps/studio/README.md)에 있습니다. Vercel의 Root Directory를 `apps/studio`로 지정하며, 서비스 주소는 `studio.snowlink.team`, API 기본 주소는 `api.snowlink.team`입니다. 아래의 Node.js 실행 설명은 기존 백엔드 기준이며 FastAPI 전환과 통합 검증은 진행 중입니다.
 
-제품 표시 이름은 `Snowlink Studio`입니다. 회사명은 스노우링크(SnowLink)입니다. 기존 접속 주소·프로젝트 디렉터리·데이터·로그인·MCP 연결은 그대로 사용합니다. 패키지 이름과 MCP 연결 별칭 `snowlink-studio`, `SNOWFALL_*` 환경변수, `snowfall://workflow` 등 기술 식별자는 호환성을 위해 유지합니다.
+제품 표시 이름은 `네티움 스튜디오`입니다. 회사명은 네티움 파트너스입니다. 기존 접속 주소·프로젝트 디렉터리·데이터·로그인·MCP 연결은 그대로 사용합니다. 패키지 이름과 MCP 연결 별칭 `snowlink-studio`, `SNOWFALL_*` 환경변수, `snowfall://workflow` 등 기술 식별자는 호환성을 위해 유지합니다.
 
 운영 주소는 회사 소개 `snowlink.team`, Studio `studio.snowlink.team`, API `api.snowlink.team`입니다. 회사 공개 이메일은 `admin@snowlink.team`입니다. Vercel 도메인·환경변수와 [전환 상태](docs/domain-transition.md)를 함께 확인하세요.
 

@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const work = getWork(slug);
   if (!work) notFound();
-  return pageMetadata({ path: `/explore/${encodeURIComponent(slug)}`, title: `${work.title} · Snowlink Studio`, description: work.summary, image: work.image, imageAlt: work.imageAlt });
+  return pageMetadata({ path: `/explore/${encodeURIComponent(slug)}`, title: `${work.title} · 네티움 스튜디오`, description: work.summary, image: work.image, imageAlt: work.imageAlt });
 }
 
 export default async function Page({ params }) {

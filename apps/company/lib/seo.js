@@ -2,11 +2,11 @@ import { companyConfig } from './config.js';
 
 const c = companyConfig();
 export const siteUrl = c.siteUrl;
-export const title = `${c.service.name} | AI 캐릭터·소설·이미지·영상 제작`;
-export const description = '캐릭터·소설·이미지 작품을 둘러보고 나만의 창작을 시작하세요. Snowlink Studio는 작품 탐색부터 캐릭터 시트, 회차별 원고, 이미지·영상 생성과 컷 편집을 연결합니다. 멤버십은 출시 전 미리보기로 만나보세요.';
+export const title = `${c.brand} | ${c.service.name} AI 콘텐츠 제작`;
+export const description = '캐릭터·소설·이미지 작품을 둘러보고 나만의 창작을 시작하세요. 네티움 스튜디오는 작품 탐색부터 캐릭터 시트, 회차별 원고, 이미지·영상 생성과 컷 편집을 연결합니다. 멤버십은 출시 전 미리보기로 만나보세요.';
 export const shareImage = {
   url: `${siteUrl}/opengraph-image`, width: 1200, height: 630,
-  alt: 'Snowlink Studio — AI 캐릭터 시트, 스토리와 영상 제작 작업실',
+  alt: '네티움 스튜디오 — AI 캐릭터 시트, 스토리와 영상 제작 작업실',
 };
 
 export const metadata = {

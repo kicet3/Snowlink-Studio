@@ -58,7 +58,7 @@ export function createMcpOAuth({ directory, auth, allowedOrigins, frontendOrigin
       if (!path.startsWith('/.well-known/oauth-') && !path.startsWith('/oauth/') && !path.startsWith('/api/oauth/')) return false;
       try {
         const issuer = origin(req);
-        if (['/.well-known/oauth-protected-resource', '/.well-known/oauth-protected-resource/mcp'].includes(path) && req.method === 'GET') { json(res, 200, { resource: resource(req), authorization_servers: [issuer], scopes_supported: [SCOPE], bearer_methods_supported: ['header'], resource_name: 'Snowlink Studio' }); return true; }
+        if (['/.well-known/oauth-protected-resource', '/.well-known/oauth-protected-resource/mcp'].includes(path) && req.method === 'GET') { json(res, 200, { resource: resource(req), authorization_servers: [issuer], scopes_supported: [SCOPE], bearer_methods_supported: ['header'], resource_name: '네티움 스튜디오' }); return true; }
         if (path === '/.well-known/oauth-authorization-server' && req.method === 'GET') { json(res, 200, { issuer, authorization_endpoint: issuer + '/oauth/authorize', token_endpoint: issuer + '/oauth/token', registration_endpoint: issuer + '/oauth/register', revocation_endpoint: issuer + '/oauth/revoke', response_types_supported: ['code'], grant_types_supported: ['authorization_code', 'refresh_token'], token_endpoint_auth_methods_supported: ['none'], revocation_endpoint_auth_methods_supported: ['none'], code_challenge_methods_supported: ['S256'], scopes_supported: [SCOPE] }); return true; }
         if (path === '/oauth/register' && req.method === 'POST') {
           rate(req); const input = await readJson(req);

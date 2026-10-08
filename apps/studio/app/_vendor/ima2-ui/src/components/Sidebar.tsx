@@ -87,8 +87,8 @@ export function SidebarChrome() {
       <div className="logo">
         <img className="logo-mark" src="/logo.svg" width="32" height="32" alt="" />
         <div className="logo-copy">
-          <div className="logo-title">Snowlink</div>
-          <div className="logo-title logo-title--gen">Studio</div>
+          <div className="logo-title">네티움</div>
+          <div className="logo-title logo-title--gen">스튜디오</div>
           {/* The old desktop titlebar showed the server URL; keep it here. */}
           {desktop ? <div className="logo-host">{serverHost()}</div> : null}
         </div>
