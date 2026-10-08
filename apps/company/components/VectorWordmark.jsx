@@ -149,7 +149,7 @@ function color(host, value, fallback) {
 }
 
 export default function VectorWordmark({
-  text = '네티움 파트너스', background = '#080808', textColor = '#ffffff', shade = '#b8b8b8',
+  text = 'Snowlink Team', background = '#080808', textColor = '#ffffff', shade = '#b8b8b8',
   accent = 'rgba(255,255,255,0.65)', reach = 245, speed = 32, damping = 60,
   font = {}, handles = {}, style,
 }) {

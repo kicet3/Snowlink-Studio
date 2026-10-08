@@ -36,8 +36,8 @@ function navigate() {
   });
   closeMenu();
   document.querySelector('#panel-oauth').hidden = active !== 'oauth';
-  if (active === 'oauth') { document.title = 'MCP 연결 승인 · 네티움 스튜디오'; void import('./oauth-consent.js').then(m => m.openOAuthConsent()); return; }
-  document.title = `${tabs.find(t => t.dataset.tab === active).querySelectorAll('span')[1].textContent} · 네티움 스튜디오`;
+  if (active === 'oauth') { document.title = 'MCP 연결 승인 · Snowlink Team Studio'; void import('./oauth-consent.js').then(m => m.openOAuthConsent()); return; }
+  document.title = `${tabs.find(t => t.dataset.tab === active).querySelectorAll('span')[1].textContent} · Snowlink Team Studio`;
   if (routes[active]) void routes[active]().catch(error => {
     const panel = document.querySelector(`#panel-${active}`);
     panel.innerHTML = emptyState({ title: '화면을 불러오지 못했습니다', description: error.message, actionsHtml: actionButton('다시 시도', {attrs: {'data-route-retry': true}}) });

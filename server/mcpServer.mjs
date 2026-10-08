@@ -3,7 +3,7 @@ import { studioToolDefinitions } from './studioTools.mjs';
 import { STUDIO_GUIDE } from './studioActions.mjs';
 
 export function studioMcpServer(execute) {
-  const server = new McpServer({ name: 'snowlink-studio', title: '네티움 스튜디오', version: '0.2.0' }, { instructions: STUDIO_GUIDE, maxToolInputElements: 10000 });
+  const server = new McpServer({ name: 'snowlink-studio', title: 'Snowlink Team Studio', version: '0.2.0' }, { instructions: STUDIO_GUIDE, maxToolInputElements: 10000 });
   for (const [name, definition] of Object.entries(studioToolDefinitions)) {
     server.registerTool(name, definition, async input => {
       try {

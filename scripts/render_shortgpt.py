@@ -32,7 +32,7 @@ def wrap(text, limit):
 for index, cut in enumerate(data['cuts']):
     image = Image.new('RGB', (width, height), palette['color-background'])
     drawing = ImageDraw.Draw(image)
-    drawing.text((30, 25), f"네티움 스튜디오 / CUT {index + 1:02d}", font=small, fill=palette['color-accent'])
+    drawing.text((30, 25), f"Snowlink Team Studio / CUT {index + 1:02d}", font=small, fill=palette['color-accent'])
     source = cut.get('image')
     if source:
         photo = Image.open(source).convert('RGB')

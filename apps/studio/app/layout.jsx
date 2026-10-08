@@ -17,9 +17,9 @@ import './_styles/explore.css';
 import './_styles/guide.css';
 
 export const metadata = {
-  metadataBase: new URL('https://studio.netiumpartners.com'),
-  ...pageMetadata({ path: '/', title: '네티움 스튜디오 · 콘텐츠 작업실' }),
-  applicationName: '네티움 스튜디오',
+  metadataBase: new URL('https://studio.snowlink.team'),
+  ...pageMetadata({ path: '/', title: 'Snowlink Team Studio · 콘텐츠 작업실' }),
+  applicationName: 'Snowlink Team Studio',
   // Public ownership token issued by Search Console; keep it after verification.
   verification: { google: 'WWxgi8V7nRehj6Buk0diT3OqAMcIt-NXruyrw8weTYA' },
   // Each public page explicitly opts into indexing. Account and workspace pages stay excluded.

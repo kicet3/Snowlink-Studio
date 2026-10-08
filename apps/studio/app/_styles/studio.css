@@ -1,8 +1,9 @@
 /* Native workspace layouts, shared recipes use the Studio theme tokens. */
 body { min-height: 100dvh; display: flex; flex-direction: column; }
 #sidebar { position: fixed; inset: 0 auto 0 0; width: var(--layout-sidebar); padding: var(--space-6) var(--space-4); background: var(--color-surface); border-right: var(--border-width) solid var(--color-border); display: flex; flex-direction: column; z-index: 20; overflow-y: auto; }
-#sidebar .brand { font-size: 21px; gap: var(--space-2); }
-#sidebar .brand img { width: 30px; height: 30px; }
+#sidebar .brand { font-size: 18px; line-height: 1.25; gap: var(--space-2); }
+#sidebar .brand span { min-width: 0; white-space: normal; }
+#sidebar .brand img { width: 30px; height: 30px; flex-shrink: 0; }
 .sidebar-caption { font-size: 9px; letter-spacing: .13em; color: var(--color-text-muted); margin: var(--space-3) var(--space-2) var(--space-10); }
 .nav-label { font-size: var(--text-xs); letter-spacing: .12em; color: var(--color-text-muted); padding: 0 var(--space-3) var(--space-3); }
 .side-nav { display: grid; gap: var(--space-2); }

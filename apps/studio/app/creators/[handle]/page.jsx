@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
   const { handle } = await params;
   const creator = getCreator(handle);
   if (!creator) notFound();
-  return pageMetadata({ path: `/creators/${encodeURIComponent(handle)}`, title: `${creator.name}의 작품 · 네티움 스튜디오`, description: `${creator.bio} 캐릭터·소설·장면 이미지를 함께 살펴보세요.`, image: creator.image, imageAlt: `${creator.name}의 대표 작품` });
+  return pageMetadata({ path: `/creators/${encodeURIComponent(handle)}`, title: `${creator.name}의 작품 · Snowlink Team Studio`, description: `${creator.bio} 캐릭터·소설·장면 이미지를 함께 살펴보세요.`, image: creator.image, imageAlt: `${creator.name}의 대표 작품` });
 }
 
 export default async function Page({ params }) {
