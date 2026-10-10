@@ -94,7 +94,7 @@ export function CharacterChat({ initialCharacter, initialSource, initialConversa
   const locked = busy || !ready;
   return <div className="studio-page persona-page">
     <header className="persona-intro"><p className="eyebrow">STORY → CHARACTER → CONVERSATION</p><h1>이야기 속 인물과,<br/>오늘의 대화를.</h1><p>이야기 속 대화로, 일상에 작은 연결을.<br/>공개 작품의 캐릭터를 만나거나 나만의 인물에게 편안하게 말을 건네보세요.<br/>성격과 세계관, 선택한 회차의 맥락을 바탕으로 AI가 인물을 연기합니다.</p><div className="persona-links"><Link href="/guide#chat">캐릭터챗 사용법 →</Link><Link href="/guide#experience">이 대화가 지향하는 경험 →</Link><Link href="/scenarios">내 이야기 쓰기 →</Link><Link href="/characters">시트 제작 도우미 →</Link></div></header>
-    {sessionLoading && <p role="status">방문자 작업실을 연결하고 있습니다…</p>}
+    {sessionLoading && <p role="status">계정 작업실을 연결하고 있습니다…</p>}
     {sessionError && <div role="alert">{sessionError} <Button variant="secondary" onClick={loadSession}>연결 다시 시도</Button></div>}
     <div className="persona-layout"><aside className="persona-library" aria-label="캐릭터와 대화 기록">
       <h2>만나고 싶은 캐릭터</h2><p className="small muted">작품을 읽고 그 안의 인물과 이야기하세요.</p>
@@ -121,6 +121,6 @@ export function CharacterChat({ initialCharacter, initialSource, initialConversa
         <details className="persona-memory"><summary>이 대화가 참고하는 기억과 저장 안내</summary><p>시작할 때 저장한 캐릭터 설정과 선택한 회차의 맥락, 최근 최대 20개 메시지를 길이 한도 안에서 참고합니다. 전체 대화 기록을 영구히 기억하는 방식은 아닙니다. 내 작품을 연결하면 완료한 회차의 요약·사실·복선과 마지막 회차 원고 일부를 참고합니다.</p><p>대화는 원작이나 이야기 그래프에 자동 반영되지 않습니다. 설정·원고를 수정한 뒤에는 새 대화를 시작하세요. 답변은 AI의 해석이므로 원작과 다른 내용이 생길 수 있습니다.</p><Button variant="quiet-button" disabled={busy} onClick={() => setConfirmDelete(!confirmDelete)}>이 대화 기록 삭제</Button>{confirmDelete && <div><p>이 대화방의 기록을 삭제할까요? 캐릭터와 원고는 유지됩니다.</p><Button variant="secondary" disabled={busy} onClick={remove}>기록 삭제 확인</Button></div>}</details>
       </>}
     </section></div>
-    <p className="persona-storage">{user?.role === 'guest' || !user ? '방문자 기록은 이 브라우저의 방문자 세션에서 다시 열 수 있습니다. 쿠키 삭제·세션 만료 후에는 접근이 어려우며 로그인 계정으로 자동 이전되지 않습니다.' : '대화 기록은 현재 로그인한 계정의 작업실에 저장됩니다.'} 캐릭터챗은 AI가 연기하는 창작 인물과의 대화입니다.</p>
+    <p className="persona-storage">대화 기록은 현재 로그인한 계정의 작업실에 저장됩니다. 캐릭터챗은 AI가 연기하는 창작 인물과의 대화입니다.</p>
   </div>;
 }

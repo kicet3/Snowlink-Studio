@@ -10,10 +10,7 @@ export const useStudio = () => useContext(Context);
 let sessionRequest;
 function workspaceSession() {
   // Strict Mode and multiple consumers share one browser-session bootstrap.
-  if (!sessionRequest) sessionRequest = (async () => {
-    const current = await api('/api/auth/session');
-    return current.user ? current : await api('/api/auth/guest', 'POST', {});
-  })().finally(() => { sessionRequest = null; });
+  if (!sessionRequest) sessionRequest = api('/api/auth/session').finally(() => { sessionRequest = null; });
   return sessionRequest;
 }
 
@@ -45,7 +42,11 @@ export function StudioProvider({ children }) {
   }, []);
   const loadSession = useCallback(async () => {
     setLoading(true); setError('');
-    try { const session = await workspaceSession(); if (session.user) await authenticate(session.user); }
+    try {
+      const session = await workspaceSession();
+      if (session.user && session.user.role !== 'guest') await authenticate(session.user);
+      else { accountId.current = null; setUser(null); setWorkspace({ characters: [], productions: [] }); setConnections({}); }
+    }
     catch (err) { setError(err.message); }
     finally { setLoading(false); }
   }, [authenticate]);
@@ -69,7 +70,7 @@ export function StudioProvider({ children }) {
     await refresh(); return saved;
   }, [refresh]);
   async function logout() {
-    try { await api('/api/auth/logout', 'POST', {}); localStorage.clear(); sessionStorage.clear(); location.reload(); }
+    try { await api('/api/auth/logout', 'POST', {}); localStorage.clear(); sessionStorage.clear(); location.replace('/login'); }
     catch (err) { toast(err.message); }
   }
   return <Context.Provider value={{ user, loading, error, loadSession, authenticate, workspace, refresh, save, connections, toast, openModal, closeModal, logout }}>

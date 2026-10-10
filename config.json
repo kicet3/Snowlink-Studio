@@ -14,7 +14,7 @@
     "https://api.snowfall.it.com"
   ],
   "backendOnly": true,
-  "publicAccess": true,
+  "publicAccess": false,
   "ai": {
     "provider": "gpt",
     "fixedProviders": true,

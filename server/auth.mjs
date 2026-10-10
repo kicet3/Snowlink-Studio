@@ -32,7 +32,14 @@ export function createAuth(directory, { publicAccess = false } = {}) {
   const persist = () => { writeFileSync(file + '.tmp', JSON.stringify(state, null, 2), { mode: 0o600 }); renameSync(file + '.tmp', file); };
   const username = input => { if (typeof input !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9_.@+-]{2,79}$/.test(input)) throw bad('아이디는 영문·숫자로 시작하는 3~80자이며 _, -, ., @, +를 사용할 수 있습니다.'); return input.toLowerCase(); };
   function token(req) { return String(req.headers.cookie || '').split(';').map(s => s.trim()).find(s => s.startsWith(COOKIE + '='))?.slice(COOKIE.length + 1) || ''; }
-  function user(req) { const hash = digest(token(req)); const session = state.sessions.find(s => s.hash === hash && s.expiresAt > Date.now()); return session ? state.users.find(u => u.id === session.userId) : null; }
+  function user(req) {
+    const hash = digest(token(req));
+    const session = state.sessions.find(s => s.hash === hash && s.expiresAt > Date.now());
+    const account = session ? state.users.find(u => u.id === session.userId) : null;
+    // Disabling visitor access also rejects sessions issued before the change.
+    // Keep their stored work intact; it does not become another account's data.
+    return account && (publicAccess || account.role !== 'guest') ? account : null;
+  }
   function cookie(req, value, expired = false) {
     const local = /^(127\.0\.0\.1|localhost)(:\d+)?$/.test(req.headers.host || '');
     return `${COOKIE}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${expired ? 0 : TTL / 1000}${local ? '' : '; Secure'}`;
