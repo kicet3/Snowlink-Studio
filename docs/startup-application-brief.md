@@ -29,7 +29,7 @@
 
 1. 공개 인물 서린·아린·도윤 또는 이름·성격만으로 만든 내 캐릭터를 선택합니다. 이미지는 필수가 아닙니다.
 2. 선택한 작품과 회차의 맥락으로 첫 대화를 나눕니다. AI는 인물의 관점으로 답합니다.
-3. Studio에 로그인한 계정에서 저장한 대화방을 열어 이어갑니다. 모든 Studio 작업실 페이지는 로그인이 필요합니다.
+3. Studio에 로그인한 계정에서 저장한 대화방을 열어 이어갑니다. 공개 작품 목록·상세·창작자별 작품은 로그인 없이 볼 수 있으며, 캐릭터챗과 창작 기능 등 나머지 Studio 페이지는 로그인이 필요합니다.
 
 현재 운영 집필·대화 모델은 GPT `gpt-6-luna`입니다. 캐릭터챗은 시작 시 저장한 인물 설정·선택한 작품 맥락과 최근 최대 20개 메시지를 길이 한도 안에서 참고합니다. 내 시나리오를 연결하면 완료된 회차의 그래프 정보와 원고 일부를 사용합니다. 대화가 원작이나 이야기 그래프를 자동으로 수정하지 않습니다. 이전 방문자 접근은 중단됐으며, 기존 방문자 자료를 계정으로 자동 이전하지 않습니다. 웹툰은 사용자가 설정한 인물과의 대화 범위이고, 웹툰 회차 자동 제작이나 특정 유명 IP 캐릭터 제공을 뜻하지 않습니다.
 
@@ -72,7 +72,7 @@ People experiencing loneliness in Korea may find it difficult to find a low-pres
 
 ### Live product experience
 
-Creators write stories and define characters for novels or webtoons. Readers select an original character, choose the available story context and start a conversation. Studio requires an account login. Readers can return to saved chats in the same account. The live writing and dialogue engine uses GPT (`gpt-6-luna`). Character dialogue uses a snapshot of the character and selected story context plus recent messages within a bounded window. It does not automatically change the manuscript or story graph.
+Creators write stories and define characters for novels or webtoons. Readers select an original character, choose the available story context and start a conversation. Published works can be browsed without an account; character chat and creation require login. Readers can return to saved chats in the same account. The live writing and dialogue engine uses GPT (`gpt-6-luna`). Character dialogue uses a snapshot of the character and selected story context plus recent messages within a bounded window. It does not automatically change the manuscript or story graph.
 
 We develop with Claude Code and provide authenticated MCP tools. Those existing uses are distinct from the planned Claude API integration. The product supports character definitions and dialogue, not automated production of complete webtoon episodes or a licensed catalogue of famous characters.
 

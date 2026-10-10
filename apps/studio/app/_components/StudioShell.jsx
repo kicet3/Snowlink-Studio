@@ -7,6 +7,7 @@ import { StudioProvider, useStudio } from './StudioProvider';
 import { Button } from './Primitives';
 import { Icon } from './Icon';
 import { COMPANY_SITE_URL, PRODUCT_NAME } from '../_lib/branding';
+import { isPublicBrowsePage } from '../_lib/access';
 
 export const TABS = [
   ['explore', '작품 둘러보기', 'radar'], ['chat', '캐릭터챗', 'chat'], ['guide', '사용 가이드', 'chat'], ['board', '내 제작 보드', 'board'], ['characters', '캐릭터 시트', 'people'],
@@ -27,11 +28,12 @@ function Shell({ children }) {
   const [menuOpen, setMenuOpen] = useState(false), [mobile, setMobile] = useState(false);
   const menuButton = useRef(), sidebar = useRef();
   const signedIn = !!user && user.role !== 'guest';
+  const publicBrowse = isPublicBrowsePage(pathname);
   useEffect(() => {
-    if (requested !== 'login' && !loading && !signedIn && !error) {
+    if (requested !== 'login' && !publicBrowse && !loading && !signedIn && !error) {
       router.replace('/login?next=' + encodeURIComponent(location.pathname + location.search));
     }
-  }, [requested, loading, signedIn, error, router]);
+  }, [requested, publicBrowse, loading, signedIn, error, router]);
   useEffect(() => { document.body.classList.toggle('auth-locked', requested === 'login'); return () => document.body.classList.remove('auth-locked'); }, [requested]);
   useEffect(() => {
     const mq = matchMedia('(max-width: 760px)'); const update = () => { setMobile(mq.matches); setMenuOpen(false); };
@@ -66,7 +68,7 @@ function Shell({ children }) {
   }
   const count = workspace.productions.filter(p => !p.archived && p.stage !== 'done').length;
   if (requested === 'login') return children;
-  if (!signedIn) return <div className="studio-page"><p role={error ? 'alert' : 'status'}>{error || '계정 로그인을 확인하고 있습니다…'}</p>{error && <Button onClick={loadSession}>다시 시도</Button>}</div>;
+  if (!signedIn && !publicBrowse) return <div className="studio-page"><p role={error ? 'alert' : 'status'}>{error || '계정 로그인을 확인하고 있습니다…'}</p>{error && <Button onClick={loadSession}>다시 시도</Button>}</div>;
   return <>
     <>
       <a className="skip-link" href="#workspace">작업실로 건너뛰기</a>
@@ -75,10 +77,10 @@ function Shell({ children }) {
         <Link className="brand" href="/" aria-label={`${PRODUCT_NAME} 작품 둘러보기`}><img src="/logo.svg" alt=""/><span>{PRODUCT_NAME}</span></Link>
         <p className="sidebar-caption">A PLACE FOR YOUR STORIES</p>
         <nav className="side-nav" aria-label="작업 공간" onKeyDown={navKeys}><p className="nav-label">WORKSPACE</p>
-          {TABS.map(([id, label, icon]) => <div key={id} style={{display:'contents'}}>{id === 'membership' && <div className="nav-divider"/>}<Link href={tabHref(id)} id={'tab-' + id} data-tab={id} aria-current={active === id ? 'page' : undefined} onClick={() => setMenuOpen(false)}><Icon name={icon}/><span>{label}</span>{id === 'board' && <span className="tab-count" id="production-count">{count}</span>}{['trends', 'ima2'].includes(id) && <span className={`connection-dot ${connections[id]?.online ? 'online' : ''}`} data-status={id} title={connections[id]?.online ? '서버 연결됨' : '서버 연결 확인 필요'}/>}</Link></div>)}
+          {TABS.map(([id, label, icon]) => <div key={id} style={{display:'contents'}}>{id === 'membership' && <div className="nav-divider"/>}<Link href={tabHref(id)} id={'tab-' + id} data-tab={id} aria-current={active === id ? 'page' : undefined} onClick={() => setMenuOpen(false)}><Icon name={icon}/><span>{label}</span>{signedIn && id === 'board' && <span className="tab-count" id="production-count">{count}</span>}{signedIn && ['trends', 'ima2'].includes(id) && <span className={`connection-dot ${connections[id]?.online ? 'online' : ''}`} data-status={id} title={connections[id]?.online ? '서버 연결됨' : '서버 연결 확인 필요'}/>}</Link></div>)}
         </nav>
         <div className="sidebar-note seasonal-surface"><Icon name="spark"/><p>작은 영감이<br/>하나의 이야기로.</p><span className="eyebrow">IDEAS, CONNECTED.</span></div>
-        <div className="sidebar-footer"><span className="local-badge"><i/>{user?.name || '내 작업실'}</span><button className="icon-button" id="guide-button" aria-label="작업실 사용 안내" onClick={() => openModal('하나의 작업실, 네 가지 흐름', <Guide/>)}>?</button>{user && user.role !== 'guest' ? <button className="text-button" onClick={logout}>로그아웃</button> : <Link className="text-button" href="/login">계정 로그인</Link>}{COMPANY_SITE_URL && <a className="text-button" href={COMPANY_SITE_URL}>회사 소개</a>}</div>
+        <div className="sidebar-footer"><span className="local-badge"><i/>{signedIn ? user.name || '내 작업실' : '작품 둘러보기'}</span><button className="icon-button" id="guide-button" aria-label="작업실 사용 안내" onClick={() => openModal('하나의 작업실, 네 가지 흐름', <Guide/>)}>?</button>{user && user.role !== 'guest' ? <button className="text-button" onClick={logout}>로그아웃</button> : <Link className="text-button" href="/login">계정 로그인</Link>}{COMPANY_SITE_URL && <a className="text-button" href={COMPANY_SITE_URL}>회사 소개</a>}</div>
       </aside>
       <button className="nav-backdrop" id="nav-backdrop" aria-label="메뉴 닫기" hidden={!menuOpen} onClick={() => setMenuOpen(false)}/>
       <main id="workspace" tabIndex={-1} inert={menuOpen}><section id={'panel-' + active} role="region" aria-labelledby={active !== 'oauth' ? 'tab-' + active : undefined} aria-label={active === 'oauth' ? 'MCP 연결 승인' : undefined} className={'workspace-panel' + (active === 'ima2' ? ' media-workspace-panel' : '')}>{children}</section></main>

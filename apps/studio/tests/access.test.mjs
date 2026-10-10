@@ -1,9 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { bypassPageAuth, hasAccountSession } from '../app/_lib/access.js';
+import { bypassPageAuth, hasAccountSession, isPublicBrowsePage } from '../app/_lib/access.js';
 
-test('all Studio pages require an account, while auth transport and assets stay reachable', () => {
-  for (const path of ['/', '/chat', '/chat/extra', '/board', '/characters', '/scenarios', '/trends', '/ima2', '/ima2/graph/session', '/shortgpt', '/guide', '/membership', '/checkout', '/mcp', '/settings', '/profile', '/oauth/'+'a'.repeat(43), '/explore/moon-post-office', '/creators/moon-writer']) assert.equal(bypassPageAuth(path), false, path);
+test('only published work browsing is public; creation, chat and account pages remain protected', () => {
+  for (const path of ['/', '/explore', '/explore/moon-post-office', '/explore/character-seorin', '/creators/moon-writer']) {
+    assert.equal(isPublicBrowsePage(path), true, path);
+    assert.equal(bypassPageAuth(path), true, path);
+  }
+  for (const path of ['/chat', '/chat/extra', '/board', '/characters', '/scenarios', '/trends', '/ima2', '/ima2/graph/session', '/shortgpt', '/guide', '/membership', '/checkout', '/mcp', '/settings', '/profile', '/oauth/'+'a'.repeat(43), '/explore/character-seorin/edit', '/creators/moon-writer/settings', '/explore-other']) {
+    assert.equal(isPublicBrowsePage(path), false, path);
+    assert.equal(bypassPageAuth(path), false, path);
+  }
   for (const path of ['/login', '/api/auth/login', '/api/google/oauth/callback', '/media/example.png', '/generated/example.png', '/integrations/ima2/api/history', '/logo.svg', '/studio-media/fonts/Satoshi-400.woff2', '/llms.txt']) assert.equal(bypassPageAuth(path), true, path);
   for (const path of ['/login-other', '/api-other', '/showcase-other', '/studio-media/private']) assert.equal(bypassPageAuth(path), false, path);
 });

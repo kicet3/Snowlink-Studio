@@ -1,9 +1,15 @@
 export const SESSION_COOKIE = 'snowfall_session';
 
-// API/media routes validate their own sessions on the backend. Only assets,
-// machine-readable product descriptions and the sign-in screen bypass page auth.
+export function isPublicBrowsePage(pathname) {
+  return pathname === '/' || pathname === '/explore'
+    || /^\/(?:explore|creators)\/[A-Za-z0-9_-]+$/.test(pathname);
+}
+
+// Public browsing contains published showcase data only. API/media routes still
+// validate their own sessions on the backend; this never grants API access.
 export function bypassPageAuth(pathname) {
-  return ['/login', '/logo.svg', '/favicon.ico', '/robots.txt', '/sitemap.xml', '/llms.txt', '/llms-full.txt', '/opengraph-image'].includes(pathname)
+  return isPublicBrowsePage(pathname)
+    || ['/login', '/logo.svg', '/favicon.ico', '/robots.txt', '/sitemap.xml', '/llms.txt', '/llms-full.txt', '/opengraph-image'].includes(pathname)
     || /^\/(?:api|integrations|media|renders|generated|showcase|studio-media\/fonts)(?:\/|$)/.test(pathname);
 }
 
